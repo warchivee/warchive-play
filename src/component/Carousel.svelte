@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	// @ts-nocheck
 
 	//https://svelte.dev/repl/a363db348ba4485d965c5b5464428a73?version=3.31.2
@@ -20,18 +20,17 @@
 	export let rtl = false;
 	let currentIndex = startIndex;
 
-	/**
-	 * @type {HTMLDivElement}
-	 */
-	let siema;
-	/**
-	 * @type {{ innerElements: string | any[]; perPage: any; destroy: () => void; prev: () => void; next: () => void; goTo: (arg0: any) => void; currentSlide: number; }}
-	 */
-	let controller;
-	/**
-	 * @type {number | undefined}
-	 */
-	let timer;
+	let siema: HTMLDivElement;
+	let controller: {
+		innerElements: string | any[];
+		perPage: any;
+		destroy: () => void;
+		prev: () => void;
+		next: () => void;
+		goTo: (arg0: any) => void;
+		currentSlide: number;
+	};
+	let timer: number | undefined;
 	const dispatch = createEventDispatcher();
 
 	$: pips = controller ? controller.innerElements : [];
@@ -63,11 +62,7 @@
 		};
 	});
 
-	/**
-	 * @param {number} currentIndex
-	 * @param {number} dotIndex
-	 */
-	export function isDotActive(currentIndex, dotIndex) {
+	export function isDotActive(currentIndex: number, dotIndex: number) {
 		if (currentIndex < 0) currentIndex = pips.length + currentIndex;
 		return (
 			currentIndex >= dotIndex * currentPerPage &&
@@ -83,10 +78,7 @@
 		controller.next();
 	}
 
-	/**
-	 * @param {number} index
-	 */
-	export function go(index) {
+	export function go(index: number) {
 		controller.goTo(index);
 	}
 
@@ -100,11 +92,7 @@
 		}
 	}
 
-	/**
-	 * @param {any} event
-	 */
-	// @ts-ignore
-	function handleChange(event) {
+	function handleChange() {
 		currentIndex = controller.currentSlide;
 		dispatch('change', {
 			currentSlide: controller.currentSlide,
@@ -112,16 +100,8 @@
 		});
 	}
 
-	/**
-	 * @param {HTMLButtonElement} node
-	 * @param {number} condition
-	 */
-	function resetInterval(node, condition) {
-		/**
-		 * @param {any} event
-		 */
-		// @ts-ignore
-		function handleReset(event) {
+	function resetInterval(node: HTMLButtonElement, condition: number) {
+		function handleReset() {
 			pause();
 			resume();
 		}

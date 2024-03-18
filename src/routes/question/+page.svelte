@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
 	import questions from '$lib/assets/questions';
 	import Button from '../../component/Button.svelte';
@@ -7,10 +7,7 @@
 
 	let loading = false;
 
-	/**
-	 * @type {Record<string, number>}
-	 */
-	let count = {
+	let count: Record<string, number> = {
 		E: 0,
 		I: 0,
 
@@ -37,7 +34,7 @@
 		return result;
 	};
 
-	const handleClick = (/** @type {number} */ answerNum) => {
+	const handleClick = (answerNum: number) => {
 		if (questionNum + 1 === questions.length) {
 			const result = getResult();
 

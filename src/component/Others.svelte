@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Border from '$lib/images/border.png';
 
 	import results from '$lib/assets/results';

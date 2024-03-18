@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 	import results from '$lib/assets/results';
 	import { onMount } from 'svelte';

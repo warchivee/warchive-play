@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import mobileLogo from '$lib/images/mobile-logo.jpg';
 	export let color = 'white';
 	export let icon = 'play';

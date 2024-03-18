@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 
 	import Button from './Button.svelte';
@@ -10,10 +10,8 @@
 	export let title = '';
 	export let genre = '';
 	export let intro = '';
-	/**
-	 * @type {any[]}
-	 */
-	export let images = [];
+
+	export let images: string[] = [];
 
 	let openOthers = false;
 

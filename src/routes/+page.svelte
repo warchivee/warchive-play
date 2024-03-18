@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Screen from '../component/Screen.svelte';
 	import title from '$lib/images/title.png';
 	import mobileTitle from '$lib/images/mobile-title.png';

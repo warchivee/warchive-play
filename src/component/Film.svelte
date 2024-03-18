@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import film from '$lib/images/film.png';
 
 	export let size = 'default';

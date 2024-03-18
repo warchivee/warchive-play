@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { blur } from 'svelte/transition';
 	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -14,10 +14,7 @@
 	import results from '$lib/assets/results';
 
 	function getImageSrcs() {
-		/**
-		 * @type {string[]}
-		 */
-		const result = [];
+		const result: string[] = [];
 
 		Object.keys(results)?.forEach((key) => {
 			let image = results[key]?.image;

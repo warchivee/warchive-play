@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <footer>Copyright ⓒ 2024 by team warchive all right reserved.</footer>
 
 <style>

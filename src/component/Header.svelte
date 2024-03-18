@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import logo from '$lib/images/logo.png';
 </script>
 
@@ -16,7 +16,7 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		background-color: #170C1E;
+		background-color: #170c1e;
 		height: 50px;
 	}
 	img {
