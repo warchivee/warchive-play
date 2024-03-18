@@ -1,4 +1,6 @@
-import adapter from '@sveltejs/adapter-static';
+// https://kit.svelte.dev/docs/adapter-netlify
+
+import adapter from '@sveltejs/adapter-netlify';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -6,14 +8,17 @@ const config = {
 	// https://kit.svelte.dev/docs/integrations#preprocessors
 	preprocess: vitePreprocess(),
 
-	// https://kit.svelte.dev/docs/adapter-static#github-pages
 	kit: {
 		adapter: adapter({
-			fallback: '404.html'
-		}),
-		paths: {
-			base: process.argv.includes('dev') ? '' : process.env.BASE_PATH
-		}
+			// if true, will create a Netlify Edge Function rather
+			// than using standard Node-based functions
+			edge: false,
+
+			// if true, will split your app into multiple functions
+			// instead of creating a single one for the entire app.
+			// if `edge` is true, this option cannot be used
+			split: false
+		})
 	}
 };
 
