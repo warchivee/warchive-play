@@ -4,6 +4,7 @@
 	import Screen from '../component/Screen.svelte';
 	import title from '$lib/images/title.png';
 	import mobileTitle from '$lib/images/mobile-title.png';
+	import Footer from '../component/Footer.svelte';
 </script>
 
 <Screen>
@@ -25,6 +26,7 @@
 		<i class="fa-solid fa-circle-play"></i>
 	</a>
 </Screen>
+<Footer />
 
 <style>
 	div {
