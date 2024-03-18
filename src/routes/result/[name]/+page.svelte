@@ -2,7 +2,7 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import results from '$lib/assets/results';
+	import results, { typesByPath } from '$lib/assets/results';
 
 	import { blur } from 'svelte/transition';
 	import { fly } from 'svelte/transition';
@@ -26,7 +26,7 @@
 		return result;
 	}
 
-	let type = $page?.params?.type;
+	let type = typesByPath[$page?.params?.name];
 	const result = results[type];
 	const images = getImageSrcs();
 </script>

@@ -22,7 +22,45 @@ import 십이국기 from '$lib/images/intro/십이국기.webp';
 import 언내추럴 from '$lib/images/intro/언내추럴.jpg';
 import 합법해적파르페 from '$lib/images/intro/합법해적파르페.webp';
 
-const results: Record<
+export const typesByPath: Record<string, string> = {
+	max: 'INTJ',
+	gugyeong: 'INTP',
+	elsa: 'INFJ',
+	anne: 'INFP',
+	coco: 'ISTJ',
+	Ikatniss: 'NSTP',
+	yoko: 'ISFJ',
+	mikoto: 'ISFP',
+	mother: 'ENTJ',
+	myeongok: 'ENTP',
+	emma: 'ENFJ',
+	parfait: 'ENFP',
+	aloy: 'ESTJ',
+	seol: 'ESTP',
+	jaeon: 'ESFJ',
+	merida: 'ESFP'
+};
+
+export const pathsByType: Record<string, string> = {
+	INTJ: 'max',
+	INTP: 'gugyeong',
+	INFJ: 'elsa',
+	INFP: 'anne',
+	ISTJ: 'coco',
+	INSTP: 'katniss',
+	ISFJ: 'yoko',
+	ISFP: 'mikoto',
+	ENTJ: 'mother',
+	ENTP: 'myeongok',
+	ENFJ: 'emma',
+	ENFP: 'parfait',
+	ESTJ: 'aloy',
+	ESTP: 'seol',
+	ESFJ: 'jaeon',
+	ESFP: 'merida'
+};
+
+export const results: Record<
 	string,
 	{
 		name: string;

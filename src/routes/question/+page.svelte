@@ -6,6 +6,7 @@
 	import Button from '../../component/Button.svelte';
 	import Loader from '../../component/Loader.svelte';
 	import Screen from '../../component/Screen.svelte';
+	import { pathsByType } from '$lib/assets/results';
 
 	let loading = false;
 
@@ -25,25 +26,25 @@
 
 	let questionNum = 0;
 
-	const getResult = () => {
-		let result = '';
+	const getType = () => {
+		let type = '';
 
-		result = result + (count.E > count.I ? 'E' : 'I');
-		result = result + (count.N > count.S ? 'N' : 'S');
-		result = result + (count.T > count.F ? 'T' : 'F');
-		result = result + (count.J > count.P ? 'J' : 'P');
+		type = type + (count.E > count.I ? 'E' : 'I');
+		type = type + (count.N > count.S ? 'N' : 'S');
+		type = type + (count.T > count.F ? 'T' : 'F');
+		type = type + (count.J > count.P ? 'J' : 'P');
 
-		return result;
+		return type;
 	};
 
 	const handleClick = (answerNum: number) => {
 		if (questionNum + 1 === questions.length) {
-			const result = getResult();
+			const type = getType();
 
 			loading = true;
 
 			setTimeout(function () {
-				goto(`${base}/result/${result}`);
+				goto(`${base}/result/${pathsByType[type]}`);
 			}, 4000);
 
 			return;

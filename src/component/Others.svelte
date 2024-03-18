@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Border from '$lib/images/border.png';
-	import results from '$lib/assets/results';
+	import results, { pathsByType } from '$lib/assets/results';
 
 	export let isOpen = false;
 	export let close = () => {};
@@ -22,7 +22,9 @@
 								<h3 class="font-gothic">{results[key].name}</h3>
 								<h5 class="font-gothic">{results[key].title}</h5>
 							</div>
-							<a class="font-gothic" href="{base}/result/{key}" target="_blank">결과보기</a>
+							<a class="font-gothic" href="{base}/result/{pathsByType[key]}" target="_blank"
+								>결과보기</a
+							>
 						</div>
 						<p class="font-gothic keywords">{results[key].keyword}</p>
 					</div>
