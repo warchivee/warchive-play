@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+
 	import Screen from '../component/Screen.svelte';
 	import title from '$lib/images/title.png';
 	import mobileTitle from '$lib/images/mobile-title.png';
-	import { goto } from '$app/navigation';
 </script>
 
 <Screen>
@@ -19,8 +20,8 @@
 		</h3>
 	</div>
 
-	<button on:click={() => goto('/question')}><span>테스트 시작하기</span></button>
-	<a class="play-btn" href="/question">
+	<a class="play-btn-text" href={`${base}/question`}><span>테스트 시작하기</span></a>
+	<a class="play-btn" href={`${base}/question`}>
 		<i class="fa-solid fa-circle-play"></i>
 	</a>
 </Screen>
@@ -77,14 +78,14 @@
 		opacity: 50%;
 	}
 
-	button {
+	.play-btn-text {
 		padding: 10px 20px;
 		background-color: transparent;
 		cursor: pointer;
 		z-index: 1;
 	}
 
-	button > span {
+	a > span {
 		font-size: 1rem;
 		font-weight: bold;
 		box-shadow: inset 0 -13px 0 rgba(211, 136, 255, 0.2);

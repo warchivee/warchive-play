@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import questions from '$lib/assets/questions';
+
 	import Button from '../../component/Button.svelte';
 	import Loader from '../../component/Loader.svelte';
 	import Screen from '../../component/Screen.svelte';
@@ -41,7 +43,7 @@
 			loading = true;
 
 			setTimeout(function () {
-				goto(`/result/${result}`);
+				goto(`${base}/result/${result}`);
 			}, 4000);
 
 			return;
@@ -58,7 +60,7 @@
 	icon="pause"
 	color="black"
 	animation={true}
-	progress={`${questionNum == questions.length - 1 ? 100 : questionNum * 12}`}
+	progress={questionNum == questions.length - 1 ? 100 : questionNum * 12}
 >
 	{#if loading === false}
 		<h3>{questionNum + 1}/{questions.length}</h3>

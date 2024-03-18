@@ -45,7 +45,7 @@
 		{:else}
 			<div>
 				<img src={imgSrc} alt={title} />
-				<div class="background-blur" style={`background-image: url(${imgSrc})`} />
+				<div class="background-blur" style="background-image: url({imgSrc})" />
 			</div>
 		{/if}
 
@@ -54,7 +54,7 @@
 			<p class="font-gothic text-left">
 				{intro}
 			</p>
-			<Button on:click={moveSite}>
+			<Button onClick={moveSite}>
 				<div style="color: white; font-size: 0.8rem">
 					{title}, 어디서 {genre === 'game' ? '할' : '볼'} 수 있지?
 				</div>

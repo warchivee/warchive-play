@@ -29,7 +29,7 @@
 </script>
 
 <div
-	class={`image-container ${size}`}
+	class="image-container {size}"
 	style="--default-size: {imgInfo.default.image_size * imgInfo.default.image_count}px;
     --small-size: {imgInfo.small.image_size * imgInfo.small.image_count}px;
     "

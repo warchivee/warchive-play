@@ -3,7 +3,7 @@
 	import './styles.css';
 </script>
 
-<div class={`app ${$page?.route?.id === '/question' ? 'black' : 'gradient'}`}>
+<div class="app {$page?.route?.id === '/question' ? 'black' : 'gradient'}">
 	<main>
 		<slot />
 	</main>

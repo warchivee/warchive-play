@@ -5,7 +5,9 @@
 
 <button
 	on:click={onClick}
-	style={`background-color: ${color === 'purple' ? '#783b99' : 'white'}; color: ${color === 'purple' ? 'white' : 'black'}`}
+	style="background-color: {color === 'purple' ? '#783b99' : 'white'}; color: {color === 'purple'
+		? 'white'
+		: 'black'}"
 >
 	<slot />
 </button>

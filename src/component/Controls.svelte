@@ -2,19 +2,16 @@
 	import mobileLogo from '$lib/images/mobile-logo.jpg';
 	export let color = 'white';
 	export let icon = 'play';
-	export let progress = '0';
+	export let progress = 0;
 </script>
 
 <div class="controls" style="--color: {color}">
 	<div class="progress-bar">
-		<div
-			class="progress-circle"
-			style={`--progress: ${progress === '100' ? '99' : progress}%`}
-		></div>
+		<div class="progress-circle" style="--progress: {progress === 100 ? 99 : progress}%"></div>
 	</div>
 	<div class="btns">
 		<div>
-			<i class={`fas fa-${icon}`} id="playBtn"></i>
+			<i class="fas fa-{icon}" id="playBtn"></i>
 			<i class="fa-solid fa-forward-step"></i>
 			<i class="fa-solid fa-volume-low"></i>
 		</div>

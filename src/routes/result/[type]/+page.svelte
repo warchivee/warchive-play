@@ -1,17 +1,17 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import results from '$lib/assets/results';
+
 	import { blur } from 'svelte/transition';
 	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-
-	import { page } from '$app/stores';
 
 	import Footer from '../../../component/Footer.svelte';
 	import IntroSection from '../../../component/IntroSection.svelte';
 	import Screen from '../../../component/Screen.svelte';
 	import SnsShareBtns from '../../../component/SnsShareBtns.svelte';
-
-	import { goto } from '$app/navigation';
-	import results from '$lib/assets/results';
 
 	function getImageSrcs() {
 		const result: string[] = [];
@@ -31,7 +31,7 @@
 	const images = getImageSrcs();
 </script>
 
-<Screen icon="rotate-left" progress="100">
+<Screen icon="rotate-left" progress={100}>
 	<div class="title">
 		<div>당신과 닮은 <b>여성서사 주인공</b>은?</div>
 	</div>
@@ -69,7 +69,7 @@
 	{images}
 />
 
-<button class="replay-btn" on:click={() => goto('/')}>테스트 다시하기</button>
+<button class="replay-btn" on:click={() => goto(`${base}/`)}>테스트 다시하기</button>
 
 <Footer />
 

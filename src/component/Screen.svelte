@@ -7,11 +7,11 @@
 	export let color = 'white';
 	export let animation = false;
 
-	export let progress = '0';
+	export let progress = 0;
 </script>
 
-<section class={`${animation ? 'animation' : ''}`}>
-	<div class={`screen ${color}`}>
+<section class={animation ? 'animation' : ''}>
+	<div class="screen {color}">
 		<img class="logo" src={logo} alt="와카이브 로고" />
 
 		<div class="content">
