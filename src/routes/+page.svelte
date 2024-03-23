@@ -5,7 +5,10 @@
 	import title from '$lib/images/title.png';
 	import mobileTitle from '$lib/images/mobile-title.png';
 	import Footer from '../component/Footer.svelte';
+	import BaseHead from '../component/BaseHead.svelte';
 </script>
+
+<BaseHead />
 
 <Screen>
 	<div>

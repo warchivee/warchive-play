@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import results from '$lib/assets/results';
+	import results, { typesByPath } from '$lib/assets/results';
 	import { onMount } from 'svelte';
 	import Snackbar from './Snackbar.svelte';
 
-	const type = $page?.params?.type;
+	const name = $page?.params?.name;
+	const type = typesByPath[name];
 
-	const title = `내가 여성서사 작품의 주인공이 된다면? 여성서사 MBTI 테스트!`;
+	const title = `Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?`;
 	const content = `나는 ${results[type]?.title}의 ${results[type]?.name}`;
 	const url = $page?.url;
 

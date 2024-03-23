@@ -7,6 +7,7 @@
 	import Loader from '../../component/Loader.svelte';
 	import Screen from '../../component/Screen.svelte';
 	import { pathsByType } from '$lib/assets/results';
+	import BaseHead from '../../component/BaseHead.svelte';
 
 	let loading = false;
 
@@ -38,6 +39,7 @@
 	};
 
 	const handleClick = (answerNum: number) => {
+		console.log(count);
 		if (questionNum + 1 === questions.length) {
 			const type = getType();
 
@@ -56,6 +58,8 @@
 		count[selectCount] = count[selectCount] + 1;
 	};
 </script>
+
+<BaseHead />
 
 <Screen
 	icon="pause"
@@ -100,6 +104,7 @@
 		text-align: center;
 		font-weight: 500;
 		font-size: 1.5rem;
+		padding: 0 1rem;
 	}
 
 	.answer {

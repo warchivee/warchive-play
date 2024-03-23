@@ -1,4 +1,8 @@
-<footer>Copyright ⓒ 2024 by team warchive all right reserved.</footer>
+<script>
+	const today = new Date();
+</script>
+
+<footer>Copyright © {today.getFullYear()} Warchive. All rights reserved.</footer>
 
 <style>
 	footer {

@@ -12,6 +12,7 @@
 	import IntroSection from '../../../component/IntroSection.svelte';
 	import Screen from '../../../component/Screen.svelte';
 	import SnsShareBtns from '../../../component/SnsShareBtns.svelte';
+	import BaseHead from '../../../component/BaseHead.svelte';
 
 	function getImageSrcs() {
 		const result: string[] = [];
@@ -31,6 +32,8 @@
 	const images = getImageSrcs();
 </script>
 
+<BaseHead />
+
 <Screen icon="rotate-left" progress={100}>
 	<div class="title">
 		<div>당신과 닮은 <b>여성서사 주인공</b>은?</div>
@@ -48,7 +51,7 @@
 			<h3>{result?.title}</h3>
 
 			<div class="keyword">
-				<h5>{result?.keyword}</h5>
+				<h5><span>{result?.keyword}</span></h5>
 			</div>
 
 			<p>
@@ -103,8 +106,7 @@
 		display: flex;
 	}
 
-	.keyword > h5 {
-		display: inline-block;
+	.keyword span {
 		box-shadow: inset 0 -13px 0 rgba(211, 136, 255, 0.2);
 		word-spacing: 5px;
 	}
