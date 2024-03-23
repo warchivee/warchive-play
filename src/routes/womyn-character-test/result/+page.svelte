@@ -72,7 +72,9 @@
 	{images}
 />
 
-<button class="replay-btn" on:click={() => goto(`${base}/`)}>테스트 다시하기</button>
+<button class="replay-btn" on:click={() => goto(`${base}/womyn-character-test`)}
+	>테스트 다시하기</button
+>
 
 <Footer />
 
