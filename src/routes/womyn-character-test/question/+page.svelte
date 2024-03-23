@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import questions from '$lib/assets/questions';
 
-	import Button from '../../component/Button.svelte';
-	import Loader from '../../component/Loader.svelte';
-	import Screen from '../../component/Screen.svelte';
+	import questions from '$lib/assets/questions';
 	import { pathsByType } from '$lib/assets/results';
-	import BaseHead from '../../component/BaseHead.svelte';
+	
+	import Button from '$components/Button.svelte';
+	import Loader from '$components/Loader.svelte';
+	import Screen from '$components/Screen.svelte';
+	import BaseHead from '$components/BaseHead.svelte';
 
 	let loading = false;
 
@@ -46,7 +47,7 @@
 			loading = true;
 
 			setTimeout(function () {
-				goto(`${base}/result/${pathsByType[type]}`);
+				goto(`${base}/womyn-character-test/result/${pathsByType[type]}`);
 			}, 4000);
 
 			return;

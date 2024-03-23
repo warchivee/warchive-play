@@ -8,11 +8,11 @@
 	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-	import Footer from '../../../component/Footer.svelte';
-	import IntroSection from '../../../component/IntroSection.svelte';
-	import Screen from '../../../component/Screen.svelte';
-	import SnsShareBtns from '../../../component/SnsShareBtns.svelte';
-	import BaseHead from '../../../component/BaseHead.svelte';
+	import Footer from '$components/Footer.svelte';
+	import IntroSection from '$components/IntroSection.svelte';
+	import Screen from '$components/Screen.svelte';
+	import SnsShareBtns from '$components/SnsShareBtns.svelte';
+	import BaseHead from '$components/BaseHead.svelte';
 
 	function getImageSrcs() {
 		const result: string[] = [];
@@ -72,7 +72,9 @@
 	{images}
 />
 
-<button class="replay-btn" on:click={() => goto(`${base}/`)}>테스트 다시하기</button>
+<button class="replay-btn" on:click={() => goto(`${base}/womyn-character-test`)}
+	>테스트 다시하기</button
+>
 
 <Footer />
 

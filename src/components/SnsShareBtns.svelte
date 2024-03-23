@@ -8,7 +8,7 @@
 	const type = typesByPath[name];
 
 	const title = `Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?`;
-	const content = `나는 ${results[type]?.title}의 ${results[type]?.name}`;
+	const content = `나는 ${results[type]?.title}의 ${results[type]?.name}!`;
 	const url = $page?.url;
 
 	let openSnackbar = false;
