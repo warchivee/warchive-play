@@ -22,8 +22,13 @@
 								<h3 class="font-gothic">{results[key].name}</h3>
 								<h5 class="font-gothic">{results[key].title}</h5>
 							</div>
-							<a class="font-gothic" href="{base}/womyn-character-test/result/{pathsByType[key]}" target="_blank"
-								>결과보기</a
+							<a
+								class="font-gothic"
+								on:click={() => {
+									close();
+								}}
+								href="{base}/womyn-character-test/result/{pathsByType[key]}"
+								target="_self">결과보기</a
 							>
 						</div>
 						<p class="font-gothic keywords">{results[key].keyword}</p>

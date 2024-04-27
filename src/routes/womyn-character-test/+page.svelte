@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-
 	import title from '$lib/images/title.png';
 	import mobileTitle from '$lib/images/mobile-title.png';
-	
+
 	import Screen from '$components/Screen.svelte';
 	import Footer from '$components/Footer.svelte';
 	import BaseHead from '$components/BaseHead.svelte';
+
+	import isAudioPlaying from '../../store/autio';
 </script>
 
 <BaseHead />
@@ -25,16 +26,32 @@
 		</h3>
 	</div>
 
-	<a class="play-btn-text" href={`${base}/womyn-character-test/question`}
-		><span>테스트 시작하기</span></a
+	<a
+		class="play-btn-text"
+		on:click={() => {
+			isAudioPlaying.set(true);
+		}}
+		href={`${base}/womyn-character-test/question`}><span>테스트 시작하기</span></a
 	>
-	<a class="play-btn" href={`${base}/womyn-character-test/question`}>
+	<span class="audio-warning font-gothic">♬ 테스트 시작 시 노래가 재생됩니다.</span>
+
+	<a
+		class="play-btn"
+		on:click={() => {
+			isAudioPlaying.set(true);
+		}}
+		href={`${base}/womyn-character-test/question`}
+	>
 		<i class="fa-solid fa-circle-play"></i>
 	</a>
 </Screen>
 <Footer />
 
 <style>
+	.audio-warning {
+		font-size: 12px;
+		opacity: 0.7;
+	}
 	div {
 		flex: 1;
 		margin-top: 7rem;

@@ -28,7 +28,7 @@
 
 	function shareTwitter() {
 		window.open(
-			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=와카이브,여성서사&url=${url}`
+			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=와카이브,여성서사주인공테스트&url=${url}`
 		);
 	}
 

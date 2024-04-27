@@ -3,7 +3,6 @@
 	import { base } from '$app/paths';
 	import BaseHead from '$components/BaseHead.svelte';
 
-
 	onMount(() => {
 		const redirectUrl = `${base}/womyn-character-test`;
 

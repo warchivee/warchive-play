@@ -23,8 +23,8 @@
 		openOthers = true;
 	}
 
-	function moveSite() {
-		window.open('https://www.womynarchive.com/');
+	function moveSite(title: string) {
+		window.open(`https://admin.womynarchive.com?s=${title}`);
 	}
 </script>
 
@@ -54,7 +54,7 @@
 			<p class="font-gothic text-left">
 				{intro}
 			</p>
-			<Button onClick={moveSite}>
+			<Button onClick={() => moveSite(title)}>
 				<div style="color: white; font-size: 0.8rem">
 					{title}, 어디서 {genre === 'game' ? '할' : '볼'} 수 있지?
 				</div>

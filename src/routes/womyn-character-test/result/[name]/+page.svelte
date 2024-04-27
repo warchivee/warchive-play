@@ -61,6 +61,10 @@
 	</div>
 
 	<SnsShareBtns />
+
+	<button class="replay-btn" on:click={() => goto(`${base}/womyn-character-test`)}
+		>테스트 다시하기</button
+	>
 </Screen>
 
 <IntroSection
@@ -71,10 +75,6 @@
 	intro={result?.intro}
 	{images}
 />
-
-<button class="replay-btn" on:click={() => goto(`${base}/womyn-character-test`)}
-	>테스트 다시하기</button
->
 
 <Footer />
 

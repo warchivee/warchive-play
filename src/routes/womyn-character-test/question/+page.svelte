@@ -4,7 +4,7 @@
 
 	import questions from '$lib/assets/questions';
 	import { pathsByType } from '$lib/assets/results';
-	
+
 	import Button from '$components/Button.svelte';
 	import Loader from '$components/Loader.svelte';
 	import Screen from '$components/Screen.svelte';
@@ -40,7 +40,6 @@
 	};
 
 	const handleClick = (answerNum: number) => {
-		console.log(count);
 		if (questionNum + 1 === questions.length) {
 			const type = getType();
 

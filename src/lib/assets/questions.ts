@@ -45,8 +45,7 @@ const questions: { text: string; answers: { text: string; value: string }[] }[] 
 			당신은 어떤 생각을 할까?`,
 		answers: [
 			{
-				text: `대차게 넘어지는 바람에 쟁반과 음료가 와장창 쏟아지고<br />
-					다른 손님의 비싼 옷에 음료가 묻어서 신용불량자가 되는 상상까지 한다.`,
+				text: `대차게 넘어지는 바람에 쟁반과 음료가 와장창 쏟아지고 다른 손님의 비싼 옷에 음료가 묻어서 신용불량자가 되는 상상까지 한다.`,
 				value: 'N'
 			},
 			{
@@ -99,8 +98,7 @@ const questions: { text: string; answers: { text: string; value: string }[] }[] 
 		text: `월급이 들어왔다! 뭐부터 할까?`,
 		answers: [
 			{
-				text: `보험료, 적금, 관리비… 전부 자동이체 완료.<br />
-					남은 돈으로 이번 달 경조사비와 용돈을 계산한다.`,
+				text: `보험료, 적금, 관리비… 전부 자동이체 완료. 남은 돈으로 이번 달 경조사비와 용돈을 계산한다.`,
 				value: 'J'
 			},
 			{

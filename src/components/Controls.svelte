@@ -1,9 +1,17 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+	import { goto } from '$app/navigation';
+
 	import mobileLogo from '$lib/images/mobile-logo.jpg';
+	import isAudioPlaying from '../store/autio';
+	import BaseHead from './BaseHead.svelte';
+
 	export let color = 'white';
 	export let icon = 'play';
 	export let progress = 0;
 </script>
+
+<BaseHead />
 
 <div class="controls" style="--color: {color}">
 	<div class="progress-bar">
@@ -11,9 +19,33 @@
 	</div>
 	<div class="btns">
 		<div>
-			<i class="fas fa-{icon}" id="playBtn"></i>
+			<i
+				class="fas fa-{icon}"
+				id="playBtn"
+				aria-hidden="true"
+				on:click={() => {
+					if (icon === 'rotate-left') {
+						goto(`${base}/womyn-character-test`);
+					} else if (icon === 'play') {
+						goto(`${base}/womyn-character-test/question`);
+					}
+				}}
+			></i>
 			<i class="fa-solid fa-forward-step"></i>
-			<i class="fa-solid fa-volume-low"></i>
+			<div class="audio">
+				<i
+					class={`volumn-btn fa-solid ${$isAudioPlaying ? 'fa-volume-high' : 'fa-volume-xmark'}`}
+					aria-hidden="true"
+					on:click={() => {
+						isAudioPlaying.set(!$isAudioPlaying);
+					}}
+				></i>
+				<div class="audio-copyright-wrap">
+					<div class="audio-copyright">
+						Elektronomia - Limitless [NCS Release] Music provided by NoCopyrightSounds
+					</div>
+				</div>
+			</div>
 		</div>
 		<div>
 			<img class="logo" src={mobileLogo} alt="모바일 로고" />
@@ -23,6 +55,36 @@
 </div>
 
 <style>
+	.audio {
+		display: flex;
+		justify-content: center;
+		gap: 10px;
+	}
+
+	.audio-copyright-wrap {
+		float: right;
+		width: 125px;
+		overflow: hidden;
+		height: 100%;
+		white-space: nowrap;
+	}
+
+	.audio .audio-copyright {
+		font-size: 12px;
+		white-space: nowrap;
+		opacity: 0.5;
+		animation: marquee 30s linear infinite;
+	}
+
+	@keyframes marquee {
+		from {
+			transform: translateX(100%);
+		}
+		to {
+			transform: translateX(-350%);
+		}
+	}
+
 	.controls {
 		width: 90%;
 		max-width: 1000px;
@@ -77,8 +139,12 @@
 
 	.logo {
 		border-radius: 50%;
-		width: 1.25rem;
-		height: 1.25rem;
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.logo-text {
+		font-size: 0.8rem;
 	}
 
 	.controls > .btns i {
@@ -87,18 +153,18 @@
 		cursor: pointer;
 	}
 
+	.controls > .btns i:not(.no-click) {
+		cursor: pointer;
+	}
+
+	.volumn-btn {
+		text-shadow: 0 0 7px #fff;
+	}
+
 	@media (max-width: 600px) {
 		.btns {
 			display: flex;
 			flex-direction: column;
-		}
-		.logo-text {
-			font-size: 0.9rem;
-		}
-
-		.logo {
-			width: 1rem;
-			height: 1rem;
 		}
 	}
 </style>
