@@ -24,7 +24,7 @@
 	}
 
 	function moveSite(title: string) {
-		window.open(`https://admin.womynarchive.com?s=${title}`);
+		window.open(`https://www.womynarchive.com?s=${title}`);
 	}
 </script>
 
