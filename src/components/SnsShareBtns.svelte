@@ -11,6 +11,8 @@
 	const content = `나는 ${results[type]?.title}의 ${results[type]?.name}!`;
 	const url = $page?.url;
 
+	export let image = 'https://i.ibb.co/v4Qpsb8/mbti-cover.png';
+
 	let openSnackbar = false;
 
 	function shareLink() {
@@ -38,7 +40,7 @@
 			content: {
 				title: title,
 				description: content,
-				imageUrl: 'https://i.ibb.co/v4Qpsb8/mbti-cover.png',
+				imageUrl: image,
 				link: {
 					mobileWebUrl: `${url}`,
 					webUrl: `${url}`

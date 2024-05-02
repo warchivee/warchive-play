@@ -32,7 +32,7 @@
 	const images = getImageSrcs();
 </script>
 
-<BaseHead />
+<BaseHead image={result?.image} />
 
 <Screen icon="rotate-left" progress={100}>
 	<div class="title">
@@ -60,7 +60,7 @@
 		</div>
 	</div>
 
-	<SnsShareBtns />
+	<SnsShareBtns image={result?.image} />
 
 	<button class="replay-btn" on:click={() => goto(`${base}/womyn-character-test`)}
 		>테스트 다시하기</button
