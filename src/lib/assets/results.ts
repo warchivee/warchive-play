@@ -104,7 +104,7 @@ export const results: Record<
 	},
 	INFP: {
 		name: '앤',
-		title: 'Anne with an E',
+		title: '빨간 머리 앤',
 		keyword: '#상상력 #에너지 #도전정신 #이상주의자',
 		description: `상상력이 뛰어나고 에너지가 넘치는 당신. <br />머릿속에서 끊임없이 수많은 이야기를 만들어 낼 수 있는 당신은 그야말로 빨간머리 앤! <br />고전 명작에 현대적 해석을 더한 수작, Anne with an E에서 다채로운 앤의 상상력과 도전정신을 엿보는 건 어떨까요? <br />자신의 길을 걸어나가는 앤과 친구들의 이야기에 틀림없이 빠져들 거예요.`,
 		src: 'https://www.youtube.com/embed/S5qJXYNNINo',
@@ -189,7 +189,7 @@ export const results: Record<
 	},
 	ESTJ: {
 		name: '에일로이',
-		title: '호라이즌 제로 던',
+		title: 'horizon zero dawn',
 		keyword: '#현실적 #목표지향적 #카리스마 #전투적',
 		description: `어머니를 숭상하는 모계 부족에서 추방당한 전사, 에일로이. <br />자라면서 좋은 취급을 받은 적이 없었음에도 그런 현실을 극복하기 위해 수행을 반복하고 시련을 뛰어넘은, 현실적이고 목표지향적인 인물입니다. <br />한번 멸망한 세계에서 살아남아 자신을 찾아가는 에일로이의 이야기는 ‘호라이즌 제로 던’ 시리즈에서 만나보세요.`,
 		src: 'https://www.youtube.com/embed/u4-FCsiF5x4',
