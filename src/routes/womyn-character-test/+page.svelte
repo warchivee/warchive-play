@@ -51,6 +51,7 @@
 	.audio-warning {
 		font-size: 12px;
 		opacity: 0.7;
+		margin-bottom: 20px;
 	}
 	div {
 		flex: 1;

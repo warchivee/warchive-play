@@ -26,6 +26,10 @@
 	function moveSite(title: string) {
 		window.open(`https://www.womynarchive.com?s=${title}`);
 	}
+
+	function movePlaySite() {
+		window.open(`https://article.womynarchive.com/play`);
+	}
 </script>
 
 <article in:fade={{ delay: 250, duration: 300 }}>
@@ -43,7 +47,7 @@
 				></iframe>
 			</div>
 		{:else}
-			<div>
+			<div class="thumbnail">
 				<img src={imgSrc} alt={title} />
 				<div class="background-blur" style="background-image: url({imgSrc})" />
 			</div>
@@ -60,6 +64,9 @@
 				</div>
 				<div style="color: white; font-size: 1.25rem">와카이브에서 확인하기</div>
 			</Button>
+			<Button color="white" fontSize="1.1rem" onClick={() => movePlaySite()}
+				>다른 여성서사 테스트 하러가기</Button
+			>
 		</div>
 	</section>
 
@@ -106,7 +113,13 @@
 		position: relative;
 	}
 
-	.background-blur {
+	.thumbnail {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.thumbnail .background-blur {
 		position: absolute;
 		filter: blur(10px);
 		background-size: cover;
