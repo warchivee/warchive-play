@@ -8,6 +8,7 @@
 	export let animation = false;
 
 	export let progress = 0;
+	export let showAutioMessage = false;
 </script>
 
 <section class={animation ? 'animation' : ''}>
@@ -17,7 +18,7 @@
 		<div class="content">
 			<slot />
 		</div>
-		<Controls {icon} color={color === 'white' ? 'black' : 'white'} {progress} />
+		<Controls {showAutioMessage} {icon} color={color === 'white' ? 'black' : 'white'} {progress} />
 	</div>
 
 	<Film />

@@ -9,6 +9,8 @@
 	export let color = 'white';
 	export let icon = 'play';
 	export let progress = 0;
+
+	export let showAutioMessage = false;
 </script>
 
 <BaseHead />
@@ -33,6 +35,10 @@
 			></i>
 			<i class="fa-solid fa-forward-step"></i>
 			<div class="audio">
+				{#if showAutioMessage}
+					<div class="font-gothic autio-message">이 버튼으로 BGM을 켜고 끌 수 있어요!</div>
+				{/if}
+
 				<i
 					class={`volumn-btn fa-solid ${$isAudioPlaying ? 'fa-volume-high' : 'fa-volume-xmark'}`}
 					aria-hidden="true"
@@ -59,6 +65,33 @@
 		display: flex;
 		justify-content: center;
 		gap: 10px;
+		position: relative;
+	}
+
+	.autio-message {
+		position: absolute;
+		top: -55px;
+		left: -10px;
+		font-size: small;
+		width: max-content;
+		background: white;
+		padding: 0.5rem 1rem;
+		box-shadow: -2px 2px rgb(178 178 178 / 0.3);
+	}
+
+	.autio-message:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 20px;
+		width: 0;
+		height: 0;
+		border: 7px solid transparent;
+		border-top-color: #ffffff;
+		border-bottom: 0;
+		border-right: 0;
+		margin-left: -3.5px;
+		margin-bottom: -7px;
 	}
 
 	.audio-copyright-wrap {

@@ -12,7 +12,7 @@
 
 <BaseHead />
 
-<Screen>
+<Screen showAutioMessage={true}>
 	<div>
 		<picture>
 			<source srcset={mobileTitle} media="(max-width: 768px)" />
@@ -33,7 +33,7 @@
 		}}
 		href={`${base}/womyn-character-test/question`}><span>테스트 시작하기</span></a
 	>
-	<span class="audio-warning font-gothic">♬ 테스트 시작 시 노래가 재생됩니다.</span>
+	<span class="audio-warning font-gothic">♬ 테스트 시작 시 BGM이 재생됩니다.</span>
 
 	<a
 		class="play-btn"
