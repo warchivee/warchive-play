@@ -10,7 +10,7 @@
 <svelte:head>
 	<title>{title}</title>
 
-	<meta property="og:image" content="https://i.ibb.co/v4Qpsb8/mbti-cover.png" />
+	<meta property="og:image" content={image} />
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
