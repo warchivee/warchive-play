@@ -3,7 +3,7 @@
 	import BaseHead from '$components/BaseHead.svelte';
 
 	onMount(() => {
-		const redirectUrl = `https://article.womynarchive.com/playt`;
+		const redirectUrl = `https://article.womynarchive.com/play`;
 
 		window.location.href = redirectUrl;
 	});
