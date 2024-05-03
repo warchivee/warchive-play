@@ -176,7 +176,7 @@ export const results: Record<
 `,
 		src: 'https://www.youtube.com/embed/yYWEjgvNWtg',
 		intro: `누가 말했는가, 소년만화의 주인공은 남자 캐릭터뿐이라고! 낙원과도 같은 고아원. 하지만 그곳은 낙원이 아니었다. 누구보다 강한 주인공 엠마는 가족과도 같은 고아원의 아이들을 지키기 위해 앞으로 나아간다. 가족의 죽음을 가슴에 품고서. 두뇌 싸움과 액션, 두 마리 토끼를 전부 잡은 다크판타지 모험 만화.`,
-		image: 'https://i.ibb.co/2ZWNvxV/image.jpg'
+		image: 엠마
 	},
 	ENFP: {
 		name: '파르페',
