@@ -22,5 +22,5 @@
 	<meta property="twitter:card" content="summary_large_image" />
 	<meta property="twitter:url" content={`${url}`} />
 	<meta property="twitter:title" content={title} />
-	<meta property="twitter:image:src" content={image} />
+	<meta property="twitter:image" content={image} />
 </svelte:head>
