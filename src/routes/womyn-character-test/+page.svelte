@@ -10,7 +10,10 @@
 	import isAudioPlaying from '../../store/autio';
 </script>
 
-<BaseHead />
+<BaseHead
+	title="Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?"
+	image="https://i.ibb.co/v4Qpsb8/mbti-cover.png"
+/>
 
 <Screen showAutioMessage={true}>
 	<div>

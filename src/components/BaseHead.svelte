@@ -1,8 +1,8 @@
 <script>
 	import { page } from '$app/stores';
 
-	export let title = 'Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?';
-	export let image = 'https://i.ibb.co/v4Qpsb8/mbti-cover.png';
+	export let title = '';
+	export let image = '';
 
 	const url = $page?.url;
 </script>

@@ -4,7 +4,6 @@
 
 	import mobileLogo from '$lib/images/mobile-logo.jpg';
 	import isAudioPlaying from '../store/autio';
-	import BaseHead from './BaseHead.svelte';
 
 	export let color = 'white';
 	export let icon = 'play';
@@ -12,8 +11,6 @@
 
 	export let showAutioMessage = false;
 </script>
-
-<BaseHead />
 
 <div class="controls" style="--color: {color}">
 	<div class="progress-bar">

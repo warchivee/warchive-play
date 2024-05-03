@@ -59,7 +59,7 @@
 	};
 </script>
 
-<BaseHead />
+<!-- <BaseHead /> -->
 
 <Screen
 	icon="pause"

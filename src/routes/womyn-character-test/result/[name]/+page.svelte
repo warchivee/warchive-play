@@ -30,9 +30,13 @@
 	let type = typesByPath[$page?.params?.name];
 	const result = results[type];
 	const images = getImageSrcs();
+	const url = $page?.url;
 </script>
 
-<BaseHead image={result?.image} />
+<BaseHead
+	title="Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?"
+	image={result?.image}
+/>
 
 <Screen icon="rotate-left" progress={100}>
 	<div class="title">
