@@ -2,13 +2,13 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
-	import questions from '$lib/assets/questions';
-	import { pathsByType } from '$lib/assets/results';
+	import questions from '$lib/assets/charactertest/questions';
+	import { pathsByType } from '$lib/assets/charactertest/results';
 
-	import Button from '$components/Button.svelte';
-	import Loader from '$components/Loader.svelte';
-	import Screen from '$components/Screen.svelte';
-	import BaseHead from '$components/BaseHead.svelte';
+	import Button from '$components/charactertest/Button.svelte';
+	import Loader from '$components/charactertest/Loader.svelte';
+	import Screen from '$components/charactertest/Screen.svelte';
+	import BaseHead from '$components/charactertest/BaseHead.svelte';
 
 	let loading = false;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import song from '$lib/assets/womyntest.mp3';
+	import song from '$lib/assets/charactertest/womyntest.mp3';
 	import { onMount } from 'svelte';
 	import isAudioPlaying from '../store/autio';
 

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import title from '$lib/images/title.png';
-	import mobileTitle from '$lib/images/mobile-title.png';
+	import title from '$lib/images/charactertest/title.png';
+	import mobileTitle from '$lib/images/charactertest/mobile-title.png';
 
-	import Screen from '$components/Screen.svelte';
-	import Footer from '$components/Footer.svelte';
-	import BaseHead from '$components/BaseHead.svelte';
+	import Screen from '$components/charactertest/Screen.svelte';
+	import Footer from '$components/charactertest/Footer.svelte';
+	import BaseHead from '$components/charactertest/BaseHead.svelte';
 
 	import isAudioPlaying from '../../store/autio';
 </script>

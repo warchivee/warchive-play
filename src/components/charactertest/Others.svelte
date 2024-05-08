@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import Border from '$lib/images/border.png';
-	import results, { pathsByType } from '$lib/assets/results';
+	import Border from '$lib/images/charactertest/border.png';
+	import results, { pathsByType } from '$lib/assets/charactertest/results';
 
 	export let isOpen = false;
 	export let close = () => {};

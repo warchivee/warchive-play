@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import results, { typesByPath } from '$lib/assets/results';
+	import results, { typesByPath } from '$lib/assets/charactertest/results';
 	import { onMount } from 'svelte';
 	import Snackbar from './Snackbar.svelte';
 

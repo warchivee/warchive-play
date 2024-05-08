@@ -1,9 +1,9 @@
-import 왕년에용사님 from '$lib/images/intro/왕년에용사님.webp';
-import 전력질주 from '$lib/images/intro/전력질주.jpg';
-import 고깔모자의아틀리에 from '$lib/images/intro/고깔모자의아틀리에.webp';
-import 십이국기 from '$lib/images/intro/십이국기.webp';
-import 언내추럴 from '$lib/images/intro/언내추럴.jpg';
-import 합법해적파르페 from '$lib/images/intro/합법해적파르페.webp';
+import 왕년에용사님 from '$lib/images/charactertest/intro/왕년에용사님.webp';
+import 전력질주 from '$lib/images/charactertest/intro/전력질주.jpg';
+import 고깔모자의아틀리에 from '$lib/images/charactertest/intro/고깔모자의아틀리에.webp';
+import 십이국기 from '$lib/images/charactertest/intro/십이국기.webp';
+import 언내추럴 from '$lib/images/charactertest/intro/언내추럴.jpg';
+import 합법해적파르페 from '$lib/images/charactertest/intro/합법해적파르페.webp';
 
 export const typesByPath: Record<string, string> = {
 	max: 'INTJ',
