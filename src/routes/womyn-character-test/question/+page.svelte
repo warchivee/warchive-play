@@ -5,10 +5,10 @@
 	import questions from '$lib/assets/charactertest/questions';
 	import { pathsByType } from '$lib/assets/charactertest/results';
 
-	import Button from '$components/charactertest/Button.svelte';
-	import Loader from '$components/charactertest/Loader.svelte';
-	import Screen from '$components/charactertest/Screen.svelte';
-	import BaseHead from '$components/charactertest/BaseHead.svelte';
+	import Button from '$components/Button.svelte';
+	import Loader from '$components/Loader.svelte';
+	import Screen from '$components/Screen.svelte';
+	import BaseHead from '$components/BaseHead.svelte';
 
 	let loading = false;
 

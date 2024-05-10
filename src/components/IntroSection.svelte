@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 
-	import Button from '$components/charactertest/Button.svelte';
-	import Carousel from '$components/charactertest/Carousel.svelte';
-	import Others from '$components/charactertest/Others.svelte';
+	import Button from '$components/Button.svelte';
+	import Carousel from '$components/Carousel.svelte';
+	import Others from '$components/Others.svelte';
 
 	export let src = '';
 	export let imgSrc = '';

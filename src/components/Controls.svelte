@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 
 	import mobileLogo from '$lib/images/charactertest/mobile-logo.jpg';
-	import isAudioPlaying from '../../store/autio';
+	import isAudioPlaying from '../store/autio';
 
 	export let color = 'white';
 	export let icon = 'play';

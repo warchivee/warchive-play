@@ -8,11 +8,11 @@
 	import { fly } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-	import Footer from '$components/charactertest/Footer.svelte';
-	import IntroSection from '$components/charactertest/IntroSection.svelte';
-	import Screen from '$components/charactertest/Screen.svelte';
-	import SnsShareBtns from '$components/charactertest/SnsShareBtns.svelte';
-	import BaseHead from '$components/charactertest/BaseHead.svelte';
+	import Footer from '$components/Footer.svelte';
+	import IntroSection from '$components/IntroSection.svelte';
+	import Screen from '$components/Screen.svelte';
+	import SnsShareBtns from '$components/SnsShareBtns.svelte';
+	import BaseHead from '$components/BaseHead.svelte';
 
 	function getImageSrcs() {
 		const result: string[] = [];
