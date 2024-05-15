@@ -1,6 +1,6 @@
 <script lang="ts">
 	import BaseHead from '$components/BaseHead.svelte';
-	import Cover from '$components/Cover.svelte';
+	import Cover from '$components/mockexam/Cover.svelte';
 	import Footer from '$components/Footer.svelte';
 
 	export let showAutioMessage = false;

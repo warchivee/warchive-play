@@ -3,8 +3,9 @@
 	import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
     
-	import isAudioPlaying from '../store/autio';
-    import { name, number } from '../store/exam';
+    import BGM from '$components/mockexam/BGM.svelte';
+
+    import { name, number } from '../../store/exam';
 
     export let showAutioMessage = false;
     export let userName = '';
@@ -16,6 +17,10 @@
         const month = ('0' + (today.getMonth() + 1)).slice(-2);
         const day = ('0' + today.getDate()).slice(-2);
         examNumber = `${year}${month}${day}`;
+    });
+    
+    const unsubscribeUserName = name.subscribe(value => {
+        userName = value;
     });
 
     $: {
@@ -39,7 +44,7 @@
     <div class="user-form">
         <div class="form-group">
             <label for="user-name">성명</label>
-            <input type="text" id="user-name" name="user-name" placeholder="성명을 입력하세요" bind:value={userName}>
+            <input type="text" id="user-name" name="user-name" placeholder="성명을 입력하세요" bind:value={userName} maxlength="5">
         </div>
         <div class="form-group">
             <label for="exam-number">수험번호</label>
@@ -53,20 +58,7 @@
         <div class="play-desc">
             모의고사 응시 시작 시 BGM이 재생됩니다.
         </div>
-        <div class="audio">  
-            <i
-                class={`volumn-btn fa-solid ${$isAudioPlaying ? 'fa-volume-high' : 'fa-volume-xmark'}`}
-                aria-hidden="true"
-                on:click={() => {
-                    isAudioPlaying.set(!$isAudioPlaying);
-                }}
-            ></i>
-            <div class="audio-copyright-wrap">
-                <div class="audio-copyright">
-                    12 Sonatas, Op.16 (Leonarda, Isabella)
-                </div>
-            </div>
-        </div>
+        <BGM />
     </div>
 </section>
 
@@ -147,19 +139,6 @@
         .play-desc{
             font-size: 0.75rem;
             text-align: center;
-        }
-
-        .audio{
-            display: flex;
-            font-size: 0.8rem;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            
-            & [class*="volumn-btn"] {
-                margin-top: 2px;
-            }
         }
     }
 

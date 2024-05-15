@@ -40,7 +40,7 @@ button {
 	border-right: 1px solid black;
 	border-top: 1px solid white;
 	border-left: 1px solid white;
-	background-color: transparent;
+	background-color: var(--color-bg-1);
 	cursor: pointer;
 }
 
@@ -58,6 +58,15 @@ button:active {
 	border-top: 1px solid black;
 	border-left: 1px solid black;
 	background-color: var(--color-bg-2);
+}
+
+button:disabled {
+	border-bottom: 1px solid white;
+	border-right: 1px solid white;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	background-color: var(--color-bg-0);
+	cursor: default;
 }
 
 h1 {
@@ -124,7 +133,7 @@ a {
 	text-align: right;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
 	[class*='pc'] {
 		display: none;
 	}
@@ -150,5 +159,35 @@ a {
 	}
 	h5 {
 		font-size: 1rem;
+	}
+}
+
+@media (max-width: 500px) {
+	[class*='pc'] {
+		display: none;
+	}
+
+	[class*='mobile'] {
+		display: block;
+	}
+
+	h1 {
+		font-size: 1.8rem;
+	}
+
+	h2 {
+		font-size: 1.3rem;
+	}
+
+	h3 {
+		font-size: 1rem;
+	}
+
+	h4 {
+		font-size: 0.95rem;
+	}
+
+	h5 {
+		font-size: 0.9rem;
 	}
 }

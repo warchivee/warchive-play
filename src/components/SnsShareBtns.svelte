@@ -7,11 +7,13 @@
 	const name = $page?.params?.name;
 	const type = typesByPath[name];
 
-	const title = `Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?`;
-	const content = `나는 ${results[type]?.title}의 ${results[type]?.name}!`;
 	const url = $page?.url;
 
-	export let image = 'https://i.ibb.co/v4Qpsb8/mbti-cover.png';
+	export let title = '';
+	export let content = '';
+
+	export let hashtags = '';
+	export let image = '';
 
 	let openSnackbar = false;
 
@@ -30,7 +32,7 @@
 
 	function shareTwitter() {
 		window.open(
-			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=와카이브,여성서사주인공테스트&url=${url.toString().split('://')[1]}`
+			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags${hashtags}&url=${url.toString().split('://')[1]}`
 		);
 	}
 
