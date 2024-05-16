@@ -5,6 +5,7 @@
 	import prizeMarkImg from '$lib/images/mockexam/systems/prize_mark.png';
 
 	import questions from '$lib/assets/mockexam/questions';
+	import { name, number, tested, userAnswers } from '../../../store/exam';
 
 	import PaperSheet from '$components/mockexam/PaperSheet.svelte';
 
@@ -19,6 +20,62 @@
 
 	function goToPreviousPage() {
 		currentPage = Math.max(currentPage - 1, 0);
+	}
+
+	let userName = '';
+	let examNumber = '';
+	let scores: any[] = [];
+	let stored: number[][][] = [];
+	
+	function getWritableData(){
+		const unsubscribeUserName = name.subscribe((value) => {
+			userName = value;
+		});
+		const unsubscribeExamNumber = number.subscribe((value) => {
+			examNumber = value;
+		});
+		const unsubscribeAnswers = userAnswers.subscribe((value) => {
+			stored = value;
+		});
+	}
+
+	function calculateScores() {
+		const newScores: number[] = [];
+
+		questions.forEach((subject, subjectIndex) => {
+			let subjectScore = 0;
+
+			subject.questions.forEach((question, questionIndex) => {
+				const correctAnswers = question.correctAnswers;
+				const userAnswers = stored[subjectIndex][questionIndex];
+
+				let questionScore = 0;
+            if (correctAnswers.length === 1) {
+                if (userAnswers.includes(correctAnswers[0])) {
+                    questionScore = 4;
+                }
+            } else {
+                if (correctAnswers.length === userAnswers.length && correctAnswers.every(answer => userAnswers.includes(answer))) {
+                    questionScore = 4;
+                }
+            }
+
+				subjectScore += questionScore;
+			});
+
+			newScores.push(subjectScore);
+		});
+
+		scores = newScores;
+	}
+
+	function getResultString(){
+		getWritableData();
+		calculateScores();
+		
+		let result = `?n=${userName}&b=${examNumber}&s=${scores.join(',')}`;
+		tested.set(true);
+		return result;
 	}
 </script>
 
@@ -47,9 +104,10 @@
 						class="page-btn"
 						on:click={() => {
 							loading = true;
-
+							const resultString = getResultString();
+								
 							setTimeout(function () {
-								goto(`${base}/master-mock-exam/result`);
+								goto(`${base}/master-mock-exam/result${resultString}`);
 							}, 7000);
 						}}>답안 제출하기</button
 					>

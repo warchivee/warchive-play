@@ -27,7 +27,7 @@
 		}
 	}
 
-	const unsubscribeUserName = userAnswers.subscribe((value) => {
+	const unsubscribeAnswers = userAnswers.subscribe((value) => {
 		stored = value;
     });
 

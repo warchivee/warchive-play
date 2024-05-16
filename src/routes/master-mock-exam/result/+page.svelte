@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -6,6 +8,8 @@
 	import BGM from '$components/mockexam/BGM.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 
+	import { tested } from '../../../store/exam';
+	
 	import PrizeUnderline from '$lib/images/mockexam/systems/prize_underline.png';
 	import PrizeMark from '$lib/images/mockexam/systems/prize_mark.png';
 	import PrizeBadge from '$lib/images/mockexam/systems/prize_badge.png';
@@ -73,6 +77,14 @@
 	}
 
 	const thumbnail = getSnsShareThumbnail();
+
+	let isShared = true;
+	
+	onMount(() => {
+		const unsubscribeAnswers = tested.subscribe((value) => {
+			isShared = value ? false : true;
+		});
+	})
 </script>
 
 <BaseHead title="Warchive: 여성서사 고인물 모의고사" image={thumbnail} />
@@ -167,14 +179,22 @@
 
 		<div class="result-popup__footer">
 			<button
+				class={isShared ? 'hidden' : ''}
 				on:click={() => {
 					goto(`${base}/master-mock-exam/review`);
 				}}>해설 확인하기</button
 			>
 			<button
+				class={isShared ? 'hidden' : ''}
 				on:click={() => {
 					goto(`${base}/master-mock-exam`);
 				}}>다시 응시하기</button
+			>
+			<button
+				class={isShared ? '' : 'hidden'}
+				on:click={() => {
+					goto(`${base}/master-mock-exam`);
+				}}>직접 응시하기</button
 			>
 		</div>
 	</div>
@@ -289,6 +309,10 @@
 		align-items: center;
 		margin: 2rem 0rem;
 		gap: 2rem;
+
+		[class*='hidden'] {
+			display: none;
+		}
 	}
 
 	.result-popup__footer button {

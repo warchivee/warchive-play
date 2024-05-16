@@ -2,6 +2,7 @@ import { writable } from 'svelte/store';
 
 export const name = writable('');
 export const number = writable('');
+export const tested = writable(false);
 
 export const userAnswers = writable(/** @type {number[][][]} */ (initializeArray(5, 5)));
 
