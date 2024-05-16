@@ -3,6 +3,7 @@
 	import { goto } from '$app/navigation';
     import { onMount } from 'svelte';
     
+    import isAudioPlaying from '../../store/autio';
     import BGM from '$components/mockexam/BGM.svelte';
 
     import { name, number } from '../../store/exam';
@@ -55,7 +56,10 @@
     </div>
     <div class="play-control">
         <button class="play-button" disabled={isNameEmpty()}
-            on:click={() => {goto(`${base}/master-mock-exam/question`); }}
+            on:click={() => {
+                isAudioPlaying.set(true);
+                goto(`${base}/master-mock-exam/question`);
+             }}
         >모의고사 응시하기</button>
         <div class="play-desc">
             모의고사 응시 시작 시 BGM이 재생됩니다.
