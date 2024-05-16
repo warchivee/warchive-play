@@ -1,9 +1,9 @@
 <script lang="ts">
-    export let category: number;
+    export let category;
     export let question;
     export let index;
 
-    let stored = [[[]]];
+    let stored: number[][][] = [];
     
     import { page } from '$app/stores';
 
@@ -31,9 +31,32 @@
         stored = value;
     });
 
-    function writeAnswer(newData: [[]]) {
-        console.log("newData: ", newData);
-        userAnswers.set(newData);
+    function writeRadioAnswer(category: number, quest: number, answ: number) {
+        if (stored.length <= category || !stored[category]) {
+            stored[category] = [[]];
+        }
+        if (stored[category].length <= quest || !stored[category][quest]) {
+            stored[category][quest] = [];
+        }
+        stored[category][quest] = [answ];
+        userAnswers.set(stored);
+    }
+
+    function writeCheckboxAnswer(category: number, quest: number, answ: number) {
+        if (stored.length <= category || !stored[category]) {
+            stored[category] = [[]];
+        }
+        if (stored[category].length <= quest || !stored[category][quest]) {
+            stored[category][quest] = [];
+        }
+        const index = stored[category][quest].indexOf(answ);
+        if (index !== -1) {
+            stored[category][quest].splice(index, 1);
+        } else {
+            stored[category][quest].push(answ);
+            stored[category][quest].sort((a, b) => a - b);
+        }
+        userAnswers.set(stored);
     }
 
     function checkQuestion(selects: number[], corrects: number[]) {
@@ -67,7 +90,12 @@
                 <input 
                     type='{question.correctAnswers.length > 1 ? 'checkbox' : 'radio'}' 
                     name='question-{index}-answers' 
-                    id="{index}-{answerIndex + 1}" />
+                    id="{index}-{answerIndex + 1}"
+                    on:change={(event) => (
+                        question.correctAnswers.length > 1
+                        ? writeCheckboxAnswer(category, index - 1, answerIndex + 1)
+                        : writeRadioAnswer(category, index - 1, answerIndex + 1)
+                    )} />
                 <img class='check' src='{checkImg}' alt='체크표시' />
                 <img class='correct_img check' src='{redCheckImg}' alt='체크표시' />
                 <img class='correct_img line' src='{redCheckLineImg}' alt='체크표시' />

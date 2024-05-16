@@ -19,6 +19,8 @@
         examNumber = `${year}${month}${day}`;
     });
     
+    const isNameEmpty = () => userName.trim() === '';
+
     const unsubscribeUserName = name.subscribe(value => {
         userName = value;
     });
@@ -52,7 +54,7 @@
         </div>
     </div>
     <div class="play-control">
-        <button class="play-button"
+        <button class="play-button" disabled={isNameEmpty()}
             on:click={() => {goto(`${base}/master-mock-exam/question`); }}
         >모의고사 응시하기</button>
         <div class="play-desc">
@@ -120,6 +122,15 @@
 
         input[readonly] {
             pointer-events: none;
+        }
+
+        input:focus {
+            outline: none;
+        	background-color: transparent;
+        }
+
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px var(--color-bg-1) inset;
         }
     }
 

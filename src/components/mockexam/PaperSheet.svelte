@@ -28,12 +28,12 @@
     <div class="body">
         <div>
             {#each category.questions.slice(0, 3) as question, curIndex}
-                <Question category={index} question={question} index={curIndex + 1}/>
+                <Question category={index - 1} question={question} index={curIndex + 1}/>
             {/each}
         </div>
         <div>
             {#each category.questions.slice(3, 5) as question, curIndex}
-                <Question category={index} question={question} index={curIndex + 4}/>
+                <Question category={index - 1} question={question} index={curIndex + 4}/>
             {/each}
         </div>
     </div>
