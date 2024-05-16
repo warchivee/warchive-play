@@ -12,6 +12,7 @@
 	import PrizeBorderHor from '$lib/images/mockexam/systems/prize_border_hor.png';
 	import PrizeBorderVer from '$lib/images/mockexam/systems/prize_border_ver.png';
 	import Footer from '$components/Footer.svelte';
+	import BaseHead from '$components/BaseHead.svelte';
 
 	const urlData = $page.url;
 
@@ -46,7 +47,35 @@
 			return 9;
 		}
 	}
+
+	const grade = getGrade();
+
+	function getSnsShareThumbnail() {
+		if (grade === 1) {
+			return 'https://i.ibb.co/w4bB555/mock-exam-share-1.png';
+		} else if (grade === 2) {
+			return 'https://i.ibb.co/6bphBZ5/mock-exam-share-2.png';
+		} else if (grade === 3) {
+			return 'https://i.ibb.co/6Rg9WKL/mock-exam-share-3.png';
+		} else if (grade === 4) {
+			return 'https://i.ibb.co/nnrzmkN/mock-exam-share-4.png';
+		} else if (grade === 5) {
+			return 'https://i.ibb.co/xY2KgCG/mock-exam-share-5.png';
+		} else if (grade === 6) {
+			return 'https://i.ibb.co/VSjsFJY/mock-exam-share-6.png';
+		} else if (grade === 7) {
+			return 'https://i.ibb.co/zs21GvS/mock-exam-share-7.png';
+		} else if (grade === 8) {
+			return 'https://i.ibb.co/whZgBXn/mock-exam-share-8.png';
+		} else {
+			return 'https://i.ibb.co/m5b4Bbq/mock-exam-share-9.png';
+		}
+	}
+
+	const thumbnail = getSnsShareThumbnail();
 </script>
+
+<BaseHead title="Warchive: 여성서사 고인물 모의고사" image={thumbnail} />
 
 <section>
 	<h1>여성서사 고인물 모의고사 결과지</h1>
@@ -70,7 +99,7 @@
 			<tbody>
 				<tr>
 					<td class="tg-h" colspan="2"><h4>등급</h4></td>
-					<td class="tg-h" colspan="3"><h4>{getGrade()}등급</h4></td>
+					<td class="tg-h" colspan="3"><h4>{grade}등급</h4></td>
 					<td class="tg-h" colspan="2"><h4>총점</h4></td>
 					<td class="tg-h" colspan="3"><h4>{total}/100</h4></td>
 				</tr>
@@ -105,7 +134,7 @@
 				</tr>
 				<tr>
 					<td class="tg-h" colspan="2"><h4>등급</h4></td>
-					<td class="tg-h" colspan="4"><h4>{getGrade()}등급</h4></td>
+					<td class="tg-h" colspan="4"><h4>{grade}등급</h4></td>
 				</tr>
 				<tr>
 					<td class="tg-h" colspan="2"><h4>총점</h4></td>
@@ -150,9 +179,9 @@
 
 	<SnsShareBtns
 		title="Warchive: 여성서사 고인물 모의고사 - 나는 여성서사를 얼마나 알고 있을까?"
-		content={`내 여성서사 고인물 모의고사 등급은... ${getGrade()}등급!`}
+		content={`내 여성서사 고인물 모의고사 등급은... ${grade}등급!`}
 		hashtags="와카이브,여성서사고인물모의고사,여성서사"
-		image={''}
+		image={thumbnail}
 	/>
 
 	<a href="https://article.womynarchive.com/play" target="_blank">다른 여성서사 테스트 하러가기</a>
