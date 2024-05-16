@@ -1,10 +1,4 @@
 <script lang="ts">
-	export let category;
-	export let question;
-	export let index;
-
-	let stored: number[][][] = [];
-
 	import { page } from '$app/stores';
 
 	import checkImg from '$lib/images/mockexam/systems/check.png';
@@ -16,11 +10,17 @@
 
 	import { userAnswers } from '../../store/exam';
 
+    export let category;
+	export let question;
+	export let index;
+
+	let stored: number[][][] = [];
+
 	const isReviewPage = $page?.route?.id?.includes('/review');
 
 	function numberToCircle(number: number) {
-		const circleMap = ['①', '②', '③', '④', '⑤'];
-		if (number >= 1 && number <= 5) {
+		const circleMap = ['①', '②', '③', '④', '⑤', '⑥'];
+		if (number >= 1 && number <= 6) {
 			return circleMap[number - 1];
 		} else {
 			return number;
@@ -29,7 +29,7 @@
 
 	const unsubscribeUserName = userAnswers.subscribe((value) => {
 		stored = value;
-	});
+    });
 
 	function writeRadioAnswer(category: number, quest: number, answ: number) {
 		if (stored.length <= category || !stored[category]) {
@@ -59,7 +59,13 @@
 		userAnswers.set(stored);
 	}
 
+    function isUserChecked(selects: number[], answerIndex: number) {
+        return selects.includes(answerIndex);
+    }
+    
 	function checkQuestion(selects: number[], corrects: number[]) {
+        selects = selects || [];
+        corrects = corrects || [];
 		return selects.every((a) => corrects.includes(a));
 	}
 
@@ -71,7 +77,7 @@
 <div class="question">
 	<img
 		class="mark {isReviewPage ? 'show' : ''}"
-		src={checkQuestion([], question.correctAnswers) ? correctMarkImg : wronMarkImg}
+		src={checkQuestion(stored[category][index - 1], question.correctAnswers) ? correctMarkImg : wronMarkImg}
 		alt="맞음"
 	/>
 	<div class="main-context">
@@ -104,7 +110,8 @@
 					type={question.correctAnswers.length > 1 ? 'checkbox' : 'radio'}
 					name="question-{index}-answers"
 					id="{index}-{answerIndex + 1}"
-					on:change={(event) =>
+                    checked={isUserChecked(stored[category][index - 1], answerIndex + 1)}
+                    on:change={(event) =>
 						question.correctAnswers.length > 1
 							? writeCheckboxAnswer(category, index - 1, answerIndex + 1)
 							: writeRadioAnswer(category, index - 1, answerIndex + 1)}
