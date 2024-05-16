@@ -1,11 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import results, { typesByPath } from '$lib/assets/charactertest/results';
 	import { onMount } from 'svelte';
 	import Snackbar from './Snackbar.svelte';
-
-	const name = $page?.params?.name;
-	const type = typesByPath[name];
 
 	const url = $page?.url;
 
@@ -32,7 +28,7 @@
 
 	function shareTwitter() {
 		window.open(
-			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags${hashtags}&url=${url.toString().split('://')[1]}`
+			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=${hashtags}&url=${url.toString().split('://')[1]}`
 		);
 	}
 
