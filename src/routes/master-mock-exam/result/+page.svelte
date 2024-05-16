@@ -84,8 +84,10 @@
 	<div class="result-popup">
 		<div class="result-popup__header">
 			<span>result.php</span>
-			<button>x</button>
+			<div class="result-popup__xbutton font-gothic">x</div>
 		</div>
+
+		<img class="popup_prize__mark" src={PrizeMark} alt="인증서 꾸밈 요소" />
 
 		<table class="tg vertical">
 			<thead>
@@ -178,8 +180,8 @@
 	</div>
 
 	<SnsShareBtns
-		title="Warchive: 여성서사 고인물 모의고사 - 나는 여성서사를 얼마나 알고 있을까?"
-		content={`내 여성서사 고인물 모의고사 등급은... ${grade}등급!`}
+		title="Warchive: 여성서사 고인물 모의고사"
+		content={` - 내 여성서사 고인물 모의고사 등급은... ${grade}등급!`}
 		hashtags="와카이브,여성서사고인물모의고사,여성서사"
 		image={thumbnail}
 	/>
@@ -239,6 +241,17 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		position: relative;
+
+		.popup_prize__mark {
+			position: absolute;
+			width: 20%;
+			min-width: 150px;
+			top: 40%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			opacity: 0.1;
+		}
 	}
 
 	.result-popup__header {
@@ -253,6 +266,20 @@
 
 	.result-popup__header > span {
 		color: white;
+	}
+
+	.result-popup__xbutton {
+		color: black;
+		background: #dbd2cb;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 20px;
+		width: 20px;
+		border-top: 1px solid white;
+		border-left: 1px solid white;
+		border-bottom: 1px solid black;
+		border-right: 1px solid black;
 	}
 
 	.result-popup__footer {
