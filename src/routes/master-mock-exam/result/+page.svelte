@@ -6,6 +6,7 @@
 	import { goto } from '$app/navigation';
 
 	import BGM from '$components/mockexam/BGM.svelte';
+	import Warchive from '$components/mockexam/Warchive.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 
 	import { tested } from '../../../store/exam';
@@ -91,8 +92,12 @@
 
 <section>
 	<h1>여성서사 고인물 모의고사 결과지</h1>
-
-	<BGM />
+	
+	<div class="result-top-info">
+		<BGM />
+		<Warchive />
+	</div>
+	
 	<div class="result-popup">
 		<div class="result-popup__header">
 			<span>result.php</span>
@@ -255,6 +260,25 @@
 		align-items: center;
 	}
 
+	hr {
+		all: unset;
+		height: 1px;
+		background-color: black;
+		width: 100%;
+		margin: 30px 0px 40px 0px;
+	}
+	
+	.result-top-info + .result-popup {
+		margin-top: -2rem;
+	}
+
+	.result-top-info {
+		width: 100%;
+		border: none;
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.result-popup {
 		width: 100%;
 		border: 2px solid black;
@@ -262,6 +286,8 @@
 		flex-direction: column;
 		align-items: center;
 		position: relative;
+
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 
 		.popup_prize__mark {
 			position: absolute;
@@ -357,6 +383,10 @@
 		background-size: 95%;
 		background-position: center;
 		background-repeat: no-repeat;
+
+		border-width: 8px;
+		border-style: solid;
+		border-image: linear-gradient(to bottom right, #F8AC48, #FFE66B) 1;
 	}
 
 	.prize h4,

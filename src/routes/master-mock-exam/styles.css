@@ -9,6 +9,8 @@
 	--color-bg-2: #ccc4be;
 	--color-txt-1: #170c1e;
 	--color-txt-2: #a29ea5;
+
+	--color-text: #000000;
 }
 
 [class*='pc'] {
