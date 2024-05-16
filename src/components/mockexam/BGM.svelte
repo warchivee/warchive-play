@@ -3,24 +3,24 @@
 </script>
 
 <div class="warchive-copyright">
-    <div class="audio">  
+    <button class="audio" on:click={() => { isAudioPlaying.set(!$isAudioPlaying); }}>
         <i
             class={`volumn-btn fa-solid ${$isAudioPlaying ? 'fa-volume-high' : 'fa-volume-xmark'}`}
             aria-hidden="true"
-            on:click={() => {
-                isAudioPlaying.set(!$isAudioPlaying);
-            }}
         ></i>
         <div class="audio-copyright-wrap">
             <div class="audio-copyright">
                 12 Sonatas, Op.16 (Leonarda, Isabella)
             </div>
         </div>
-    </div>
+    </button>   
 </div>
 
 <style>
     .audio{
+        all: unset;
+        cursor: pointer;
+
         display: flex;
         font-size: 0.8rem;
         text-align: center;

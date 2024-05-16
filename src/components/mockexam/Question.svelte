@@ -64,8 +64,9 @@
     }
     
 	function checkQuestion(selects: number[], corrects: number[]) {
-        selects = selects || [];
-        corrects = corrects || [];
+        if (!Array.isArray(selects) || !Array.isArray(corrects) || selects.length === 0 || corrects.length === 0) {
+			return false;
+		}
 		return selects.every((a) => corrects.includes(a));
 	}
 
