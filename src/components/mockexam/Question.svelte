@@ -8,9 +8,11 @@
 	import wronMarkImg from '$lib/images/mockexam/systems/wrong_mark.png';
 	import { userAnswers } from '../../store/exam';
 
-    export let category;
-	export let question;
-	export let index;
+	import type { Question } from '$lib/assets/mockexam/questions';
+
+	export let category: number;
+	export let question: Question;
+	export let index: number;
 
 	let stored: number[][][] = [];
 
@@ -27,7 +29,7 @@
 
 	const unsubscribeAnswers = userAnswers.subscribe((value) => {
 		stored = value;
-    });
+	});
 
 	function writeRadioAnswer(category: number, quest: number, answ: number) {
 		if (stored.length <= category || !stored[category]) {
@@ -57,12 +59,17 @@
 		userAnswers.set(stored);
 	}
 
-    function isUserChecked(selects: number[], answerIndex: number) {
-        return selects.includes(answerIndex);
-    }
-    
+	function isUserChecked(selects: number[], answerIndex: number) {
+		return selects.includes(answerIndex);
+	}
+
 	function checkQuestion(selects: number[], corrects: number[]) {
-        if (!Array.isArray(selects) || !Array.isArray(corrects) || selects.length === 0 || corrects.length === 0) {
+		if (
+			!Array.isArray(selects) ||
+			!Array.isArray(corrects) ||
+			selects.length === 0 ||
+			corrects.length === 0
+		) {
 			return false;
 		}
 		return selects.every((a) => corrects.includes(a));
@@ -76,17 +83,15 @@
 <div class="question">
 	<img
 		class="mark {isReviewPage ? 'show' : ''}"
-		src={checkQuestion(stored[category][index - 1], question.correctAnswers) ? correctMarkImg : wronMarkImg}
+		src={checkQuestion(stored[category][index - 1], question.correctAnswers)
+			? correctMarkImg
+			: wronMarkImg}
 		alt="맞음"
 	/>
 	<div class="main-context">
 		<p>{index}. {@html question.text}</p>
 		{#if question.image}
-			<img
-				class={`${question.image.type}`}
-				src={question.image.add}
-				alt="문제 이미지"
-			/>
+			<img class={`${question.image.type}`} src={question.image.add} alt="문제 이미지" />
 		{/if}
 	</div>
 
@@ -109,8 +114,8 @@
 					type={question.correctAnswers.length > 1 ? 'checkbox' : 'radio'}
 					name="question-{index}-answers"
 					id="{index}-{answerIndex + 1}"
-                    checked={isUserChecked(stored[category][index - 1], answerIndex + 1)}
-                    on:change={(event) =>
+					checked={isUserChecked(stored[category][index - 1], answerIndex + 1)}
+					on:change={(event) =>
 						question.correctAnswers.length > 1
 							? writeCheckboxAnswer(category, index - 1, answerIndex + 1)
 							: writeRadioAnswer(category, index - 1, answerIndex + 1)}
@@ -124,9 +129,12 @@
 		{/each}
 	</div>
 	{#if isReviewPage}
-		<button class="guidance" on:click={() => {
-			window.open(`https://www.womynarchive.com?s=${question.search}`, '_blank');
-		}}>
+		<button
+			class="guidance"
+			on:click={() => {
+				window.open(`https://www.womynarchive.com?s=${question.search}`, '_blank');
+			}}
+		>
 			와카이브에서 〈{question.search}〉 확인하기
 		</button>
 	{/if}
@@ -182,7 +190,7 @@
 		border: 1px solid black;
 		font-style: italic;
 
-		[class*="centered"] {
+		[class*='centered'] {
 			text-align: center;
 		}
 	}

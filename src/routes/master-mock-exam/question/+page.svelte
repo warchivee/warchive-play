@@ -35,8 +35,8 @@
 	let examNumber = '';
 	let scores: any[] = [];
 	let stored: number[][][] = [];
-	
-	function getWritableData(){
+
+	function getWritableData() {
 		const unsubscribeUserName = name.subscribe((value) => {
 			userName = value;
 		});
@@ -54,20 +54,23 @@
 		questions.forEach((subject, subjectIndex) => {
 			let subjectScore = 0;
 
-			subject.questions.forEach((question, questionIndex) => {
+			subject.question.forEach((question, questionIndex) => {
 				const correctAnswers = question.correctAnswers;
 				const userAnswers = stored[subjectIndex][questionIndex];
 
 				let questionScore = 0;
-            if (correctAnswers.length === 1) {
-                if (userAnswers.includes(correctAnswers[0])) {
-                    questionScore = 4;
-                }
-            } else {
-                if (correctAnswers.length === userAnswers.length && correctAnswers.every(answer => userAnswers.includes(answer))) {
-                    questionScore = 4;
-                }
-            }
+				if (correctAnswers.length === 1) {
+					if (userAnswers.includes(correctAnswers[0])) {
+						questionScore = 4;
+					}
+				} else {
+					if (
+						correctAnswers.length === userAnswers.length &&
+						correctAnswers.every((answer) => userAnswers.includes(answer))
+					) {
+						questionScore = 4;
+					}
+				}
 
 				subjectScore += questionScore;
 			});
@@ -78,10 +81,10 @@
 		scores = newScores;
 	}
 
-	function getResultString(){
+	function getResultString() {
 		getWritableData();
 		calculateScores();
-		
+
 		let result = `?n=${userName}&b=${examNumber}&s=${scores.join(',')}`;
 		tested.set(true);
 		return result;
@@ -114,7 +117,7 @@
 						on:click={() => {
 							loading = true;
 							const resultString = getResultString();
-								
+
 							setTimeout(function () {
 								goto(`${base}/master-mock-exam/result${resultString}`);
 							}, 7000);

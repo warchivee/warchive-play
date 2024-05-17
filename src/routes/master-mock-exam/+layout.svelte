@@ -9,7 +9,7 @@
 </div>
 
 <style>
-	.app{
+	.app {
 		display: flex;
 		min-height: 100vh;
 		justify-content: center;
@@ -18,7 +18,7 @@
 		background-color: var(--color-bg-1);
 	}
 
-	main{
+	main {
 		width: 100%;
 		min-width: 375px;
 		max-width: 1000px;

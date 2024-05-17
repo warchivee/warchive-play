@@ -9,21 +9,43 @@ import Img8 from '$lib/images/mockexam/questions/08.png';
 import Img9 from '$lib/images/mockexam/questions/09.png';
 import Img10 from '$lib/images/mockexam/questions/10.png';
 
-const questions: {
+export type { Category, Question, Image, Example, Answer };
+export { questions };
+
+interface Image {
+	type: 'horizontal' | 'vertical';
+	add: string;
+}
+
+interface Example {
+	type: 'centered' | 'lefted';
+	text: string;
+}
+
+interface Answer {
+	number: number;
+	text: string;
+}
+
+interface Question {
+	text: string;
+	image?: Image;
+	example?: Example;
+	answer_type?: 'long' | 'short';
+	answers: Answer[];
+	correctAnswers: number[];
+	search: string;
+}
+
+interface Category {
 	category: string;
-	questions: {
-		text: string;
-		image?: { type: 'horizontal' | 'vertical'; add: string };
-		example?: { type: 'centered' | 'lefted'; text: string };
-		answer_type?: 'long' | 'short';
-		answers: { number: number; text: string }[];
-		correctAnswers: number[];
-		search: string;
-	}[];
-}[] = [
+	question: Question[];
+}
+
+const questions: Category[] = [
 	{
 		category: '만화',
-		questions: [
+		question: [
 			{
 				text: `다음은 귀신이 된 주인공 박자언이 극락왕생을 하기 위해 고등학생 시절로 되돌아가 여러 기묘한 존재들과의 에피소드를 다루는 판타지 웹툰 〈극락왕생〉에 등장하는 캐릭터 도명의 단골 대사이다. 빈칸에 들어갈 단어로 알맞은 것을 고르시오.`,
 				image: { type: 'vertical', add: Img1 },
@@ -54,7 +76,7 @@ const questions: {
 					}
 				],
 				correctAnswers: [3],
-				search: '극락왕생',
+				search: '극락왕생'
 			},
 			{
 				text: `웹툰 〈극락왕생〉에는 에피소드마다 그에 어울리는 테마곡이 있다. 다음 중 〈극락왕생〉 플레이리스트에 속하지 <u><strong>않는</strong></u> 노래를 고르시오.`,
@@ -174,7 +196,7 @@ const questions: {
 	},
 	{
 		category: '영상',
-		questions: [
+		question: [
 			{
 				text: `남성 주연의 영화를 미러링해 리부트한 코미디 SF 영화 〈고스트버스터즈(2016)〉에는 괴현상을 해결하기 위해 모인 물리학 박사, 초자연 현상 전문가, 무기 개발자, 지하철 역무원 등 매력적인 여성 주인공들이 등장한다. 이 영화의 주인공은 전부 몇 명인가?`,
 				image: { type: 'vertical', add: Img3 },
@@ -318,7 +340,7 @@ const questions: {
 	},
 	{
 		category: '공연',
-		questions: [
+		question: [
 			{
 				text: `뮤지컬 〈실비아, 살다〉는 자신의 직업인 시인이 아닌 아내, 딸, 엄마의 역할을 요구받는 삶에 지쳐 10년마다 자살을 시도하는 천재 시인 실비아 플라스의 삶을 다룬 작품이다. 실비아는 테드와 처음 만났을 때 (A) 색 스카프를 하고 있었다. 테드는 항상 (B) 색이라고 하지만 실비아는 (B) 색이 아닌 (A) 색 스카프를 하고 있었다. (A) 와 (B) 가 알맞게 짝지어진 것을 고르시오.`,
 				answers: [
@@ -468,7 +490,7 @@ const questions: {
 	},
 	{
 		category: '서적',
-		questions: [
+		question: [
 			{
 				text: `〈RADish〉는 래디컬 페미니스트로서의 삶과 운동, 미래세대 여성에 대한 책임, 여성의 경제적·정서적 자립, 비혼 여성 생활 팁 등 래디컬 페미니즘의 주요 의제와 실천 방법을 고민하고 기록하는 여성주의 잡지다.  〈RADish〉를 집필 및 출간하는 출판사의 이름으로 옳은 것을 고르시오.`,
 				answers: [
@@ -614,7 +636,7 @@ const questions: {
 	},
 	{
 		category: '게임',
-		questions: [
+		question: [
 			{
 				text: `고대 그리스를 배경으로 모험을 하는 오픈월드 잠입 액션 게임 〈Assassin's Creed Odyssey〉의 주인공 카산드라는 ‘독수리를 거느린 자’라는 별명을 가지고 있다. 이 독수리의 이름으로 바른 것을 고르시오.`,
 				image: { type: 'horizontal', add: Img7 },

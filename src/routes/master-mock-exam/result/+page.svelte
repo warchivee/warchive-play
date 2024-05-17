@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	
+
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
@@ -10,7 +10,7 @@
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 
 	import { tested } from '../../../store/exam';
-	
+
 	import PrizeUnderline from '$lib/images/mockexam/systems/prize_underline.png';
 	import PrizeMark from '$lib/images/mockexam/systems/prize_mark.png';
 	import PrizeBadge from '$lib/images/mockexam/systems/prize_badge.png';
@@ -80,24 +80,24 @@
 	const thumbnail = getSnsShareThumbnail();
 
 	let isShared = true;
-	
+
 	onMount(() => {
 		const unsubscribeAnswers = tested.subscribe((value) => {
 			isShared = value ? false : true;
 		});
-	})
+	});
 </script>
 
 <BaseHead title="Warchive: 여성서사 고인물 모의고사" image={thumbnail} />
 
 <section>
 	<h1>여성서사 고인물 모의고사 결과지</h1>
-	
+
 	<div class="result-top-info">
 		<BGM />
 		<Warchive />
 	</div>
-	
+
 	<div class="result-popup">
 		<div class="result-popup__header">
 			<span>result.php</span>
@@ -274,7 +274,7 @@
 		width: 100%;
 		margin: 30px 0px 40px 0px;
 	}
-	
+
 	.result-top-info + .result-popup {
 		margin-top: -2rem;
 	}
@@ -393,7 +393,7 @@
 
 		border-width: 8px;
 		border-style: solid;
-		border-image: linear-gradient(to bottom right, #F8AC48, #FFE66B) 1;
+		border-image: linear-gradient(to bottom right, #f8ac48, #ffe66b) 1;
 	}
 
 	.prize h4,

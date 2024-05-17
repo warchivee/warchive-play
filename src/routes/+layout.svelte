@@ -1,23 +1,23 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import isAudioPlaying from '../store/autio';
-	
+
 	import { base } from '$app/paths';
 	import song1 from '$lib/assets/charactertest/womyntest.mp3';
 	import song2 from '$lib/assets/mockexam/sonata_nona.mp3';
-	
+
 	let autioRef: HTMLAudioElement;
 	let song: string;
-	
+
 	onMount(() => {
 		const url = window.location.href;
-        if (url.includes('womyn-character-test')) {
-            song = song1;
-        } else if (url.includes('master-mock-exam')) {
-            song = song2;
-        } else {
-            song = song1; // default value
-        }
+		if (url.includes('womyn-character-test')) {
+			song = song1;
+		} else if (url.includes('master-mock-exam')) {
+			song = song2;
+		} else {
+			song = song1; // default value
+		}
 	});
 
 	$: (() => {
