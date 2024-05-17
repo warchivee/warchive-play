@@ -3,7 +3,8 @@
 	import { onMount } from 'svelte';
 	import Snackbar from './Snackbar.svelte';
 
-	const url = $page?.url;
+	// url 상에 쿼리 스트링 표기 시 '공유 url의 쿼리값' 으로 인식하여 encodeURIComponent 로 인코딩해줌.
+	const url = encodeURIComponent($page?.url?.toString());
 
 	export let title = '';
 	export let content = '';
@@ -28,7 +29,7 @@
 
 	function shareTwitter() {
 		window.open(
-			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=${hashtags}&url=${url.toString().split('://')[1]}`
+			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=${hashtags}&url=${url}`
 		);
 	}
 
