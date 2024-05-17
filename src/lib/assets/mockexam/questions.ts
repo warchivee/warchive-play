@@ -13,8 +13,8 @@ const questions: {
 	category: string;
 	questions: {
 		text: string;
-		image?: { type: number; add: string };
-		example?: { type: number; text: string };
+		image?: { type: 'horizontal' | 'vertical'; add: string };
+		example?: { type: 'centered' | 'lefted'; text: string };
 		answer_type?: 'long' | 'short';
 		answers: { number: number; text: string }[];
 		correctAnswers: number[];
@@ -25,9 +25,9 @@ const questions: {
 		questions: [
 			{
 				text: `다음은 귀신이 된 주인공 박자언이 극락왕생을 하기 위해 고등학생 시절로 되돌아가 여러 기묘한 존재들과의 에피소드를 다루는 판타지 웹툰 〈극락왕생〉에 등장하는 캐릭터 도명의 단골 대사이다. 빈칸에 들어갈 단어로 알맞은 것을 고르시오.`,
-				image: { type: 1, add: Img1 },
+				image: { type: 'vertical', add: Img1 },
 				example: {
-					type: 1,
+					type: 'centered',
 					text: '수리수리 마하수리 수수리 사바하.<br />길어져라 ( &emsp;&emsp; ) 석장.'
 				},
 				answers: [
@@ -83,7 +83,7 @@ const questions: {
 			},
 			{
 				text: `이세계를 구한 용사, 고등학생 명옥은 중년의 나이에 다시 용사가 되어야 한다. 웹툰 〈왕년엔 용사님〉에서 주인공 명옥이 고등학생 시절 마왕을 봉인해 이세계를 구하고 원래 자신의 세계로 돌아간 후, ( &emsp;&emsp; ) 년 뒤 봉인석에 금이 가기 시작했다. 빈칸에 들어갈 것으로 알맞은 숫자를 고르시오.`,
-				image: { type: 1, add: Img2 },
+				image: { type: 'vertical', add: Img2 },
 				answers: [
 					{
 						number: 1,
@@ -137,8 +137,8 @@ const questions: {
 			{
 				text: `다음은 왕위 계승자인 공주가 해적이 되어 겪는 모험 이야기를 담은 판타지 웹툰 〈합법해적 파르페〉의 주인공, 파르페의 대사이다. 다음 중 빈칸에 들어갈 이름으로 옳은 것을 고르시오.`,
 				example: {
-					type: 1,
-					text: '내 이름은 파르페야.<br />나는 백포도 왕국의 왕 ( &emsp;&emsp; )가 아니라 합법해적 파르페를 선택하기로 했고 후회는 없어.'
+					type: 'centered',
+					text: '내 이름은 파르페야.<br />나는 백포도 왕국의 왕 ( &emsp;&emsp; )가 아니라<br />합법해적 파르페를 선택하기로 했고 후회는 없어.'
 				},
 				answers: [
 					{
@@ -171,7 +171,7 @@ const questions: {
 		questions: [
 			{
 				text: `남성 주연의 영화를 미러링해 리부트한 코미디 SF 영화 〈고스트버스터즈(2016)〉에는 괴현상을 해결하기 위해 모인 물리학 박사, 초자연 현상 전문가, 무기 개발자, 지하철 역무원 등 매력적인 여성 주인공들이 등장한다. 이 영화의 주인공은 전부 몇 명인가?`,
-				image: { type: 1, add: Img3 },
+				image: { type: 'vertical', add: Img3 },
 				answers: [
 					{
 						number: 1,
@@ -198,7 +198,7 @@ const questions: {
 			},
 			{
 				text: `〈블렛츨리 서클〉은 전쟁 중 독일군의 암호를 해독하는 임무를 맡았던 영국군 여성들이 전쟁이 끝난 후 다시 한번 뭉쳐 일반인의 신분으로 살인사건을 해결하는 미스터리 스릴러 드라마이다. 다음 중 이들이 겪었던 전쟁을 고르시오.`,
-				image: { type: 1, add: Img4 },
+				image: { type: 'vertical', add: Img4 },
 				answers: [
 					{
 						number: 1,
@@ -251,8 +251,7 @@ const questions: {
 			},
 			{
 				text: `넷플릭스 오리지널 예능 〈사이렌: 불의 섬〉은 소방관, 경찰관, 경호원, 군인, 운동선수, 스턴트 배우인 여성 24명이 직업군별로 팀을 이뤄 경쟁하는 서바이벌 리얼리티 프로그램이다. 다음 중 운동선수 팀원들의 종목으로 알맞지 않은 것을 고르시오.`,
-				image: { type: 2, add: Img5 },
-
+				image: { type: 'horizontal', add: Img5 },
 				answers: [
 					{
 						number: 1,
@@ -338,8 +337,8 @@ const questions: {
 			{
 				text: `‘( &emsp;&emsp; ) 탄 물’은  뮤지컬 〈실비아, 살다〉의 넘버 중 하나이다. 다음 가사를 참고하여 빈칸에 들어갈 내용으로 알맞은 것을 고르시오.`,
 				example: {
-					type: 2,
-					text: '여기선 사과는 누가 해야할까<br />실수로 그랬거나 일부러 그랬겠지<br />아님 자기가 그런줄 모를 수도<br />우리 모두 ( &emsp;&emsp; ) 탄 물을 마신거야 ( &emsp;&emsp; ) 마시면 ( &emsp;&emsp; ) 취하지 어쩌겠어'
+					type: 'lefted',
+					text: '여기선 사과는 누가 해야할까<br />실수로 그랬거나 일부러 그랬겠지<br />아님 자기가 그런줄 모를 수도<br />우리 모두 ( &emsp;&emsp; ) 탄 물을 마신거야 ( &emsp;&emsp; )<br />마시면 ( &emsp;&emsp; ) 취하지 어쩌겠어'
 				},
 				answers: [
 					{
@@ -367,9 +366,9 @@ const questions: {
 			},
 			{
 				text: `다음은 라듐과 폴로늄을 발견하여 최초로 노벨상을 두 번 수상한 과학자 마리 퀴리와, 마리의 친구이자 라듐으로 고통받는 라듐 공장 직공인 안느에 대한 뮤지컬 〈마리 퀴리〉의 넘버 중 하나인 ‘또 다른 이름’의 가사 일부이다. 빈칸에 들어갈 내용으로 알맞은 것을 고르시오.`,
-				image: { type: 2, add: Img6 },
+				image: { type: 'horizontal', add: Img6 },
 				example: {
-					type: 2,
+					type: 'lefted',
 					text: '너는 누구<br />너는 무엇<br />너의 또 다른 이름은 나<br />넌 이상한 ( &emsp;&emsp; )야<br />넌 떠도는 이민자<br />넌 설쳐대는 폴렉<br />내 이름 없었지<br />홀로 작은 유성처럼 떠다니는 짙고 푸른 너<br />제 몸에 상처를 내어 폭발하는 독하고 모난 나'
 				},
 				answers: [
@@ -597,7 +596,7 @@ const questions: {
 		questions: [
 			{
 				text: `고대 그리스를 배경으로 모험을 하는 오픈월드 잠입 액션 게임 〈Assassin's Creed Odyssey〉의 주인공 카산드라는 ‘독수리를 거느린 자’라는 별명을 가지고 있다. 이 독수리의 이름으로 바른 것을 고르시오.`,
-				image: { type: 2, add: Img7 },
+				image: { type: 'horizontal', add: Img7 },
 				answers: [
 					{
 						number: 1,
@@ -624,7 +623,7 @@ const questions: {
 			},
 			{
 				text: `게임 〈Life is strange〉는 시간을 되감는 초능력을 가진 주인공 맥스와 클로이가 실종 사건을 쫓는 게임이다. 맥스는 초능력을 이용해서 친구 클로이의 주머니에 든 물건을 알아맞힌다. 이 중 클로이의 주머니에 있었던 물건이 <u><strong>아닌</strong></u> 것을 고르시오.`,
-				image: { type: 2, add: Img8 },
+				image: { type: 'horizontal', add: Img8 },
 				answers: [
 					{
 						number: 1,
@@ -652,7 +651,7 @@ const questions: {
 			{
 				text: `다음은 포탈건을 이용해 각종 살인 로봇과 함정이 가득한 실험실에서 탈출하는 퍼즐 게임 〈Portal〉 시리즈의 엔딩 곡 ‘Still alive’의 가사 일부이다. 빈 칸에 들어갈 〈Portal〉 시리즈에 등장하는 주요 오브젝트로 올바른 것을 고르시오.`,
 				example: {
-					type: 2,
+					type: 'lefted',
 					text: `Go ahead and leave me.<br />저를 놔두고 어서 가세요.<br />I think I prefer to stay inside.<br />전 여기 이 안에 머무르는 게 더 좋을 것 같아요.<br />Maybe you'll find someone else to help you.<br />어쩌면 당신을 도와줄 다른 이를 찾을지도 몰라요.<br />Maybe Black Mesa...<br />블랙 메사라든가...<br />THAT WAS A JOKE. (HAHA) FAT CHANCE.<br />물론 농담이에요. (하하) 세상에 그럴 리가.<br />Anyway, this ( &emsp;&emsp; ) is great.<br />어쨌거나, 이 ( &emsp;&emsp; ) 는 참 훌륭하네요.<br />It's so delicious and moist.<br />너무 맛있고 촉촉해요.<br />`
 				},
 				answers: [
@@ -681,7 +680,7 @@ const questions: {
 			},
 			{
 				text: `다음 중 그리스 로마 신화를 모티브로 각기 다른 무기를 휘두르는 네 명의 여성들이 한 팀이 되어 적 ‘타이탄’을 물리치는 벨트스크롤 액션 게임 〈Full Metal Furies〉 의 주인공 4명의 상징색이 올바르게 짝지어지지 <u><strong>않은</strong></u> 것을 <u><strong>모두</strong></u> 고르시오.`,
-				image: { type: 2, add: Img9 },
+				image: { type: 'horizontal', add: Img9 },
 				answers: [
 					{
 						number: 1,
@@ -708,7 +707,7 @@ const questions: {
 			},
 			{
 				text: `한 번 멸망해 기계생명체들이 자연을 지배하는 세계를 탐험하는 오픈월드 게임 〈Horizon zero dawn〉에는 모계 부족 출신의 실력 있는 사냥꾼, 주인공 에일로이가 사냥할 수 있는 다양한 기계생명체들이 등장한다. 이 중 기계생명체와 그 모티브가 된 동물이 알맞게 짝지어진 것을 고르시오.`,
-				image: { type: 2, add: Img10 },
+				image: { type: 'horizontal', add: Img10 },
 				answers: [
 					{
 						number: 1,

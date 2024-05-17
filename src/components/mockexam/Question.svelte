@@ -6,8 +6,6 @@
 	import redCheckLineImg from '$lib/images/mockexam/systems/red_check_line.png';
 	import correctMarkImg from '$lib/images/mockexam/systems/correct_mark.png';
 	import wronMarkImg from '$lib/images/mockexam/systems/wrong_mark.png';
-	import testimg from '$lib/images/mockexam/testimg.png';
-
 	import { userAnswers } from '../../store/exam';
 
     export let category;
@@ -85,8 +83,8 @@
 		<p>{index}. {@html question.text}</p>
 		{#if question.image}
 			<img
-				class={`${question.image.type === 1 ? 'vertical' : 'horizon'}`}
-				src={question.image.add || testimg}
+				class={`${question.image.type}`}
+				src={question.image.add}
 				alt="문제 이미지"
 			/>
 		{/if}
@@ -94,7 +92,7 @@
 
 	{#if question.example}
 		<div class="sub-context">
-			<p class={`${question.example.type === 1 ? 'center' : 'lefted'}`}>
+			<p class={`${question.example.type}`}>
 				{@html question.example.text}
 			</p>
 		</div>
@@ -137,7 +135,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.7rem;
-		margin-bottom: 50px;
+		margin-bottom: 3rem;
 
 		.mark {
 			position: absolute;
@@ -162,7 +160,7 @@
 		text-align: justify;
 		gap: 1rem;
 
-		img.horizon {
+		img.horizontal {
 			width: 300px;
 		}
 
@@ -177,7 +175,7 @@
 		border: 1px solid black;
 		font-style: italic;
 
-		.center {
+		[class*="centered"] {
 			text-align: center;
 		}
 	}
