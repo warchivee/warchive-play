@@ -95,7 +95,6 @@
 
 	<div class="result-top-info">
 		<BGM />
-		<Warchive />
 	</div>
 
 	<div class="result-popup">
@@ -277,7 +276,7 @@
 	}
 
 	.result-top-info + .result-popup {
-		margin-top: -2rem;
+		margin-top: -1rem;
 	}
 
 	.result-top-info {
