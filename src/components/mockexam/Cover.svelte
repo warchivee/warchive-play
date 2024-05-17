@@ -124,6 +124,9 @@
 			font-size: 1rem;
 			text-align: center;
 
+			appearance: none;
+			border-radius: 0;
+
 			border: none;
 			background-color: transparent;
 			border-left: 1px solid black;
