@@ -23,3 +23,7 @@ function initializeArray(cnt1, cnt2) {
 	}
 	return returnArray;
 }
+
+export function resetAnswers() {
+	userAnswers.set(initializeArray(5, 5));
+}

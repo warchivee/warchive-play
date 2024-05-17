@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
-	import Snackbar from '$components/Snackbar.svelte';
 	import BGM from '$components/mockexam/BGM.svelte';
 
 	import isAudioPlaying from '../../store/autio';
@@ -12,15 +11,6 @@
 	export let showAutioMessage = false;
 	export let userName = '';
 	export let examNumber = '';
-
-	let openSnackbar = false;
-
-	function showSnackbar() {
-		openSnackbar = true;
-		setTimeout(() => {
-			openSnackbar = false;
-		}, 2000);
-	}
 
 	onMount(() => {
 		const today = new Date();
@@ -73,8 +63,6 @@
 		<button
 			class="play-button"
 			disabled={isNameEmpty()}
-			on:mouseover={() => showSnackbar()}
-			on:focus={() => showSnackbar()}
 			on:click={() => {
 				isAudioPlaying.set(true);
 				goto(`${base}/master-mock-exam/question`);
@@ -85,8 +73,6 @@
 		<div class="tooltip">노래를 켜고 끌 수 있습니다.</div>
 	</div>
 </section>
-
-<Snackbar message="이름을 입력해주세요." open={openSnackbar} />
 
 <style>
 	section {

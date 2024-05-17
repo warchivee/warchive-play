@@ -9,7 +9,7 @@
 	import Warchive from '$components/mockexam/Warchive.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 
-	import { tested } from '../../../store/exam';
+	import { tested, resetAnswers } from '../../../store/exam';
 
 	import PrizeUnderline from '$lib/images/mockexam/systems/prize_underline.png';
 	import PrizeMark from '$lib/images/mockexam/systems/prize_mark.png';
@@ -192,6 +192,7 @@
 			<button
 				class={isShared ? 'hidden' : ''}
 				on:click={() => {
+					resetAnswers();
 					goto(`${base}/master-mock-exam`);
 				}}>다시 응시하기</button
 			>
