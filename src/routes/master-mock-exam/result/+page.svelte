@@ -234,10 +234,17 @@
 			</div>
 		</div>
 
-		<h5 class="prize__p">
+		<h5 class="prize__p over-500">
 			위 사람은 여성서사 고인물 모의고사에서 <br />
 			평소 여성서사를 사랑하는 마음으로 성실히 응시한 결과 <br />
 			다음과 같은 성적을 받았기에 이 상장을 수여합니다.
+		</h5>
+		<h5 class="prize__p under-500">
+			위 사람은 여성서사 고인물 모의고사에서 <br />
+			평소 여성서사를 사랑하는 마음으로 <br />
+			성실히 응시한 결과 <br />
+			다음과 같은 성적을 받았기에 <br />
+			이 상장을 수여합니다.
 		</h5>
 
 		<div class="prize__footer">
@@ -333,7 +340,7 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		margin: 2rem 0rem;
+		margin: 0rem 0rem 2rem 0rem;
 		gap: 2rem;
 
 		[class*='hidden'] {
@@ -429,6 +436,14 @@
 		text-align: right;
 	}
 
+	.prize > .prize__p.over-500 {
+		display: block;
+	}
+
+	.prize > .prize__p.under-500 {
+		display: none;
+	}
+
 	.prize > .prize__footer {
 		width: fit-content;
 		margin-top: 1rem;
@@ -488,7 +503,14 @@
 		}
 
 		.prize > .prize__p {
-			line-height: 200%;
+			line-height: 180%;
+		}
+
+		.prize > .prize__p.over-500 {
+			display: none;
+		}
+		.prize > .prize__p.under-500 {
+			display: block;
 		}
 
 		.result-popup__footer button {

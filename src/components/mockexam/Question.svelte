@@ -123,6 +123,13 @@
 			</div>
 		{/each}
 	</div>
+	{#if isReviewPage}
+		<button class="guidance" on:click={() => {
+			window.open(`https://www.womynarchive.com?s=${question.search}`, '_blank');
+		}}>
+			와카이브에서 〈{question.search}〉 확인하기
+		</button>
+	{/if}
 </div>
 
 <style>
@@ -230,5 +237,9 @@
 				display: block;
 			}
 		}
+	}
+
+	.guidance {
+		width: fit-content;
 	}
 </style>

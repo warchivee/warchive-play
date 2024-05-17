@@ -19,7 +19,7 @@
 		openSnackbar = true;
 		setTimeout(() => {
 			openSnackbar = false;
-		}, 3000);
+		}, 2000);
     }
 
     onMount(() => {
@@ -77,6 +77,9 @@
             모의고사 응시 시작 시 BGM이 재생됩니다.
         </div>
         <BGM />
+        <div class="tooltip">
+            노래를 켜고 끌 수 있습니다.
+        </div>
     </div>
 </section>
 
@@ -167,6 +170,31 @@
         .play-desc{
             font-size: 0.75rem;
             text-align: center;
+        }
+    }
+
+    .tooltip {
+        font-size: 0.75rem;
+        text-align: center;
+        width: fit-content;
+        height: fit-content;
+        position: absolute;
+        background-color: var(--color-bg-0);
+        padding: 5px;
+        
+        top: 93%;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--color-bg-0) transparent;
         }
     }
 

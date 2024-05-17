@@ -18,6 +18,7 @@ const questions: {
 		answer_type?: 'long' | 'short';
 		answers: { number: number; text: string }[];
 		correctAnswers: number[];
+		search: string;
 	}[];
 }[] = [
 	{
@@ -52,7 +53,8 @@ const questions: {
 						text: '박달나무'
 					}
 				],
-				correctAnswers: [3]
+				correctAnswers: [3],
+				search: '극락왕생',
 			},
 			{
 				text: `웹툰 〈극락왕생〉에는 에피소드마다 그에 어울리는 테마곡이 있다. 다음 중 〈극락왕생〉 플레이리스트에 속하지 <u><strong>않는</strong></u> 노래를 고르시오.`,
@@ -79,7 +81,8 @@ const questions: {
 						text: '아틀란티스 소녀 - 보아'
 					}
 				],
-				correctAnswers: [4]
+				correctAnswers: [4],
+				search: '극락왕생'
 			},
 			{
 				text: `이세계를 구한 용사, 고등학생 명옥은 중년의 나이에 다시 용사가 되어야 한다. 웹툰 〈왕년엔 용사님〉에서 주인공 명옥이 고등학생 시절 마왕을 봉인해 이세계를 구하고 원래 자신의 세계로 돌아간 후, ( &emsp;&emsp; ) 년 뒤 봉인석에 금이 가기 시작했다. 빈칸에 들어갈 것으로 알맞은 숫자를 고르시오.`,
@@ -106,7 +109,8 @@ const questions: {
 						text: '1000년'
 					}
 				],
-				correctAnswers: [1]
+				correctAnswers: [1],
+				search: '왕년엔 용사님'
 			},
 			{
 				text: `웹툰 〈정년이〉는 춘향이도 이몽룡도 전부 여자가 연기하는, 1950년대 여성국극을 소재로 한 만화이다. 고향에서 소리 잘 하기로 유명했던 주인공 윤정년은 매란국극단에 입단하기 위해 상경한다. 정년은 어느 도시 출신인가?`,
@@ -132,7 +136,8 @@ const questions: {
 						text: '제주'
 					}
 				],
-				correctAnswers: [3]
+				correctAnswers: [3],
+				search: '정년이'
 			},
 			{
 				text: `다음은 왕위 계승자인 공주가 해적이 되어 겪는 모험 이야기를 담은 판타지 웹툰 〈합법해적 파르페〉의 주인공, 파르페의 대사이다. 다음 중 빈칸에 들어갈 이름으로 옳은 것을 고르시오.`,
@@ -162,7 +167,8 @@ const questions: {
 						text: '헤카테'
 					}
 				],
-				correctAnswers: [3]
+				correctAnswers: [3],
+				search: '합법해적 파르페'
 			}
 		]
 	},
@@ -194,7 +200,8 @@ const questions: {
 						text: '7명'
 					}
 				],
-				correctAnswers: [2]
+				correctAnswers: [2],
+				search: '고스트버스터즈'
 			},
 			{
 				text: `〈블렛츨리 서클〉은 전쟁 중 독일군의 암호를 해독하는 임무를 맡았던 영국군 여성들이 전쟁이 끝난 후 다시 한번 뭉쳐 일반인의 신분으로 살인사건을 해결하는 미스터리 스릴러 드라마이다. 다음 중 이들이 겪었던 전쟁을 고르시오.`,
@@ -221,7 +228,8 @@ const questions: {
 						text: '크림 전쟁'
 					}
 				],
-				correctAnswers: [2]
+				correctAnswers: [2],
+				search: '블렛츨리 서클'
 			},
 			{
 				text: `과거 경찰이었지만 현재는 히키코모리 온라인 게임 중독자인 구경이(이영애 분)가 사이코패스 연쇄살인범을 쫓는 드라마 〈구경이〉에서, 구경이는 사람을 죽이려면 필요한 것은 (A)와 (B)라고 말하며 자신에게는 이것이 없다고 한다. (A)와 (B)가 알맞게 짝지어진 것은?`,
@@ -247,7 +255,8 @@ const questions: {
 						text: 'A 돈 - B 행동력'
 					}
 				],
-				correctAnswers: [4]
+				correctAnswers: [4],
+				search: '구경이'
 			},
 			{
 				text: `넷플릭스 오리지널 예능 〈사이렌: 불의 섬〉은 소방관, 경찰관, 경호원, 군인, 운동선수, 스턴트 배우인 여성 24명이 직업군별로 팀을 이뤄 경쟁하는 서바이벌 리얼리티 프로그램이다. 다음 중 운동선수 팀원들의 종목으로 알맞지 않은 것을 고르시오.`,
@@ -274,7 +283,8 @@ const questions: {
 						text: '사격'
 					}
 				],
-				correctAnswers: [5]
+				correctAnswers: [5],
+				search: '사이렌: 불의 섬'
 			},
 			{
 				text: `영화 〈에브리씽 에브리웨어 올 앳 원스〉 모녀간의 사랑과 갈등을 멀티버스라는 독특한 소재로 풀어낸 SF 액션 코미디 영화다. 다음은 여러 멀티버스 세계의 에블린(양자경 분)을 나열한 것이다. 이 중 옳지 않은 것을 고르시오.`,
@@ -301,7 +311,8 @@ const questions: {
 						text: '국세청 직원 에블린'
 					}
 				],
-				correctAnswers: [5]
+				correctAnswers: [5],
+				search: '에브리씽 에브리웨어 올 앳 원스'
 			}
 		]
 	},
@@ -332,7 +343,8 @@ const questions: {
 						text: 'A 초록색 - B 빨간색'
 					}
 				],
-				correctAnswers: [3]
+				correctAnswers: [3],
+				search: '2023 실비아 살다'
 			},
 			{
 				text: `‘( &emsp;&emsp; ) 탄 물’은  뮤지컬 〈실비아, 살다〉의 넘버 중 하나이다. 다음 가사를 참고하여 빈칸에 들어갈 내용으로 알맞은 것을 고르시오.`,
@@ -362,7 +374,8 @@ const questions: {
 						text: '꿀'
 					}
 				],
-				correctAnswers: [1]
+				correctAnswers: [1],
+				search: '2023 실비아 살다'
 			},
 			{
 				text: `다음은 라듐과 폴로늄을 발견하여 최초로 노벨상을 두 번 수상한 과학자 마리 퀴리와, 마리의 친구이자 라듐으로 고통받는 라듐 공장 직공인 안느에 대한 뮤지컬 〈마리 퀴리〉의 넘버 중 하나인 ‘또 다른 이름’의 가사 일부이다. 빈칸에 들어갈 내용으로 알맞은 것을 고르시오.`,
@@ -393,7 +406,8 @@ const questions: {
 						text: '별'
 					}
 				],
-				correctAnswers: [1]
+				correctAnswers: [1],
+				search: '마리 퀴리'
 			},
 			{
 				text: `뮤지컬 <해적>은 여성들로만 구성된 페어가 있는 2인극으로 바다를 동경하는 루이스가 캡틴 잭, 명사수 앤과 검투사 메리를 만나 함께 해적선을 타며 보물을 찾아 로즈 아일랜드로 향하는 여정을 담은 작품이다. 다음 중 뮤지컬 〈해적〉에서 작중 언급된 해적의 규칙으로 옳지 <u><strong>않은</string></u> 것을 고르시오.`,
@@ -420,7 +434,8 @@ const questions: {
 						text: '배에서 나이가 가장 어린 해적은 모자에 깃털을 꽂을 수 없다.'
 					}
 				],
-				correctAnswers: [5]
+				correctAnswers: [5],
+				search: '2023 해적'
 			},
 			{
 				text: `연극 <분장실>은 여성 4인극으로 무대 위가 아닌 무대 뒤 분장실에서 일어나는 사건들과 대화를 통해 배우들이 각자 가진 열정, 회한, 다양한 삶의 모습을 엿볼 수 있는 작품이다. 다음 중 연극 〈분장실〉의 클라이맥스에서 배우 A, B, D가 연기하는 작품으로 바른 것을 고르시오.`,
@@ -446,7 +461,8 @@ const questions: {
 						text: '한여름밤의 꿈'
 					}
 				],
-				correctAnswers: [2]
+				correctAnswers: [2],
+				search: '2023 분장실'
 			}
 		]
 	},
@@ -477,7 +493,8 @@ const questions: {
 						text: '부르튼'
 					}
 				],
-				correctAnswers: [2]
+				correctAnswers: [2],
+				search: 'RADish'
 			},
 			{
 				text: `다음 중 김초엽의 첫 SF 작품으로, 우리 외 생명체가 살고 있는 근미래 우주를 배경으로 한 SF 단편 소설 모음집의 제목으로 옳은 것은?`,
@@ -508,7 +525,8 @@ const questions: {
 						text: '관내분실'
 					}
 				],
-				correctAnswers: [1]
+				correctAnswers: [1],
+				search: '김초엽'
 			},
 			{
 				text: `동물학자이자 방송인인 루시 쿡의 〈암컷들〉은 수컷만을 연구 대상으로 삼아왔던 과거 생물학의 가부장적 프레임을 비판하고, 암컷들의 강렬한 삶을 담은 책이다. 이 책의 소제목에 들어갈 단어로 적절하지 <u><strong>않은</strong></u> 것을 <u><strong>모두</strong></u> 고르시오.`,
@@ -534,7 +552,8 @@ const questions: {
 						text: '조신'
 					}
 				],
-				correctAnswers: [3, 5]
+				correctAnswers: [3, 5],
+				search: '암컷들'
 			},
 			{
 				text: `천선란의 소설 〈천 개의 파랑〉은 곧 폐기를 앞둔 기수 휴머노이드, 그 휴머노이드와 호흡을 맞추는 경주마, 그리고 그를 구원하는 인물이 등장하는 소설이다. 이 인물들의 이름으로 올바르게 짝지어진 것을 고르시오.`,
@@ -561,7 +580,8 @@ const questions: {
 						text: '콜리, 예스터데이, 연재'
 					}
 				],
-				correctAnswers: [3]
+				correctAnswers: [3],
+				search: '천 개의 파랑'
 			},
 			{
 				text: `다음 중 디지털 성범죄 N번방 사건을 최초 보도하며 최초로 신고한 이들의 이야기를 담은 서적 〈우리가 우리를 우리라고 부를 때: N번방 추적기와 우리의 이야기〉의 저자로 알맞은 것을 고르시오.`,
@@ -587,7 +607,8 @@ const questions: {
 						text: '경비단 불꽃'
 					}
 				],
-				correctAnswers: [2]
+				correctAnswers: [2],
+				search: '우리가 우리를 우리라고 부를 때'
 			}
 		]
 	},
@@ -619,7 +640,8 @@ const questions: {
 						text: '아르테미스'
 					}
 				],
-				correctAnswers: [3]
+				correctAnswers: [3],
+				search: `Assasin's Creed`
 			},
 			{
 				text: `게임 〈Life is strange〉는 시간을 되감는 초능력을 가진 주인공 맥스와 클로이가 실종 사건을 쫓는 게임이다. 맥스는 초능력을 이용해서 친구 클로이의 주머니에 든 물건을 알아맞힌다. 이 중 클로이의 주머니에 있었던 물건이 <u><strong>아닌</strong></u> 것을 고르시오.`,
@@ -646,7 +668,8 @@ const questions: {
 						text: '안경닦이'
 					}
 				],
-				correctAnswers: [5]
+				correctAnswers: [5],
+				search: 'Life is strange'
 			},
 			{
 				text: `다음은 포탈건을 이용해 각종 살인 로봇과 함정이 가득한 실험실에서 탈출하는 퍼즐 게임 〈Portal〉 시리즈의 엔딩 곡 ‘Still alive’의 가사 일부이다. 빈 칸에 들어갈 〈Portal〉 시리즈에 등장하는 주요 오브젝트로 올바른 것을 고르시오.`,
@@ -676,7 +699,8 @@ const questions: {
 						text: '껌'
 					}
 				],
-				correctAnswers: [3]
+				correctAnswers: [3],
+				search: 'Portal'
 			},
 			{
 				text: `다음 중 그리스 로마 신화를 모티브로 각기 다른 무기를 휘두르는 네 명의 여성들이 한 팀이 되어 적 ‘타이탄’을 물리치는 벨트스크롤 액션 게임 〈Full Metal Furies〉 의 주인공 4명의 상징색이 올바르게 짝지어지지 <u><strong>않은</strong></u> 것을 <u><strong>모두</strong></u> 고르시오.`,
@@ -703,7 +727,8 @@ const questions: {
 						text: '메그 - 주황색'
 					}
 				],
-				correctAnswers: [1, 3]
+				correctAnswers: [1, 3],
+				search: 'Full Metal Furies'
 			},
 			{
 				text: `한 번 멸망해 기계생명체들이 자연을 지배하는 세계를 탐험하는 오픈월드 게임 〈Horizon zero dawn〉에는 모계 부족 출신의 실력 있는 사냥꾼, 주인공 에일로이가 사냥할 수 있는 다양한 기계생명체들이 등장한다. 이 중 기계생명체와 그 모티브가 된 동물이 알맞게 짝지어진 것을 고르시오.`,
@@ -730,7 +755,8 @@ const questions: {
 						text: '와쳐 - 호랑이'
 					}
 				],
-				correctAnswers: [2]
+				correctAnswers: [2],
+				search: 'Horizon zero dawn'
 			}
 		]
 	}
