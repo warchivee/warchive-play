@@ -100,7 +100,9 @@
 	<div class="result-popup">
 		<div class="result-popup__header">
 			<span>result.php</span>
-			<div class="result-popup__xbutton font-gothic">x</div>
+			<div class="result-popup__xbutton font-gothic">
+				<h5>x</h5>
+			</div>
 		</div>
 
 		<img class="popup_prize__mark" src={PrizeMark} alt="인증서 꾸밈 요소" />
@@ -333,6 +335,12 @@
 		border-left: 1px solid white;
 		border-bottom: 1px solid black;
 		border-right: 1px solid black;
+
+		& > * {
+			position: relative;
+			top: -2.0px;
+			left: -0.5px;
+		}
 	}
 
 	.result-popup__footer {

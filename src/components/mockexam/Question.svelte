@@ -129,8 +129,8 @@
 							: writeRadioAnswer(category, index - 1, answerIndex + 1)}
 				/>
 				<img class="check" src={checkImg} alt="체크표시" />
-				<img class="correct_img check" src={redCheckImg} alt="체크표시" />
-				<img class="correct_img line" src={redCheckLineImg} alt="체크표시" />
+				<img class="correct_img check{checkQuestion(stored[category][index - 1], question.correctAnswers) ? " hidden" : ""}" src={redCheckImg} alt="체크표시" />
+				<img class="correct_img line{checkQuestion(stored[category][index - 1], question.correctAnswers) ? " hidden" : ""}" src={redCheckLineImg} alt="체크표시" />
 				<label for="{index}-{answerIndex + 1}">{numberToCircle(answerIndex + 1)}</label>
 				<label for="{index}-{answerIndex + 1}">{answer.text}</label>
 			</div>
@@ -251,6 +251,10 @@
 		.answer.correct {
 			img.correct_img {
 				display: block;
+			}
+			
+			img.hidden {
+				display: none;
 			}
 		}
 	}
