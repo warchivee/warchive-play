@@ -1,20 +1,25 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import { goto } from '$app/navigation';
-
 	import questions from '$lib/assets/mockexam/questions';
-
 	import PaperSheet from '$components/mockexam/PaperSheet.svelte';
 
 	let currentPage = 0;
 	const totalPages = questions.length;
 
+	function scrollToTop() {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
+	}
+
 	function goToNextPage() {
 		currentPage = Math.min(currentPage + 1, questions.length - 1);
+		scrollToTop();
 	}
 
 	function goToPreviousPage() {
 		currentPage = Math.max(currentPage - 1, 0);
+		scrollToTop();
 	}
 
 	function goBack() {

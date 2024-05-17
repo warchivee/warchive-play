@@ -15,12 +15,12 @@
 	const totalPages = questions.length;
 
 	function scrollToTop() {
-		// window.scrollTo(0, 0);
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth'
 		});
 	}
+
 	function goToNextPage() {
 		currentPage = Math.min(currentPage + 1, questions.length - 1);
 		scrollToTop();

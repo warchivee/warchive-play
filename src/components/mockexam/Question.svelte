@@ -67,12 +67,18 @@
 		if (
 			!Array.isArray(selects) ||
 			!Array.isArray(corrects) ||
-			selects.length === 0 ||
-			corrects.length === 0
+			selects.length !== corrects.length
 		) {
 			return false;
 		}
-		return selects.every((a) => corrects.includes(a));
+
+		for (let i = 0; i < selects.length; i++) {
+			if (selects[i] !== corrects[i]) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	function isCorrectAnswer(answers: number[], answerIndex: number) {
@@ -108,13 +114,15 @@
 			<div
 				class="answer {isReviewPage && isCorrectAnswer(question.correctAnswers, answerIndex)
 					? 'correct'
+					: ''} {isUserChecked(stored[category][index - 1], answerIndex + 1)
+					? 'checked'
 					: ''}"
 			>
 				<input
 					type={question.correctAnswers.length > 1 ? 'checkbox' : 'radio'}
 					name="question-{index}-answers"
 					id="{index}-{answerIndex + 1}"
-					checked={isUserChecked(stored[category][index - 1], answerIndex + 1)}
+					disabled={isReviewPage}
 					on:change={(event) =>
 						question.correctAnswers.length > 1
 							? writeCheckboxAnswer(category, index - 1, answerIndex + 1)
@@ -234,10 +242,10 @@
 				height: 1px;
 				width: 110%;
 			}
-
-			input:checked + img:not(.correct_img) {
-				display: block;
-			}
+		}
+		
+		.answer.checked img:not(.correct_img) {
+			display: block;
 		}
 
 		.answer.correct {
