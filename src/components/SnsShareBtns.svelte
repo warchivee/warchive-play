@@ -29,9 +29,9 @@
 		window.open(`http://www.facebook.com/sharer/sharer.php?u=${encodeUrl}`);
 	}
 
-	function shareTwitter() {
+	function shareX() {
 		window.open(
-			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=${hashtags}&url=${encodeUrl}`
+			`https://x.com/intent/tweet?text=${title + ' ' + content}&hashtags=${hashtags}&url=${encodeUrl}`
 		);
 	}
 
@@ -70,7 +70,7 @@
 	<p class="font-bold">친구에게 결과 공유하기</p>
 	<div class="btns">
 		<i class="fa-solid fa-link" on:click={shareLink} aria-hidden="true"></i>
-		<i class="fa-brands fa-x-twitter" on:click={shareTwitter} aria-hidden="true"></i>
+		<i class="fa-brands fa-x-twitter" on:click={shareX} aria-hidden="true"></i>
 		<i class="fa-solid fa-comment" on:click={shareKakao} aria-hidden="true"></i>
 		<i class="fa-brands fa-facebook" on:click={shareFacebook} aria-hidden="true"></i>
 	</div>

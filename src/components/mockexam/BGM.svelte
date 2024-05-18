@@ -1,12 +1,16 @@
 <script lang="ts">
 	import isAudioPlaying from '../../store/autio';
+
+	let showTooltip = true;
 </script>
 
 <div class="warchive-copyright">
+	<div class="tooltip{showTooltip ? '': ' hidden'}">노래를 켜고 끌 수 있습니다.</div>
 	<button
 		class="audio"
 		on:click={() => {
 			isAudioPlaying.set(!$isAudioPlaying);
+			showTooltip = false;
 		}}
 	>
 		<i
@@ -20,6 +24,29 @@
 </div>
 
 <style>
+	.tooltip {
+		font-size: 0.75rem;
+		text-align: center;
+		width: fit-content;
+		height: fit-content;
+		position: absolute;
+		background-color: var(--color-bg-0);
+		padding: 5px;
+
+		transform: translateX(30%) translateY(-130%);
+		
+		&::before {
+			content: '';
+			position: absolute;
+			bottom: -20px;
+			left: 50%;
+			transform: translateX(-50%);
+			border-width: 10px;
+			border-style: solid;
+			border-color: var(--color-bg-0) transparent transparent transparent;
+		}
+	}
+
 	.audio {
 		all: unset;
 		cursor: pointer;
@@ -34,5 +61,9 @@
 		& [class*='volumn-btn'] {
 			margin-top: 2px;
 		}
+	}
+
+	[class*='hidden'] {
+		display: none;
 	}
 </style>

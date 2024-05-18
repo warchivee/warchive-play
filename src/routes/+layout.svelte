@@ -4,7 +4,7 @@
 
 	import { base } from '$app/paths';
 	import song1 from '$lib/assets/charactertest/womyntest.mp3';
-	import song2 from '$lib/assets/mockexam/sonata_nona.mp3';
+	import song2 from '$lib/assets/mockexam/sonata_nona.m4a';
 
 	let autioRef: HTMLAudioElement;
 	let song: string;
