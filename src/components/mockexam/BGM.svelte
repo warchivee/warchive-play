@@ -1,16 +1,21 @@
 <script lang="ts">
 	import isAudioPlaying from '../../store/autio';
+	import { tooltip } from '../../store/exam';
 
-	let showTooltip = true;
+	let showTooltip: boolean;
+
+	const unsubscribeTooltip = tooltip.subscribe((value) => {
+		showTooltip = value;
+	});
 </script>
 
 <div class="warchive-copyright">
-	<div class="tooltip{showTooltip ? '': ' hidden'}">노래를 켜고 끌 수 있습니다.</div>
+	<div class="tooltip{showTooltip ? '': ' hidden'}">클릭해서 노래를 켜고 끌 수 있습니다.</div>
 	<button
 		class="audio"
 		on:click={() => {
 			isAudioPlaying.set(!$isAudioPlaying);
-			showTooltip = false;
+			tooltip.set(false);
 		}}
 	>
 		<i
@@ -33,7 +38,7 @@
 		background-color: var(--color-bg-0);
 		padding: 5px;
 
-		transform: translateX(30%) translateY(-130%);
+		transform: translateX(10%) translateY(-130%);
 		
 		&::before {
 			content: '';
@@ -41,7 +46,7 @@
 			bottom: -20px;
 			left: 50%;
 			transform: translateX(-50%);
-			border-width: 10px;
+			border-width: 12px;
 			border-style: solid;
 			border-color: var(--color-bg-0) transparent transparent transparent;
 		}

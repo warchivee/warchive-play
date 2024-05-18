@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
 	import checkImg from '$lib/images/mockexam/systems/check.png';
 	import redCheckImg from '$lib/images/mockexam/systems/red_check.png';
@@ -27,11 +28,20 @@
 		}
 	}
 
+	// onMount(()=> {
+	// 	console.log("onMount 실행됨!!");
+	// })
+
 	const unsubscribeAnswers = userAnswers.subscribe((value) => {
 		stored = value;
 	});
 
 	function writeRadioAnswer(category: number, quest: number, answ: number) {
+		const checkboxElement = document.getElementById(`${category + 1}-question-${quest + 1}-answer-${answ}`) as HTMLInputElement;
+		if (checkboxElement) {
+			checkboxElement.checked = false;
+		}
+
 		if (stored.length <= category || !stored[category]) {
 			stored[category] = [[]];
 		}
@@ -43,6 +53,11 @@
 	}
 
 	function writeCheckboxAnswer(category: number, quest: number, answ: number) {
+		const radioElement = document.getElementById(`${category + 1}-question-${quest + 1}-answer-${answ}`) as HTMLInputElement;
+		if (radioElement) {
+			radioElement.checked = false;
+		}
+
 		if (stored.length <= category || !stored[category]) {
 			stored[category] = [[]];
 		}
@@ -86,7 +101,7 @@
 	}
 </script>
 
-<div class="question">
+<div class="question" id="{category + 1}-question-{index}-answers">
 	<img
 		class="mark {isReviewPage ? 'show' : ''}"
 		src={checkQuestion(stored[category][index - 1], question.correctAnswers)
@@ -112,16 +127,16 @@
 	<div class="answers {question.answer_type}">
 		{#each question.answers as answer, answerIndex}
 			<div
-				class="answer {isReviewPage && isCorrectAnswer(question.correctAnswers, answerIndex)
-					? 'correct'
-					: ''} {isUserChecked(stored[category][index - 1], answerIndex + 1)
-					? 'checked'
+				class="answer{isReviewPage && isCorrectAnswer(question.correctAnswers, answerIndex)
+					? ' correct'
+					: ''}{isUserChecked(stored[category][index - 1], answerIndex + 1)
+					? ' checked'
 					: ''}"
 			>
 				<input
 					type={question.correctAnswers.length > 1 ? 'checkbox' : 'radio'}
-					name="question-{index}-answers"
-					id="{index}-{answerIndex + 1}"
+					name="{category + 1}-question-{index}-answers"
+					id="{category + 1}-question-{index}-answer-{answerIndex + 1}"
 					disabled={isReviewPage}
 					on:change={(event) =>
 						question.correctAnswers.length > 1
@@ -131,8 +146,8 @@
 				<img class="check" src={checkImg} alt="체크표시" />
 				<img class="correct_img check{checkQuestion(stored[category][index - 1], question.correctAnswers) ? " hidden" : ""}" src={redCheckImg} alt="체크표시" />
 				<img class="correct_img line{checkQuestion(stored[category][index - 1], question.correctAnswers) ? " hidden" : ""}" src={redCheckLineImg} alt="체크표시" />
-				<label for="{index}-{answerIndex + 1}">{numberToCircle(answerIndex + 1)}</label>
-				<label for="{index}-{answerIndex + 1}">{answer.text}</label>
+				<label for="{category + 1}-question-{index}-answer-{answerIndex + 1}">{numberToCircle(answerIndex + 1)}</label>
+            	<label for="{category + 1}-question-{index}-answer-{answerIndex + 1}">{answer.text}</label>
 			</div>
 		{/each}
 	</div>

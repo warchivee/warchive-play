@@ -6,7 +6,7 @@
 	import BGM from '$components/mockexam/BGM.svelte';
 
 	import isAudioPlaying from '../../store/autio';
-	import { name, number } from '../../store/exam';
+	import { name, number, tooltip } from '../../store/exam';
 
 	export let showAutioMessage = false;
 	export let userName = '';
@@ -64,6 +64,7 @@
 			class="play-button"
 			disabled={isNameEmpty()}
 			on:click={() => {
+				tooltip.set(true);
 				isAudioPlaying.set(true);
 				goto(`${base}/master-mock-exam/question`);
 			}}>모의고사 응시하기</button
