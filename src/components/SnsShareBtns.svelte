@@ -7,7 +7,7 @@
 
 	// url 상에 쿼리 스트링 표기 시 '공유 url의 쿼리값' 으로 인식하여 & 를 인코딩해줌
 	// 글자수 늘어나는 이슈로 encodeURIComponent 대신 &만 인코딩하는 방식으로 수정
-	const encodeUrl = url?.replace('&', '%26');
+	const encodeUrl = url?.replaceAll('&', '%26');
 
 	export let title = '';
 	export let content = '';
