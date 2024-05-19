@@ -9,7 +9,7 @@
 	import Warchive from '$components/mockexam/Warchive.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 
-	import { tested, resetAnswers } from '../../../store/exam';
+	import { tested, tooltip, resetAnswers } from '../../../store/exam';
 
 	import PrizeUnderline from '$lib/images/mockexam/systems/prize_underline.png';
 	import PrizeMark from '$lib/images/mockexam/systems/prize_mark.png';
@@ -99,7 +99,7 @@
 
 	<div class="result-popup">
 		<div class="result-popup__header">
-			<span>result.php</span>
+			<span>여성서사 고인물 모의고사 결과지</span>
 			<div class="result-popup__xbutton font-gothic">
 				<h5>x</h5>
 			</div>
@@ -183,12 +183,17 @@
 			</tbody>
 		</table>
 
+		<div class="table-desc">
+			<h5>*문제당 4점</h5>
+		</div>
+
 		<div class="result-popup__footer">
 			<button
 				class={isShared ? 'hidden' : ''}
 				on:click={() => {
+					tooltip.set(false);
 					goto(`${base}/master-mock-exam/review`);
-				}}>해설 확인하기</button
+				}}>정답 확인하기</button
 			>
 			<button
 				class={isShared ? 'hidden' : ''}
@@ -205,7 +210,7 @@
 			>
 		</div>
 	</div>
-
+	
 	<SnsShareBtns
 		title="Warchive: 여성서사 고인물 모의고사"
 		content={` - 내 여성서사 고인물 모의고사 등급은... ${grade}등급!`}
@@ -361,7 +366,7 @@
 	}
 
 	.tg {
-		margin: 2rem 0;
+		margin: 2rem 0 0 0;
 		border-collapse: collapse;
 		border-spacing: 0;
 		table-layout: fixed;
@@ -381,6 +386,14 @@
 		font-size: 20px;
 		text-align: center;
 		vertical-align: middle;
+	}
+
+	.table-desc {
+		width: 80%;
+		margin-bottom: 2rem;
+		& > * {
+			text-align: right;
+		}
 	}
 
 	.prize {

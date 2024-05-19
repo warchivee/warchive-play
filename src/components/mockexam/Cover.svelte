@@ -14,10 +14,12 @@
 
 	onMount(() => {
 		const today = new Date();
-		const year = today.getFullYear();
+		const year = today.getFullYear().toString().slice(-2);
 		const month = ('0' + (today.getMonth() + 1)).slice(-2);
 		const day = ('0' + today.getDate()).slice(-2);
-		examNumber = `${year}${month}${day}`;
+		const hours = ('0' + today.getHours()).slice(-2);
+		const minutes = ('0' + today.getMinutes()).slice(-2);
+		examNumber = `${year}${month}${day}${hours}${minutes}`;
 	});
 
 	const isNameEmpty = () => userName.trim() === '';
