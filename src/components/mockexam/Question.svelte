@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 
 	import checkImg from '$lib/images/mockexam/systems/check.png';
 	import redCheckImg from '$lib/images/mockexam/systems/red_check.png';
@@ -27,11 +26,7 @@
 			return number;
 		}
 	}
-
-	// onMount(()=> {
-	// 	console.log("onMount 실행됨!!");
-	// })
-
+	
 	const unsubscribeAnswers = userAnswers.subscribe((value) => {
 		stored = value;
 	});
