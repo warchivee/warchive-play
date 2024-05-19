@@ -18,13 +18,33 @@
 		window.scrollTo(0, 0);
 	}
 
-	function goToNextPage() {
-		currentPage = Math.min(currentPage + 1, questions.length - 1);
-		scrollToTop();
+	function checkAnswers() {
+		getWritableData();
+		const storedAnswers = stored[currentPage];
+		for (let i = 0; i < storedAnswers.length; i++) {
+			if (storedAnswers[i].length === 0) {
+				return false;
+			}
+		}
+		return true;		
 	}
 
-	function goToPreviousPage() {
-		currentPage = Math.max(currentPage - 1, 0);
+	function askMovePage(direction: string) {
+		if(checkAnswers()) {
+			movePage(direction);
+		} else {
+			if (confirm('답하지 않은 문제가 있습니다. 그래도 계속하시겠습니까?')) {			
+				movePage(direction);
+			}
+		}
+	}
+
+	function movePage(direction: string) {
+		if (direction === 'next') {
+			currentPage = Math.min(currentPage + 1, questions.length - 1);
+		} else if (direction === 'previous') {
+			currentPage = Math.max(currentPage - 1, 0);
+		}
 		scrollToTop();
 	}
 
@@ -32,6 +52,25 @@
 	let examNumber = '';
 	let scores: any[] = [];
 	let stored: number[][][] = [];
+
+	function askSubmit() {
+		if(checkAnswers()) {
+			submit();
+		} else {
+			if (confirm('답하지 않은 문제가 있습니다. 그래도 계속하시겠습니까?')) {			
+				submit();
+			}
+		}
+	}
+
+	function submit() {
+		loading = true;
+		const resultString = getResultString();
+
+		setTimeout(function () {
+			goto(`${base}/master-mock-exam/result${resultString}`);
+		}, 7000);
+	}
 
 	function getWritableData() {
 		const unsubscribeUserName = name.subscribe((value) => {
@@ -96,30 +135,22 @@
 
 		<div class="footer">
 			<div class="pagination">
-				<button class="page-btn" on:click={goToPreviousPage} disabled={currentPage === 0}
+				<button class="page-btn"
+					on:click={() => {askMovePage("previous"); }}
+					disabled={currentPage === 0}
 					>이전</button
 				>
 				<h4>{currentPage + 1} / {totalPages}</h4>
 				<button
 					class="page-btn"
-					on:click={goToNextPage}
+					on:click={() => {askMovePage("next"); }}
 					disabled={currentPage === questions.length - 1}>다음</button
 				>
 			</div>
 
 			<div class="submit">
 				{#if currentPage === totalPages - 1}
-					<button
-						class="page-btn"
-						on:click={() => {
-							loading = true;
-							const resultString = getResultString();
-
-							setTimeout(function () {
-								goto(`${base}/master-mock-exam/result${resultString}`);
-							}, 7000);
-						}}>답안 제출하기</button
-					>
+					<button class="page-btn" on:click={askSubmit}>답안 제출하기</button>
 				{/if}
 			</div>
 		</div>
