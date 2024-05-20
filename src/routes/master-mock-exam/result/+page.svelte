@@ -390,7 +390,7 @@
 
 	.table-desc {
 		width: 80%;
-		margin-bottom: 2rem;
+		height: 2rem;
 		& > * {
 			text-align: right;
 		}
