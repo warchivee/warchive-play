@@ -665,7 +665,7 @@ const questions: Category[] = [
 					}
 				],
 				correctAnswers: [3],
-				search: `Assasin's Creed`
+				search: `Assassin's Creed`
 			},
 			{
 				text: `게임 〈Life is strange〉는 시간을 되감는 초능력을 가진 주인공 맥스와 클로이가 실종 사건을 쫓는 게임이다. 맥스는 초능력을 이용해서 친구 클로이의 주머니에 든 물건을 알아맞힌다. 이 중 클로이의 주머니에 있었던 물건이 <u><strong>아닌</strong></u> 것을 고르시오.`,
