@@ -57,23 +57,23 @@
 
 	function getSnsShareThumbnail() {
 		if (grade === 1) {
-			return 'https://i.ibb.co/w4bB555/mock-exam-share-1.png';
+			return 'https://i.ibb.co/8KKSXqH/mock-exam-share-1.png';
 		} else if (grade === 2) {
-			return 'https://i.ibb.co/6bphBZ5/mock-exam-share-2.png';
+			return 'https://i.ibb.co/xJtLpFJ/mock-exam-share-2.png';
 		} else if (grade === 3) {
-			return 'https://i.ibb.co/6Rg9WKL/mock-exam-share-3.png';
+			return 'https://i.ibb.co/gTF6NQq/mock-exam-share-3.png';
 		} else if (grade === 4) {
-			return 'https://i.ibb.co/nnrzmkN/mock-exam-share-4.png';
+			return 'https://i.ibb.co/TbdR8qj/mock-exam-share-4.png';
 		} else if (grade === 5) {
-			return 'https://i.ibb.co/xY2KgCG/mock-exam-share-5.png';
+			return 'https://i.ibb.co/7WwMkyg/mock-exam-share-5.png';
 		} else if (grade === 6) {
-			return 'https://i.ibb.co/VSjsFJY/mock-exam-share-6.png';
+			return 'https://i.ibb.co/8r8kBnS/mock-exam-share-6.png';
 		} else if (grade === 7) {
-			return 'https://i.ibb.co/zs21GvS/mock-exam-share-7.png';
+			return 'https://i.ibb.co/pbg6WD4/mock-exam-share-7.png';
 		} else if (grade === 8) {
-			return 'https://i.ibb.co/whZgBXn/mock-exam-share-8.png';
+			return 'https://i.ibb.co/cvLxzDP/mock-exam-share-8.png';
 		} else {
-			return 'https://i.ibb.co/m5b4Bbq/mock-exam-share-9.png';
+			return 'https://i.ibb.co/Y7csDGV/mock-exam-share-9.png';
 		}
 	}
 
