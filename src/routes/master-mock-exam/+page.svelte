@@ -8,7 +8,7 @@
 	export let showAutioMessage = false;
 </script>
 
-<BaseHead title="Warchive: 여성서사 고인물 모의고사" image="https://i.ibb.co/SRQVvJX/master.png" />
+<BaseHead title="Warchive: 여성서사 고인물 모의고사" image="https://i.ibb.co/FwcfC3Q/master.png" />
 
 <section>
 	<img src={WarchiveSign} alt="와카이브 낙서" />

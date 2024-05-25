@@ -55,23 +55,23 @@
 
 	function getSnsShareThumbnail() {
 		if (grade === 1) {
-			return 'https://i.ibb.co/8KKSXqH/mock-exam-share-1.png';
+			return 'https://i.ibb.co/R9VK7gY/mock-exam-share-1.png';
 		} else if (grade === 2) {
-			return 'https://i.ibb.co/xJtLpFJ/mock-exam-share-2.png';
+			return 'https://i.ibb.co/vdB2vsG/mock-exam-share-2.png';
 		} else if (grade === 3) {
-			return 'https://i.ibb.co/gTF6NQq/mock-exam-share-3.png';
+			return 'https://i.ibb.co/61WgRZB/mock-exam-share-3.png';
 		} else if (grade === 4) {
-			return 'https://i.ibb.co/TbdR8qj/mock-exam-share-4.png';
+			return 'https://i.ibb.co/d0NFZ9s/mock-exam-share-4.png';
 		} else if (grade === 5) {
-			return 'https://i.ibb.co/7WwMkyg/mock-exam-share-5.png';
+			return 'https://i.ibb.co/f4QssWg/mock-exam-share-5.png';
 		} else if (grade === 6) {
-			return 'https://i.ibb.co/8r8kBnS/mock-exam-share-6.png';
+			return 'https://i.ibb.co/60t1ZB0/mock-exam-share-6.png';
 		} else if (grade === 7) {
-			return 'https://i.ibb.co/pbg6WD4/mock-exam-share-7.png';
+			return 'https://i.ibb.co/zxHTp1L/mock-exam-share-7.png';
 		} else if (grade === 8) {
-			return 'https://i.ibb.co/cvLxzDP/mock-exam-share-8.png';
+			return 'https://i.ibb.co/qCYpd2S/mock-exam-share-8.png';
 		} else {
-			return 'https://i.ibb.co/Y7csDGV/mock-exam-share-9.png';
+			return 'https://i.ibb.co/ZzsjPG7/mock-exam-share-9.png';
 		}
 	}
 
@@ -153,7 +153,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<div class="table-desc">
 			<h5>*문제당 4점</h5>
 		</div>
@@ -187,7 +187,7 @@
 			>
 		</div>
 	</div>
-	
+
 	<div class="result mobile">
 		<table class="tg horizon">
 			<thead>
@@ -289,11 +289,15 @@
 			</div>
 		</div>
 	</div>
-
 </section>
 
 {#if showCertificate}
-	<Certificate image={thumbnail} onClose={() => { showCertificate = false; }} />
+	<Certificate
+		image={thumbnail}
+		onClose={() => {
+			showCertificate = false;
+		}}
+	/>
 {/if}
 
 <Footer />
@@ -309,7 +313,7 @@
 		align-items: center;
 	}
 
-	.head{
+	.head {
 		width: 100%;
 
 		.head-info {
@@ -362,7 +366,7 @@
 
 		& > * {
 			position: relative;
-			top: -2.0px;
+			top: -2px;
 			left: -0.5px;
 		}
 	}
@@ -430,7 +434,7 @@
 		display: flex;
 		position: relative;
 	}
-	
+
 	.display_prize__mark {
 		position: absolute;
 		width: 100px;
@@ -443,7 +447,7 @@
 		.result-popup {
 			display: none;
 		}
-		
+
 		.result {
 			width: 100%;
 			display: flex;
@@ -467,7 +471,6 @@
 			align-items: center;
 			margin: 2rem 0rem 1rem 0rem;
 			gap: 1.6rem;
-
 		}
 
 		.result-popup__footer button {
