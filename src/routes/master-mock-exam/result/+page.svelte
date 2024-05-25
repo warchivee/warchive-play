@@ -16,10 +16,11 @@
 	import PrizeMark from '$lib/images/mockexam/systems/prize_mark.png';
 	import Footer from '$components/Footer.svelte';
 	import BaseHead from '$components/BaseHead.svelte';
+	import { decodeUrl } from '../../../utils/shortUrl';
 
 	const urlData = $page.url;
 
-	const name = urlData.searchParams.get('n') ?? 'no-name';
+	const name = decodeUrl(urlData.searchParams.get('n')) ?? 'no-name';
 	const number = urlData.searchParams.get('b') ?? '00000000';
 	let scores = urlData.searchParams
 		.get('s')

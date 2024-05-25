@@ -9,6 +9,7 @@
 
 	import PaperSheet from '$components/mockexam/PaperSheet.svelte';
 	import Modal from '$components/mockexam/Modal.svelte';
+	import { encodeUrl } from '../../../utils/shortUrl';
 
 	let loading = false;
 	let showModal = false;
@@ -119,7 +120,10 @@
 
 	function getResultString() {
 		calculateScores();
-		let result = `?n=${userName}&b=${examNumber}&s=${scores.join(',')}`;
+
+		const encodingUserName = encodeUrl(userName);
+
+		let result = `?n=${encodingUserName}&b=${examNumber}&s=${scores.join(',')}`;
 		tested.set(true);
 		return result;
 	}
