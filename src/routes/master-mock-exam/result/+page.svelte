@@ -500,11 +500,4 @@
 			opacity: 0.2;
 		}
 	}
-
-	@media (max-width: 500px) {
-		.result-popup__footer button {
-			width: 100px;
-			font-size: 12px;
-		}
-	}
 </style>
