@@ -73,7 +73,7 @@
         max-width: 80%;
         height: fit-content;
         padding: 20px;        
-        background-color: var(--color-bg-0);
+        background-color: var(--color-bg-1);
 		border: 2px solid black;
     }
 

@@ -9,7 +9,8 @@
 	--color-bg-2: #ccc4be;
 	--color-txt-1: #170c1e;
 	--color-txt-2: #a29ea5;
-
+	--color-btn-1: #f3ece7;
+	--color-btn-2: #e4ddd8;
 	--color-text: #000000;
 }
 
@@ -41,34 +42,32 @@ body {
 button {
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
-	border-top: 1px solid white;
-	border-left: 1px solid white;
-	background-color: var(--color-bg-1);
+	border-top: 1px solid var(--color-btn-2);
+	border-left: 1px solid var(--color-btn-2);
+	background-color: var(--color-btn-1);
 	cursor: pointer;
 }
 
 button:hover {
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
-	border-top: 1px solid white;
-	border-left: 1px solid white;
-	background-color: var(--color-bg-0);
+	border-top: 1px solid var(--color-btn-2);
+	border-left: 1px solid var(--color-btn-2);
 }
 
 button:active {
-	border-bottom: 1px solid white;
-	border-right: 1px solid white;
+	border-bottom: 1px solid var(--color-btn-2);
+	border-right: 1px solid var(--color-btn-2);
 	border-top: 1px solid black;
 	border-left: 1px solid black;
 	background-color: var(--color-bg-2);
 }
 
 button:disabled {
-	border-bottom: 1px solid white;
-	border-right: 1px solid white;
+	border-bottom: 1px solid var(--color-btn-2);
+	border-right: 1px solid var(--color-btn-2);
 	border-top: 1px solid black;
 	border-left: 1px solid black;
-	background-color: var(--color-bg-0);
 	color: var(--color-txt-2);
 	cursor: default;
 }

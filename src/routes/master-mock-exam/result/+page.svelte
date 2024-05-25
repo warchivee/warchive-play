@@ -7,15 +7,13 @@
 
 	import BGM from '$components/mockexam/BGM.svelte';
 	import Warchive from '$components/mockexam/Warchive.svelte';
+	import Certificate from '$components/mockexam/Certificate.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
+	import OtherTest from '$components/mockexam/OtherTest.svelte';
 
 	import { tested, tooltip, resetAnswers } from '../../../store/exam';
 
-	import PrizeUnderline from '$lib/images/mockexam/systems/prize_underline.png';
 	import PrizeMark from '$lib/images/mockexam/systems/prize_mark.png';
-	import PrizeBadge from '$lib/images/mockexam/systems/prize_badge.png';
-	import PrizeBorderHor from '$lib/images/mockexam/systems/prize_border_hor.png';
-	import PrizeBorderVer from '$lib/images/mockexam/systems/prize_border_ver.png';
 	import Footer from '$components/Footer.svelte';
 	import BaseHead from '$components/BaseHead.svelte';
 
@@ -79,7 +77,18 @@
 
 	const thumbnail = getSnsShareThumbnail();
 
+	const formatDate = (): string => {
+		const date = new Date();
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const day = String(date.getDate()).padStart(2, '0');
+		return `${year}년 ${month}월 ${day}일`;
+	};
+
+	const formattedDate = formatDate();
+
 	let isShared = true;
+	let showCertificate = false;
 
 	onMount(() => {
 		const unsubscribeAnswers = tested.subscribe((value) => {
@@ -91,21 +100,26 @@
 <BaseHead title="Warchive: 여성서사 고인물 모의고사" image={thumbnail} />
 
 <section>
-	<h1>여성서사 고인물 모의고사 결과지</h1>
-
-	<div class="result-top-info">
+	<div class="head pc">
+		<h1>여성서사 고인물 모의고사 성적표</h1>
+		<div class="head-info pc">
+			<BGM />
+			<Warchive />
+		</div>
+	</div>
+	<div class="head mobile">
 		<BGM />
+		<h1>여성서사 고인물 모의고사 성적표</h1>
+		<Warchive />
 	</div>
 
 	<div class="result-popup">
 		<div class="result-popup__header">
-			<span>여성서사 고인물 모의고사 결과지</span>
+			<span>여성서사 고인물 모의고사 성적표</span>
 			<div class="result-popup__xbutton font-gothic">
 				<h5>x</h5>
 			</div>
 		</div>
-
-		<img class="popup_prize__mark" src={PrizeMark} alt="인증서 꾸밈 요소" />
 
 		<table class="tg vertical">
 			<thead>
@@ -139,7 +153,42 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div class="table-desc">
+			<h5>*문제당 4점</h5>
+		</div>
 
+		<div class="result-popup__footer">
+			<button
+				class={isShared ? 'hidden' : ''}
+				on:click={() => {
+					tooltip.set(false);
+					goto(`${base}/master-mock-exam/review`);
+				}}>정답 확인하기</button
+			>
+			<button
+				class={isShared ? 'hidden' : ''}
+				on:click={() => {
+					showCertificate = true;
+				}}>고인물 인증서 발급하기</button
+			>
+			<button
+				class={isShared ? 'hidden' : ''}
+				on:click={() => {
+					resetAnswers();
+					goto(`${base}/master-mock-exam`);
+				}}>다시 응시하기</button
+			>
+			<button
+				class={isShared ? '' : 'hidden'}
+				on:click={() => {
+					goto(`${base}/master-mock-exam`);
+				}}>직접 응시하기</button
+			>
+		</div>
+	</div>
+	
+	<div class="result mobile">
 		<table class="tg horizon">
 			<thead>
 				<tr>
@@ -198,6 +247,12 @@
 			<button
 				class={isShared ? 'hidden' : ''}
 				on:click={() => {
+					showCertificate = true;
+				}}>인증서 발급하기</button
+			>
+			<button
+				class={isShared ? 'hidden' : ''}
+				on:click={() => {
 					resetAnswers();
 					goto(`${base}/master-mock-exam`);
 				}}>다시 응시하기</button
@@ -210,7 +265,7 @@
 			>
 		</div>
 	</div>
-	
+
 	<SnsShareBtns
 		title="Warchive: 여성서사 고인물 모의고사"
 		content={` - 내 여성서사 고인물 모의고사 등급은... ${grade}등급!`}
@@ -218,48 +273,28 @@
 		image={thumbnail}
 	/>
 
-	<a href="https://article.womynarchive.com/play" target="_blank">다른 여성서사 테스트 하러가기</a>
+	<OtherTest />
 
-	<hr />
-
-	<div
-		class="prize"
-		style="--prize_border_hor: url({PrizeBorderHor}); --prize_border_ver: url({PrizeBorderVer});"
-	>
-		<div class="prize__header">
-			<h2>여성서사 고인물 인증서</h2>
-			<img src={PrizeUnderline} alt="인증서 꾸밈 요소" />
-		</div>
-
-		<img class="prize__badge" src={PrizeBadge} alt="인증서 꾸밈 요소" />
-
-		<div class="prize__contents">
-			<h4>{getGrade()}등급</h4>
-			<div>
-				<h5>성명 {name}</h5>
-				<h5>수험번호 {number}</h5>
+	<div class="container">
+		<h5>{formattedDate}</h5>
+		<div class="project-display">
+			<div class="pc">
+				<h2>여성서사 아카이브 프로젝트 와카이브</h2>
+				<img class="display_prize__mark" src={PrizeMark} alt="인증서 꾸밈 요소" />
+			</div>
+			<div class="mobile">
+				<h5>여성서사 아카이브 프로젝트</h5>
+				<h1>와카이브</h1>
+				<img class="display_prize__mark" src={PrizeMark} alt="인증서 꾸밈 요소" />
 			</div>
 		</div>
-
-		<h5 class="prize__p over-500">
-			위 사람은 여성서사 고인물 모의고사에서 <br />
-			평소 여성서사를 사랑하는 마음으로 성실히 응시한 결과 <br />
-			다음과 같은 성적을 받았기에 이 상장을 수여합니다.
-		</h5>
-		<h5 class="prize__p under-500">
-			위 사람은 여성서사 고인물 모의고사에서 <br />
-			평소 여성서사를 사랑하는 마음으로 <br />
-			성실히 응시한 결과 <br />
-			다음과 같은 성적을 받았기에 <br />
-			이 상장을 수여합니다.
-		</h5>
-
-		<div class="prize__footer">
-			<h4>여성서사 아카이브 프로젝트 와카이브</h4>
-			<img class="prize__mark" src={PrizeMark} alt="인증서 꾸밈 요소" />
-		</div>
 	</div>
+
 </section>
+
+{#if showCertificate}
+	<Certificate image={thumbnail} onClose={() => { showCertificate = false; }} />
+{/if}
 
 <Footer />
 
@@ -274,23 +309,18 @@
 		align-items: center;
 	}
 
-	hr {
-		all: unset;
-		height: 1px;
-		background-color: black;
+	.head{
 		width: 100%;
-		margin: 30px 0px 40px 0px;
+
+		.head-info {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 2rem;
+		}
 	}
 
-	.result-top-info + .result-popup {
-		margin-top: -1rem;
-	}
-
-	.result-top-info {
-		width: 100%;
-		border: none;
-		display: flex;
-		justify-content: space-between;
+	.head + .result-popup {
+		margin-top: -2rem;
 	}
 
 	.result-popup {
@@ -300,18 +330,7 @@
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-
 		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-
-		.popup_prize__mark {
-			position: absolute;
-			width: 20%;
-			min-width: 150px;
-			top: 40%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			opacity: 0.1;
-		}
 	}
 
 	.result-popup__header {
@@ -396,112 +415,63 @@
 		}
 	}
 
-	.prize {
-		width: 750px;
-		position: relative;
-		padding: 90px 60px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 20px;
-
-		background: white;
-		background-image: var(--prize_border_hor);
-		background-size: 95%;
-		background-position: center;
-		background-repeat: no-repeat;
-
-		border-width: 8px;
-		border-style: solid;
-		border-image: linear-gradient(to bottom right, #f8ac48, #ffe66b) 1;
-	}
-
-	.prize h4,
-	.prize h5 {
-		z-index: 1;
-	}
-
-	.prize > .prize__header {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.prize > .prize__header > img {
-		max-width: 250px;
-		width: 70%;
-		z-index: 1;
-	}
-
-	.prize > .prize__badge {
-		position: absolute;
-		opacity: 0.5;
-		width: 25%;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		z-index: 0;
-	}
-
-	.prize > .prize__contents {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		justify-content: space-between;
-		padding: 0 2rem;
-	}
-
-	.prize > .prize__contents > div h5 {
-		text-align: right;
-	}
-
-	.prize > .prize__p.over-500 {
-		display: block;
-	}
-
-	.prize > .prize__p.under-500 {
-		display: none;
-	}
-
-	.prize > .prize__footer {
-		width: fit-content;
-		margin-top: 1rem;
-		position: relative;
-		overflow: visible;
-	}
-
-	.prize > .prize__footer > h4 {
-		letter-spacing: 5px;
-	}
-
-	.prize > .prize__footer > img {
-		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 60px;
-		opacity: 0.2;
-	}
-
 	.tg.horizon {
 		display: none;
 	}
 
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 1rem;
+	}
+
+	.project-display {
+		display: flex;
+		position: relative;
+	}
+	
+	.display_prize__mark {
+		position: absolute;
+		width: 100px;
+		top: -35%;
+		right: -4%;
+		opacity: 0.2;
+	}
+
 	@media (max-width: 750px) {
-		.prize {
-			background-image: var(--prize_border_ver);
-			width: 500px;
-			height: 700px;
-			gap: 50px;
+		.result-popup {
+			display: none;
+		}
+		
+		.result {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 
-		.prize > .prize__p {
-			line-height: 400%;
+		.tg {
+			width: 100%;
+			margin: 0;
+		}
+
+		.table-desc {
+			width: 100%;
+		}
+
+		.result-popup__footer {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			margin: 2rem 0rem 1rem 0rem;
+			gap: 1.6rem;
+
 		}
 
 		.result-popup__footer button {
+			width: 120px;
 			font-size: 16px;
 		}
 
@@ -512,38 +482,29 @@
 		.tg.horizon {
 			display: table;
 		}
+
+		.project-display {
+			margin-top: 0.5rem;
+		}
+
+		.project-display h1 {
+			font-weight: 500;
+			letter-spacing: 0.5rem;
+		}
+
+		.display_prize__mark {
+			position: absolute;
+			width: 90px;
+			top: -6%;
+			right: -30%;
+			opacity: 0.2;
+		}
 	}
 
 	@media (max-width: 500px) {
-		.prize {
-			background-image: var(--prize_border_ver);
-			width: 360px;
-			height: 500px;
-			gap: 20px;
-			padding: 90px 50px;
-		}
-
-		.prize > .prize__p {
-			line-height: 180%;
-		}
-
-		.prize > .prize__p.over-500 {
-			display: none;
-		}
-		.prize > .prize__p.under-500 {
-			display: block;
-		}
-
 		.result-popup__footer button {
+			width: 100px;
 			font-size: 12px;
-		}
-
-		.tg.vertical {
-			display: none;
-		}
-
-		.tg.horizon {
-			display: table;
 		}
 	}
 </style>
