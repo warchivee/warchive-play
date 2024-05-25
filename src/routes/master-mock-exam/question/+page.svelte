@@ -28,18 +28,18 @@
 				return false;
 			}
 		}
-		return true;		
+		return true;
 	}
 
 	function askMovePage(direction: string) {
 		moveDirection = direction;
-		if(checkAnswers()) {
+		if (checkAnswers()) {
 			movePage();
 		} else {
 			showModal = true;
 		}
 	}
-	
+
 	function handleConfirm() {
 		showModal = false;
 		movePage();
@@ -133,22 +133,31 @@
 
 		<div class="footer">
 			<div class="pagination">
-				<button class="page-btn"
-				on:click={() => { askMovePage("previous"); }}
-					disabled={currentPage === 0}
-					>이전</button
+				<button
+					class="page-btn"
+					on:click={() => {
+						askMovePage('previous');
+					}}
+					disabled={currentPage === 0}>이전</button
 				>
 				<h4>{currentPage + 1} / {totalPages}</h4>
 				<button
 					class="page-btn"
-					on:click={() => { askMovePage("next"); }}
+					on:click={() => {
+						askMovePage('next');
+					}}
 					disabled={currentPage === questions.length - 1}>다음</button
 				>
 			</div>
 
 			<div class="submit">
 				{#if currentPage === totalPages - 1}
-					<button class="page-btn" on:click={() => { askMovePage("submit") }}>답안 제출하기</button>
+					<button
+						class="page-btn"
+						on:click={() => {
+							askMovePage('submit');
+						}}>답안 제출하기</button
+					>
 				{/if}
 			</div>
 		</div>
@@ -165,9 +174,11 @@
 {/if}
 
 {#if showModal}
-	<Modal message="답하지 않은 문제가 있습니다. 그래도 계속하시겠습니까?"
-	onConfirm={handleConfirm}
-	onCancel={handleCancel} />
+	<Modal
+		message="답하지 않은 문제가 있습니다. 그래도 계속하시겠습니까?"
+		onConfirm={handleConfirm}
+		onCancel={handleCancel}
+	/>
 {/if}
 
 <style>
@@ -178,7 +189,7 @@
 		10% {
 			opacity: 0.1;
 			transform-origin: 50%, 50%;
-			transform: translate(-50%, -50%) rotate(-2deg) scale(5);
+			transform: translate(-50%, -50%) rotate(-2deg) scale(3);
 			transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
 		}
 		30% {
@@ -212,7 +223,7 @@
 		}
 
 		img {
-			width: 120%;
+			width: 100%;
 			position: absolute;
 			top: 50%;
 			left: 50%;
