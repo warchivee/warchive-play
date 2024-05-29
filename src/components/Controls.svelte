@@ -2,7 +2,7 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
-	import mobileLogo from '$lib/images/mobile-logo.jpg';
+	import mobileLogo from '$lib/images/charactertest/mobile-logo.jpg';
 	import isAudioPlaying from '../store/autio';
 
 	export let color = 'white';

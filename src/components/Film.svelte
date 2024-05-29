@@ -1,5 +1,5 @@
 <script lang="ts">
-	import film from '$lib/images/film.png';
+	import film from '$lib/images/charactertest/film.png';
 
 	export let size = 'default';
 

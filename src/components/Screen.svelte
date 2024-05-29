@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Controls from './Controls.svelte';
-	import logo from '$lib/images/logo.png';
+	import logo from '$lib/images/charactertest/logo.png';
 	import Film from './Film.svelte';
 
 	export let icon = 'play';

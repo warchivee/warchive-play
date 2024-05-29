@@ -2,8 +2,8 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
-	import questions from '$lib/assets/questions';
-	import { pathsByType } from '$lib/assets/results';
+	import questions from '$lib/assets/charactertest/questions';
+	import { pathsByType } from '$lib/assets/charactertest/results';
 
 	import Button from '$components/Button.svelte';
 	import Loader from '$components/Loader.svelte';

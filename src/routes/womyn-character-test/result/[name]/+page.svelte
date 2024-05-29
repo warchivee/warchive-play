@@ -2,7 +2,7 @@
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import results, { typesByPath } from '$lib/assets/results';
+	import results, { typesByPath } from '$lib/assets/charactertest/results';
 
 	import { blur } from 'svelte/transition';
 	import { fly } from 'svelte/transition';
@@ -64,7 +64,12 @@
 		</div>
 	</div>
 
-	<SnsShareBtns image={result?.image} />
+	<SnsShareBtns
+		title="Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?"
+		content={`나는 ${result?.title}의 ${result?.name}!`}
+		hashtags="와카이브,여성서사주인공테스트"
+		image={result?.image}
+	/>
 
 	<button class="replay-btn" on:click={() => goto(`${base}/womyn-character-test`)}
 		>테스트 다시하기</button

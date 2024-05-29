@@ -1,17 +1,19 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import results, { typesByPath } from '$lib/assets/results';
 	import { onMount } from 'svelte';
 	import Snackbar from './Snackbar.svelte';
 
-	const name = $page?.params?.name;
-	const type = typesByPath[name];
+	const url = $page?.url?.toString();
 
-	const title = `Warchive: 여성서사 주인공 테스트 - 내가 여성서사 작품의 주인공이 된다면?`;
-	const content = `나는 ${results[type]?.title}의 ${results[type]?.name}!`;
-	const url = $page?.url;
+	// url 상에 쿼리 스트링 표기 시 '공유 url의 쿼리값' 으로 인식하여 & 를 인코딩해줌
+	// 글자수 늘어나는 이슈로 encodeURIComponent 대신 &만 인코딩하는 방식으로 수정
+	const encodeUrl = url?.replaceAll('&', '%26');
 
-	export let image = 'https://i.ibb.co/v4Qpsb8/mbti-cover.png';
+	export let title = '';
+	export let content = '';
+
+	export let hashtags = '';
+	export let image = '';
 
 	let openSnackbar = false;
 
@@ -25,12 +27,12 @@
 	}
 
 	function shareFacebook() {
-		window.open(`http://www.facebook.com/sharer/sharer.php?u=${url}`);
+		window.open(`http://www.facebook.com/sharer/sharer.php?u=${encodeUrl}`);
 	}
 
-	function shareTwitter() {
+	function shareX() {
 		window.open(
-			`https://twitter.com/intent/tweet?text=${title + ' ' + content}&hashtags=와카이브,여성서사주인공테스트&url=${url.toString().split('://')[1]}`
+			`https://x.com/intent/tweet?text=${title + ' ' + content}&hashtags=${hashtags}&url=${encodeUrl}`
 		);
 	}
 
@@ -69,7 +71,7 @@
 	<p class="font-bold">친구에게 결과 공유하기</p>
 	<div class="btns">
 		<i class="fa-solid fa-link" on:click={shareLink} aria-hidden="true"></i>
-		<i class="fa-brands fa-x-twitter" on:click={shareTwitter} aria-hidden="true"></i>
+		<i class="fa-brands fa-x-twitter" on:click={shareX} aria-hidden="true"></i>
 		<i class="fa-solid fa-comment" on:click={shareKakao} aria-hidden="true"></i>
 		<i class="fa-brands fa-facebook" on:click={shareFacebook} aria-hidden="true"></i>
 	</div>
