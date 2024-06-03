@@ -3,8 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 
-	import BGM from '$components/mockexam/BGM.svelte';
-
 	import isAudioPlaying from '../../store/autio';
 	import { name, number, tooltip } from '../../store/exam';
 
@@ -77,6 +75,11 @@
 			<div class="audio-copyright-wrap">
 				<div class="audio-copyright">12 Sonatas, Op.16 (Leonarda, Isabella)</div>
 			</div>
+		</div>
+		<div class="audio-copyright-detail">
+			Background music by Isabella Leonarda, edited by Lorenzo Girodo,<br />
+			licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0</a>.<br />
+			The music has been edited for this project.
 		</div>
 	</div>
 </section>
@@ -181,6 +184,16 @@
 
 			& > i {
 				margin-top: 2px;
+			}
+		}
+		
+		.audio-copyright-detail {
+			opacity: 0.5;
+			font-size: 10px;
+			text-align: center;
+		
+			& > a {
+				font-weight: 600;
 			}
 		}
 	}
