@@ -528,4 +528,31 @@ async function fetchRankingData(): Promise<Ranking[]> {
 		throw error;
 	}
 }
+
+export async function putTournamentResult(winCounts: number[]) {
+	try {
+		const winners: number[][] = [[], [], [], [], [], [], []];
+	
+		for (let characterId = 1; characterId <= 64; characterId++) {
+			const winCount = winCounts[characterId - 1];
+			winners[winCount].push(characterId);
+		}
+	
+		const url = `https://script.google.com/macros/s/AKfycbyTJiidsVGKFalHnFuwmp47uVGu_v49WuaYqBr7jwb961cga6EtWCO94FsFF8fDz72W/exec?req=put&` + 
+					`w6=${winners[6].join(',')}&` +
+					`w5=${winners[5].join(',')}&` +
+					`w4=${winners[4].join(',')}&` +
+					`w3=${winners[3].join(',')}&` +
+					`w2=${winners[2].join(',')}&` +
+					`w1=${winners[1].join(',')}`;
+		
+		const response = await fetch(url);
+		const result = await response.json();
+	
+		console.log('Tournament result sent successfully:', result);
+	} catch (error) {
+		console.error('Error putting tournament result:', error);
+		// throw error;
+	}
+}
   

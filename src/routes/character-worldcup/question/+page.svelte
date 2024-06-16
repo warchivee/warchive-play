@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 	
 	import type { Character } from '$lib/assets/worldcup/characters';
-	import { characters, shuffle } from '$lib/assets/worldcup/characters';
+	import { characters, shuffle, putTournamentResult } from '$lib/assets/worldcup/characters';
 
 	let tournament = 32;
 	let currentRound = 1;
@@ -18,7 +18,7 @@
         selectedCharacters.push(character);
 
 		if(tournament == 1) {
-			// 종료 로직
+			putTournamentResult(winCounts);
 		} else {
 			currentIndex += 2;
 			currentRound++;
