@@ -1,8 +1,20 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
-
+	import { onMount } from 'svelte';
 	
+	import type { Ranking } from '$lib/assets/worldcup/characters';
+	import { loadRankingData } from '$lib/assets/worldcup/characters';
+	
+	let data: Ranking[] = [];
+
+	onMount(async () => {
+		try {
+			data = await loadRankingData();
+		} catch (error) {
+			console.error('Failed to load ranking data:', error);
+		}
+  	});
 </script>
 
 <section>
@@ -18,25 +30,27 @@
 			</div>
 			<!-- 컴포넌트화 + 반복문 사용 -->
 			<!-- 단, 1등은 안내 툴팁이 나오므로 반복문에서 제외 -->
-			<div class="character-box">
-				<div>이미지</div>
-				<div class="character-info">
-					<div class="tooltip">이름을 눌러 와카이브에서 검색하기</div>
-					<div class="rank"><u>n위</u></div>
-					<div class="title">작품명</div>
-					<div class="name">캐릭터명</div>
-				</div>
-				<div class="character-data pc">
-					<div class="winning-percentage">
-						우승비율 NN.MM%
-						비율 바
+			{#each data as { character_id, championship_rate, winning_rate }}
+				<div class="character-box">
+					<div>{character_id}번 이미지</div>
+					<div class="character-info">
+						<div class="tooltip">이름을 눌러 와카이브에서 검색하기</div>
+						<div class="rank"><u>n위</u></div>
+						<div class="title">작품명</div>
+						<div class="name">캐릭터명</div>
 					</div>
-					<div class="odds-of-winning">
-						승률 NN.MM%
-						비율 바
+					<div class="character-data pc">
+						<div class="winning-percentage">
+							우승비율 {championship_rate}%
+							비율 바
+						</div>
+						<div class="odds-of-winning">
+							승률 {winning_rate}%
+							비율 바
+						</div>
 					</div>
 				</div>
-			</div>
+			{/each}
 		</div>
 		<!-- PC에서 절대위치로 지정 -->
 		<div class="buttons pc">
