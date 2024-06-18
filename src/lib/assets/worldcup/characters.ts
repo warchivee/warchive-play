@@ -476,56 +476,14 @@ export function shuffle(array: any[]): any[] {
 
 export async function loadRankingData(): Promise<Ranking[]> {
 	try {
-		const savedData = localStorage.getItem('rankingData');
-		const savedFetchTime = localStorage.getItem('fetchTime');
-	
-		if (savedData && savedFetchTime) {
-			const data = JSON.parse(savedData);
-			const fetchTime = new Date(savedFetchTime);
-			const shouldFetch = checkFetchTime(new Date(), fetchTime);
-			if (shouldFetch) {
-				return await fetchRankingData();
-			} else {
-				return data;
-			}
-		} else {
-		  	return await fetchRankingData();
-		}
-	} catch (error) {
-		console.error('Error loading ranking data:', error);
-		return [];
-	}
-}
-
-function checkFetchTime(now: Date, fetchTime: Date): boolean {
-	if (
-		now.getFullYear() === fetchTime.getFullYear() &&
-		now.getMonth() === fetchTime.getMonth() &&
-		now.getDate() === fetchTime.getDate() &&
-		now.getHours() === fetchTime.getHours()
-	) {
-		return false;
-	} else {
-		return true;
-	}
-}
-
-function saveRankingData(data: Ranking[]): void {
-	localStorage.setItem('rankingData', JSON.stringify(data));
-  	localStorage.setItem('fetchTime', new Date().toISOString());
-}
-
-async function fetchRankingData(): Promise<Ranking[]> {
-	try {
 		const response = await fetch('https://script.google.com/macros/s/AKfycbyTJiidsVGKFalHnFuwmp47uVGu_v49WuaYqBr7jwb961cga6EtWCO94FsFF8fDz72W/exec?req=get');
 		const result = await response.json();
 		const data = result.data;
 		data.sort((a: Ranking, b: Ranking) => b.championship_rate - a.championship_rate);
-		saveRankingData(data);
 		return data;
 	} catch (error) {
 		console.error('Error fetching ranking data:', error);
-		throw error;
+		return [];
 	}
 }
 
