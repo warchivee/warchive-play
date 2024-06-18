@@ -17,9 +17,9 @@
 		letter-spacing: 0.25em;
 		color: var(--color-text-1);
 	
-        @media (max-width: 500px) {
+        @media (max-width: 750px) {
 			font-size: 0.9rem;
-			letter-spacing: 1em;
+			letter-spacing: 0em;
 		}
     }
 </style>

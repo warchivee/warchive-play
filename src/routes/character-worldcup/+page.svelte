@@ -2,20 +2,19 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 	
-	import WarchiveSign from '$lib/images/mockexam/systems/warchive_sign.png';
 	import personImgSrc from '$lib/images/worldcup/systems/1_start_soccergirl.png';
 
 	import BaseHead from '$components/BaseHead.svelte';
-	import Cover from '$components/mockexam/Cover.svelte';
+	import MainShareButton from '$components/worldcup/MainShareButton.svelte';
 	import Footer from '$components/worldcup/Footer.svelte';
 </script>
 
 <BaseHead title="Warchive: 여성서사 등장인물 월드컵" image="https://i.ibb.co/NyNnS5d/2-share-longthumb.png" />
 
 <section>
-	<div class="header">
+	<header>
 		당신이 가장 좋아하는 여성서사 등장인물은 누구인가요?
-	</div>
+	</header>
 	<div class="body">
 		<div class="letters">
 			WOMYN<br />WOMYN<br />WOMYN
@@ -28,9 +27,17 @@
 			<div class="title">여성서사 등장인물 월드컵</div>
 			<div class="warning">＊다양한 여성서사 작품의 <u>스포일러</u>가 포함되어 있습니다＊</div>
 			<div class="buttons">
-				<button on:click={() => { goto(`${base}/character-worldcup/question`); }}>시작하기</button>
-				<button on:click={() => { goto(`${base}/character-worldcup/ranking`); }}>랭킹보기</button>
-				<button>공유하기</button>
+				<button class="button-gray" on:click={() => { goto(`${base}/character-worldcup/question`); }}>시작하기</button>
+				<button class="button-gray" on:click={() => { goto(`${base}/character-worldcup/ranking`); }}>랭킹보기</button>
+				<div class="buttons-inner">
+					<MainShareButton 
+						title="Warchive: 여성서사 등장인물 월드컵"
+						content=" - 내가 생각하는 최고의 여성서사 등장인물은?"
+						hashtags="와카이브,여성서사등장인물월드컵,여성서사"
+						squareImage="https://i.ibb.co/64C15nv/2-share-shortthumb.png"
+						rectangleImage="https://i.ibb.co/NyNnS5d/2-share-longthumb.png"
+					/>
+				</div>
 			</div>	
 		</div>
 	</div>
@@ -53,7 +60,7 @@
 		box-sizing: border-box;
 	}
 
-	.header {
+	header {
 		width: 100%;
 		margin: 2.8rem;
 		text-align: center;
@@ -62,11 +69,6 @@
 		font-size: 2rem;
 		letter-spacing: 0.75em;
 		color: var(--color-text-1);
-
-		@media (max-width: 500px) {
-			font-size: 0.9rem;
-			letter-spacing: 0.25em;
-		}
 	}
 
 	.body {
@@ -117,7 +119,7 @@
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -50%) rotate(350deg);
+		transform: translate(-50%, -50%) rotate(-8deg);
 		z-index: 4;
 	}
 
@@ -133,7 +135,8 @@
 		color: var(--color-text-1);
 	}
 
-	.warning {
+	.warning,
+	.warning > u {
 		font-family: var(--font-style-1);
 		font-size: 2rem;
 		letter-spacing: 0.15em;
@@ -142,17 +145,56 @@
 	}
 
 	.warning > u {
-		font-family: var(--font-style-1);
-		font-size: 2rem;
-		letter-spacing: 0.15em;
-		color: var(--color-text-1);
 		text-decoration: underline;
 	}
 
 	.buttons {
-		font-family: var(--font-style-5);
-		font-size: 2rem;
-		letter-spacing: 0.3em;
-		color: var(--color-text-1);
+		display: flex;
+		width: fit-content;
+		margin: 40px 0px 30px 0px;
+	}
+
+	.buttons-inner{
+		width: fit-content;
+		position: relative;
+	}
+
+	@media (max-width: 1000px) {
+		.buttons {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+
+		}
+	}
+
+	@media (max-width: 750px) {
+		header {
+			font-size: 0.9rem;
+			letter-spacing: 0.25em;
+		}
+
+		.letters,
+		.letters-front {
+			font-size: 5rem;
+			letter-spacing: -0.05em;
+		}
+
+		.letters-italic {
+			font-size: 10rem;
+			letter-spacing: 0em;
+		}
+
+		.title {
+			font-size: 2rem;
+			letter-spacing: -0.1em;
+		}
+		
+		.warning,
+		.warning > u {
+			font-size: 0.9em;
+			letter-spacing: -0.05em;
+		}
+		
 	}
 </style>
