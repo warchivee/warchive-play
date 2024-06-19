@@ -2,11 +2,22 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 	
+	import isAudioPlaying from '../../store/autio';
+    
 	import personImgSrc from '$lib/images/worldcup/systems/1_start_soccergirl.png';
 
 	import BaseHead from '$components/BaseHead.svelte';
 	import MainShareButton from '$components/worldcup/MainShareButton.svelte';
 	import Footer from '$components/worldcup/Footer.svelte';
+
+	function handleStart() {
+		isAudioPlaying.set(true);
+		goto(`${base}/character-worldcup/question`);
+	}
+
+	function handleRanking() {
+		goto(`${base}/character-worldcup/ranking`);
+	}
 </script>
 
 <BaseHead title="Warchive: 여성서사 등장인물 월드컵" image="https://i.ibb.co/NyNnS5d/2-share-longthumb.png" />
@@ -27,8 +38,8 @@
 			<div class="title">여성서사 등장인물 월드컵</div>
 			<div class="warning">＊다양한 여성서사 작품의 <u>스포일러</u>가 포함되어 있습니다＊</div>
 			<div class="buttons">
-				<button class="button-gray" on:click={() => { goto(`${base}/character-worldcup/question`); }}>시작하기</button>
-				<button class="button-gray" on:click={() => { goto(`${base}/character-worldcup/ranking`); }}>랭킹보기</button>
+				<button class="button-gray" on:click={handleStart}>시작하기</button>
+				<button class="button-gray" on:click={handleRanking}>랭킹보기</button>
 				<div class="buttons-inner">
 					<MainShareButton 
 						title="Warchive: 여성서사 등장인물 월드컵"

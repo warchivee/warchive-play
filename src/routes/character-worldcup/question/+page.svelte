@@ -6,7 +6,12 @@
 	import type { Character } from '$lib/assets/worldcup/characters';
 	import { characters, shuffle, putTournamentResult } from '$lib/assets/worldcup/characters';
 
-	let tournament = 32;
+	import BGM from '$components/worldcup/BGM.svelte';
+	import WarchiveLogo from '$components/worldcup/WarchiveLogo.svelte';
+	import Loading from '$components/worldcup/Loading.svelte';
+	import Footer from '$components/worldcup/Footer.svelte';
+
+	let tournament = 64;
 	let currentRound = 1;
 	let currentIndex = 0;
 	let originalCharacters: Character[] = [];
@@ -17,7 +22,8 @@
 		winCounts[character.id - 1]++;
         selectedCharacters.push(character);
 
-		if(tournament == 1) {
+		if(tournament == 2) {
+			originalCharacters = [];
 			putTournamentResult(winCounts);
 		} else {
 			currentIndex += 2;
@@ -39,33 +45,27 @@
         }
     }
 
+	function getTournament() {
+		switch(tournament) {
+			case 2: return "결승";
+			// case 4: return "준결승";
+			default: return tournament + "강";
+		}
+	}
+
 	onMount(() => {
 		originalCharacters = shuffle(characters);
 		winCounts = new Array(originalCharacters.length).fill(0);
 	})
 </script>
 
-{#if originalCharacters.length > 0}
-	<section>
-		<div class="music">음악(툴팁과 함께 컴포넌트화 예정)</div>
-		<div class="question-container">
-			<div class="title">여성서사 등장인물 월드컵 {tournament}강</div>
-			<div class="guidance">* 지금은 {tournament}강 중에서 <u>{currentRound}강</u>째 *</div>
-			<div class="versus-container">
-				<!-- character-block은 컴포넌트화 -->
-				<!-- character-block 컴포넌트 선택 이력 여기서 관리 -->
-				<!-- 선택 후 VS 및 한쪽 없어짐 효과 추가 -->
-				<!-- <div class="character-block">
-					<div class="character-image">이미지</div>
-					<div class="character-item">작품명</div>
-					<div class="character-name">캐릭터 이름</div>
-				</div>
-				<div>VS</div>
-				<div class="character-block">
-					<div class="character-image">이미지</div>
-					<div class="character-item">작품명</div>
-					<div class="character-name">캐릭터 이름</div>
-				</div> -->
+<section>
+	<BGM />
+	<div class="container">
+		{#if originalCharacters.length > 0}
+			<div class="title">여성서사 등장인물 월드컵 <span>{getTournament()}</span></div>
+			<div class="guidance">
+				＊지금은 {tournament / 2} 라운드 중에서 <u>{currentRound} 라운드</u>째＊
 			</div>
 			<div class="versus-container">
 				<div class="character-block" tabindex="0" role="button" on:click={() => selectCharacter(originalCharacters[currentIndex])}
@@ -74,7 +74,7 @@
 					<div class="character-item">{originalCharacters[currentIndex].item}</div>
 					<div class="character-name">{originalCharacters[currentIndex].name}</div>
 				</div>
-				<div>VS</div>
+				<div class="versus">VS</div>
 				<div class="character-block" tabindex="0" role="button" on:click={() => selectCharacter(originalCharacters[currentIndex + 1])}
 					on:keydown={(event) => handleKeyDown(event, originalCharacters[currentIndex+1])}>
 					<img src={originalCharacters[currentIndex + 1].image} alt={`${originalCharacters[currentIndex + 1].name} 이미지`}/>
@@ -82,39 +82,170 @@
 					<div class="character-name">{originalCharacters[currentIndex + 1].name}</div>
 				</div>
 			</div>
-			<div class="warchive-logo">와카이브 로고 사진(컴포넌트화 예정)</div>
-		</div>
-		<!-- if else 문으로 선택 -->
-		<div class="loading-container">
-			<div>달리는 이미지</div>
-			<div class="guidance">... 결과 분석 중 ... (특수기호 수정)</div>
-			<div class="warchive-logo">와카이브 로고 사진(컴포넌트화 예정)</div>
-		</div>
-		<div class="footer">footer 컴포넌트</div>
-	</section>
-{/if}
+		{:else}
+			<Loading />
+		{/if}
+		<WarchiveLogo />
+	</div>
+	
+	<Footer />
+</section>
 
 <style>
-	section {	
+	section {
 		width: 100%;
-		min-width: 375px;
-		max-width: 1000px;
+		height: 100%;
 
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 
 		box-sizing: border-box;
-		background-color: bisque;
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.container {
+		width: 1000px;
+		max-width: 100%;
+		height: fit-content;
+		padding: 4rem;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		background-color: white;
+		position: relative;
+
+		z-index: 0;
+	}
+
+	span {
+		color: var(--color-text-6);
+	}
+
+	.title {
+		text-align: center;
+
+		font-family: var(--font-style-4);
+		font-size: 5rem;
+		letter-spacing: 0em;
+		color: var(--color-text-5);
+
+		& span {		
+			font-family: var(--font-style-4);
+			font-size: 5rem;
+			letter-spacing: 0em;
+		}
+	}
+
+	.guidance {
+		font-family: var(--font-style-1);
+		font-size: 2rem;
+		letter-spacing: 0.1em;
+		color: var(--color-text-6);
+
+		& u {
+			font-size: 2rem;
+		}
 	}
 
 	.versus-container{
+		padding: 2rem 0rem 1rem 0rem;
 		display: flex;
+		align-items: center;
+		gap: 30px;
+	}
+
+	.versus {
+		font-family: var(--font-style-5);
+        font-weight: bold;
+		font-size: 2rem;
+		letter-spacing: -0.1em;
+		color: var(--color-text-5);
+	}
+
+	.character-block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
 	}
 
 	img {
-		width: 200px;
-		height: 200px;
+		width: 300px;
+		height: 300px;
+	}
+
+	.character-item {
+		margin-top: 1rem;
+		font-family: var(--font-style-6);
+		font-size: 2rem;
+		letter-spacing: -0.1em;
+		color: var(--color-text-5);
+	}
+	
+	.character-name {
+		line-height: 4rem;
+		font-family: var(--font-style-5);
+        font-weight: bold;
+		font-size: 4rem;
+		letter-spacing: -0.1em;
+		color: var(--color-text-5);
+	}
+
+	@media (max-width: 750px) {
+		.container {
+			padding: 2rem;
+		}
+
+		.title {
+			font-size: 2rem;
+			letter-spacing: -0.1em;
+
+			& span {		
+				font-size: 2rem;
+				letter-spacing: -0.1em;
+			}
+		}
+
+		.guidance {
+			font-size: 1rem;
+			letter-spacing: -0.05em;
+
+			& u {
+				font-size: 1rem;
+			}
+		}
+
+		.versus-container {
+			display: flex;
+			flex-direction: column;
+			gap: 0px;
+		}
+		
+		.versus {
+			font-size: 1rem;
+			margin: 1rem;
+		}
+
+		img {
+			width: 158px;
+			height: 158px;
+		}
+
+		.character-item {
+			margin-top: 0.2rem;
+			font-size: 1rem;
+		}
+
+		.character-name {
+			line-height: 1.7rem;
+			font-size: 1.7rem;
+		}
+
 	}
 </style>

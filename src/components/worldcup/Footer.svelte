@@ -9,9 +9,10 @@
 <style>
 	footer {
 		width: 100%;
+		height: fit-content;
         margin: 2.8rem;
         text-align: center;
-
+		
         font-family: var(--font-style-1);
 		font-size: 2rem;
 		letter-spacing: 0.25em;

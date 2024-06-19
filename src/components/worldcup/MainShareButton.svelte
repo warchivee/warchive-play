@@ -134,7 +134,8 @@
     }
 
     span {
-		font-family: var(--font-style-6);
+		font-family: var(--font-style-5);
+        font-weight: bold;
 		font-size: 1.16rem;
 		letter-spacing: -0.1em;
 		color: var(--color-text-4);
