@@ -18,6 +18,12 @@
 	let selectedCharacters: Character[] = [];
 	let winCounts: number[] = [];
 
+	function moveToResult(characterId: number) {
+		setTimeout(function () {
+			goto(`${base}/character-worldcup/result/${characterId}`);
+		}, 4000);
+	}
+
 	function selectCharacter(character: Character) {
 		winCounts[character.id - 1]++;
         selectedCharacters.push(character);
@@ -25,6 +31,7 @@
 		if(tournament == 2) {
 			originalCharacters = [];
 			putTournamentResult(winCounts);
+			moveToResult(character.id);
 		} else {
 			currentIndex += 2;
 			currentRound++;
@@ -48,7 +55,7 @@
 	function getTournament() {
 		switch(tournament) {
 			case 2: return "결승";
-			// case 4: return "준결승";
+			case 4: return "준결승";
 			default: return tournament + "강";
 		}
 	}
@@ -70,14 +77,14 @@
 			<div class="versus-container">
 				<div class="character-block" tabindex="0" role="button" on:click={() => selectCharacter(originalCharacters[currentIndex])}
 					on:keydown={(event) => handleKeyDown(event, originalCharacters[currentIndex])}>
-					<img src={originalCharacters[currentIndex].image} alt={`${originalCharacters[currentIndex].name} 이미지`}/>
+					<img class="character-img" src={originalCharacters[currentIndex].image} alt={`${originalCharacters[currentIndex].name} 이미지`}/>
 					<div class="character-item">{originalCharacters[currentIndex].item}</div>
 					<div class="character-name">{originalCharacters[currentIndex].name}</div>
 				</div>
 				<div class="versus">VS</div>
 				<div class="character-block" tabindex="0" role="button" on:click={() => selectCharacter(originalCharacters[currentIndex + 1])}
 					on:keydown={(event) => handleKeyDown(event, originalCharacters[currentIndex+1])}>
-					<img src={originalCharacters[currentIndex + 1].image} alt={`${originalCharacters[currentIndex + 1].name} 이미지`}/>
+					<img class="character-img" src={originalCharacters[currentIndex + 1].image} alt={`${originalCharacters[currentIndex + 1].name} 이미지`}/>
 					<div class="character-item">{originalCharacters[currentIndex + 1].item}</div>
 					<div class="character-name">{originalCharacters[currentIndex + 1].name}</div>
 				</div>
@@ -167,36 +174,6 @@
 		color: var(--color-text-5);
 	}
 
-	.character-block {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		cursor: pointer;
-	}
-
-	img {
-		width: 300px;
-		height: 300px;
-	}
-
-	.character-item {
-		margin-top: 1rem;
-		font-family: var(--font-style-6);
-		font-size: 2rem;
-		letter-spacing: -0.1em;
-		color: var(--color-text-5);
-	}
-	
-	.character-name {
-		line-height: 4rem;
-		font-family: var(--font-style-5);
-        font-weight: bold;
-		font-size: 4rem;
-		letter-spacing: -0.1em;
-		color: var(--color-text-5);
-	}
-
 	@media (max-width: 750px) {
 		.container {
 			padding: 2rem;
@@ -230,21 +207,6 @@
 		.versus {
 			font-size: 1rem;
 			margin: 1rem;
-		}
-
-		img {
-			width: 158px;
-			height: 158px;
-		}
-
-		.character-item {
-			margin-top: 0.2rem;
-			font-size: 1rem;
-		}
-
-		.character-name {
-			line-height: 1.7rem;
-			font-size: 1.7rem;
 		}
 
 	}

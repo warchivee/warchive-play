@@ -45,7 +45,6 @@ body {
 	background-size: 100vw 100vh;
 }
 
-
 .button-gray {
 	width: 176px;
 	height: 84px;
@@ -66,6 +65,70 @@ body {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
+.style-2 {
+	font-family: var(--font-style-4);
+	font-size: 5rem;
+	letter-spacing: 0em;
+	color: var(--color-text-5);
+
+	& span {
+		font-size: 5rem;
+		letter-spacing: 0em;
+		color: var(--color-text-6);
+	}
+}
+
+.style-9 {
+	font-family: var(--font-style-6);
+	font-size: 1.7rem;
+	letter-spacing: -0.1em;
+	color: var(--color-text-5);
+
+	& b {
+		font-weight: bold;
+		font-size: 1.7rem;
+		letter-spacing: -0.1em;
+	}
+
+	& span {
+		font-size: 1.7rem;
+		letter-spacing: -0.1em;
+		color: var(--color-text-6);
+	}
+}
+
+.character-block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.character-img {
+	/* width: 520px; */
+	/* height: 520px; */
+	width: 300px;
+	height: 300px;
+}
+
+.character-item {
+	margin-top: 1rem;
+	font-family: var(--font-style-6);
+	font-size: 2rem;
+	letter-spacing: -0.1em;
+	color: var(--color-text-5);
+}
+
+.character-name {
+	line-height: 4rem;
+	font-family: var(--font-style-5);
+	font-weight: bold;
+	font-size: 4rem;
+	letter-spacing: -0.1em;
+	color: var(--color-text-5);
+}
+
 /* tablets and smartphones */
 @media (max-width: 750px) {
 	.button-gray {
@@ -73,5 +136,34 @@ body {
 		height: 51px;
 		font-size: 1.25rem;
 		letter-spacing: 0.2em;
+	}
+
+	.style-2 {
+		font-family: var(--font-style-4);
+		font-size: 2rem;
+		letter-spacing: -0.1em;
+		color: var(--color-text-5);
+	
+		& span {
+			font-size: 2rem;
+			letter-spacing: -0.1em;
+			color: var(--color-text-6);
+		}
+	}
+
+	/* 선택된 후 208 */
+	.character-img {
+		width: 158px;
+		height: 158px;
+	}
+
+	.character-item {
+		margin-top: 0.2rem;
+		font-size: 1rem;
+	}
+
+	.character-name {
+		line-height: 1.7rem;
+		font-size: 1.7rem;
 	}
 }
