@@ -64,9 +64,11 @@
 	}
 
 	.result-container {
-		width: 1000px;
+		width: 1500px;
 		max-width: 100%;
 		height: fit-content;
+		min-height: 870px;
+		max-height: 90vh;
 		padding: 4rem;
 
 		display: flex;
@@ -101,6 +103,11 @@
 	}
 
 	@media (max-width: 750px) {
+		.result-container {
+			padding: 2rem;
+			min-height: 600px;
+		}
+
 		.result-container {
 			padding: 2rem;
 		}

@@ -1,13 +1,19 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-	
+
 	import type { Ranking } from '$lib/assets/worldcup/characters';
 	import { loadRankingData } from '$lib/assets/worldcup/characters';
+
+	import boxImgSrc from '$lib/images/worldcup/systems/6_rank_box.png';
+	
+	import BGM from '$components/worldcup/BGM.svelte';
+	import RankingBox from '$components/worldcup/RankingBox.svelte';
+	import RankingButtons from '$components/worldcup/RankingButtons.svelte';
+	import WarchiveLogo from '$components/worldcup/WarchiveLogo.svelte';
+	import Footer from '$components/worldcup/Footer.svelte';
 	
 	let data: Ranking[] = [];
-
+	
 	onMount(async () => {
 		try {
 			data = await loadRankingData();
@@ -18,67 +24,148 @@
 </script>
 
 <section>
-	<div class="music">음악(툴팁과 함께 컴포넌트화 예정)</div>
-	<div class="ranking-container">
-		<div class="title">여성서사 등장인물 월드컵 랭킹</div>
-		<div class="guidance">* 랭킹 결과는 1시간마다 갱신됩니다 *</div>
-		<!-- ranking-image에 이미지 적용 -->
-		<!-- 내부에 div 적용 및 스크롤 스타일 지정 -->
-		<div class="ranking-image">
-			<div class="description">
-				* 우승비율 = 최종 우승 횟수 / 전체 플레이수 * 승률 = 승리 횟수 / 전체 1 : 1 대결 수 *
-			</div>
-			<!-- 컴포넌트화 + 반복문 사용 -->
-			<!-- 단, 1등은 안내 툴팁이 나오므로 반복문에서 제외 -->
-			{#each data as { character_id, championship_rate, winning_rate }}
-				<div class="character-box">
-					<div>{character_id}번 이미지</div>
-					<div class="character-info">
-						<div class="tooltip">이름을 눌러 와카이브에서 검색하기</div>
-						<div class="rank"><u>n위</u></div>
-						<div class="title">작품명</div>
-						<div class="name">캐릭터명</div>
-					</div>
-					<div class="character-data pc">
-						<div class="winning-percentage">
-							우승비율 {championship_rate}%
-							비율 바
-						</div>
-						<div class="odds-of-winning">
-							승률 {winning_rate}%
-							비율 바
-						</div>
-					</div>
+	<BGM />
+	<div class="container">
+		<div class="title">여성서사 등장인물 월드컵 <span>랭킹</span></div>
+		<div class="ranking-image" style="background-image: url({boxImgSrc})">
+			<div class="ranking-container">
+				<div class="description pc">
+					＊  우승비율 = 최종 우승 횟수 / 전체 플레이 수  ＊  승률 = 승리 횟수 / 전체 1:1 대결 수  ＊
 				</div>
-			{/each}
+				{#each data as { character_id, championship_rate, winning_rate }, index}
+					<RankingBox index={index} character_id={character_id}, championship_rate={championship_rate} winning_rate={winning_rate}/>
+				{/each}	
+			</div>
 		</div>
-		<!-- PC에서 절대위치로 지정 -->
-		<div class="buttons pc">
-			<button on:click={() => { goto(`${base}/character-worldcup/`); }}>다시하기</button>
-			<a href="https://article.womynarchive.com/play" target="_blank">다른게임</a>
-		</div>
-		<div class="buttons mobile">
-			<!-- 공유 후 팝업 -->
-			<button on:click={() => { goto(`${base}/character-worldcup/`); }}>다시하기</button>
-			<a href="https://article.womynarchive.com/play" target="_blank">다른게임</a>
-		</div>
-		<div class="warchive-logo">와카이브 로고 사진(컴포넌트화 예정)</div>
+		<RankingButtons />
+		<WarchiveLogo />
 	</div>
-	<div class="footer">footer 컴포넌트</div>
+	<Footer />
 </section>
 
 <style>
 	section {	
 		width: 100%;
-		min-width: 375px;
-		max-width: 1000px;
+		height: 100%;
 
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 
 		box-sizing: border-box;
-		background-color: bisque;
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.container {
+		width: 1500px;
+		max-width: 100%;
+		height: fit-content;
+		min-height: 870px;
+		max-height: 90vh;
+		padding: 4rem;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		background-color: white;
+		position: relative;
+
+		z-index: 0;
+	}
+
+	.title {
+		text-align: center;
+		margin-bottom: 1rem;
+
+		font-family: var(--font-style-4);
+		font-size: 5rem;
+		letter-spacing: 0em;
+		color: var(--color-text-5);
+
+		& span {		
+			font-family: var(--font-style-4);
+			font-size: 5rem;
+			letter-spacing: 0em;
+			color: var(--color-text-6);
+		}
+	}
+
+	.ranking-image {
+		background-size: cover;	
+		background-position: center;
+		background-repeat: no-repeat;
+		
+		width: 992px;
+		height: 644px;
+
+		overflow: hidden;
+	}
+
+	.ranking-container {
+		width: 969px;
+		height: 621px;
+		margin: 2px 0 0 1px;
+
+		overflow-y: scroll;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 20px;
+	}
+
+	.ranking-container::-webkit-scrollbar {
+		width: 15px;
+	}
+
+	.ranking-container::-webkit-scrollbar-thumb {
+		background-color: #F6F6F6;
+		border-radius: 5px;
+	}
+
+	.ranking-container::-webkit-scrollbar-track {
+		background-color: #D9D9D9;
+	}
+
+	.description {
+		font-family: var(--font-style-6);
+		font-size: 1.5rem;
+		letter-spacing: 0.15em;
+		color: var(--color-text-5);
+		margin: 1rem;
+	}
+
+	@media (max-width: 750px) {
+		.container {
+			padding: 0;
+			min-height: 600px;
+		}
+
+		.title {
+			margin-bottom: 2rem;
+
+			font-size: 2rem;
+			letter-spacing: -0.1em;
+
+			& span {
+				font-size: 2rem;
+				letter-spacing: -0.1em;
+			}
+		}
+
+		.ranking-image {
+			background-size: 100% 100%;
+			width: 328px;
+			height: 416px;
+		}
+		
+		.ranking-container {
+			width: 320px;
+			height: 400px;
+			padding: 10px 0 0 0;
+		}
 	}
 </style>

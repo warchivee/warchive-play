@@ -506,8 +506,6 @@ export async function putTournamentResult(winCounts: number[]) {
 		
 		const response = await fetch(url);
 		const result = await response.json();
-	
-		console.log('Tournament result sent successfully:', result);
 	} catch (error) {
 		console.error('Error putting tournament result:', error);
 		// throw error;

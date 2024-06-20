@@ -5,12 +5,6 @@
     import pcImgSrc from "$lib/images/worldcup/systems/Star_pc.png";
     import mobileImgSrc from "$lib/images/worldcup/systems/Star_mobile.png";
 
-    export let handleShare;
-
-    function handleRanking() {
-        goto(`${base}/character-worldcup/ranking`);
-    }
-
     function handleRestart() {
         goto(`${base}/character-worldcup/`);
     }
@@ -21,8 +15,6 @@
 </script>
 
 <div class="buttons">
-    <button class="button-white" on:click={handleShare}>공유하기</button>
-    <button class="button-black" on:click={handleRanking}>랭킹보기</button>
     <button class="button-black mobile" on:click={handleOtherGame}>
         <div class="button-img"  style="background-image: url({mobileImgSrc})"></div>
         다른게임
@@ -40,7 +32,7 @@
 		height: fit-content;
 
 		right: 4rem;
-		bottom: 12rem;
+		bottom: 26rem;
 
 		display: flex;
 		flex-direction: column;
@@ -60,7 +52,7 @@
 
     @media (max-width: 750px) {
 		.buttons {
-            margin-top: 4rem;
+            margin-top: 2.6rem;
             right: 0;
 			bottom: 0;
 
