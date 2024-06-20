@@ -43,7 +43,7 @@
 				<div class="buttons-inner">
 					<MainShareButton 
 						title="Warchive: 여성서사 등장인물 월드컵"
-						content=" - 내가 생각하는 최고의 여성서사 등장인물은?"
+						content=" - 당신의 최애 여성서사 등장인물은?"
 						hashtags="와카이브,여성서사등장인물월드컵,여성서사"
 						squareImage="https://i.ibb.co/64C15nv/2-share-shortthumb.png"
 						rectangleImage="https://i.ibb.co/NyNnS5d/2-share-longthumb.png"

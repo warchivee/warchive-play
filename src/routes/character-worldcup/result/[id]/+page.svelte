@@ -1,22 +1,26 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 
 	import { characters } from '$lib/assets/worldcup/characters';
 
 	import BGM from '$components/worldcup/BGM.svelte';
 	import ResultBubble from '$components/worldcup/ResultBubble.svelte';
+	import ResultButtons from '$components/worldcup/ResultButtons.svelte';
+	import ResultShareModal from '$components/worldcup/ResultShareModal.svelte';
 	import WarchiveLogo from '$components/worldcup/WarchiveLogo.svelte';
 	import Footer from '$components/worldcup/Footer.svelte';
-
-	const showModal = false;
 
 	const id = $page?.params?.id;
 	const characterId: number = +id;
 	const CharacterImg = characters[characterId - 1].image;
 	const characterItem = characters[characterId - 1].item;
 	const characterName = characters[characterId - 1].name;	
+
+	let showModal = false;
+
+	function handleModal() {
+		showModal = !showModal;
+	}
 </script>
 
 <section>
@@ -24,38 +28,25 @@
 	<div class="result-container">
 		<div class="title style-2">당신의 <span>최애 여성서사 등장인물</span>은...</div>
 		<div class="character-block">
-			<img class="character-img" src={CharacterImg} alt={`${characterName} 이미지`}/>
+			<img class="character-img-selected" src={CharacterImg} alt={`${characterName} 이미지`}/>
 			<div class="character-item">{characterItem}</div>
 			<div class="character-name">{characterName}</div>
 			<ResultBubble target={characterItem}/>
 		</div>
-		<div class="buttons">
-			<button>공유하기</button>
-			<button on:click={() => { goto(`${base}/character-worldcup/ranking`); }}>랭킹보기</button>
-			<button on:click={() => { goto(`${base}/character-worldcup/`); }}>다시하기</button>
-			<a href="https://article.womynarchive.com/play" target="_blank">다른게임</a>
-		</div>
+		<ResultButtons handleShare={handleModal}/>
 		<WarchiveLogo />
 	</div>
 	<Footer />
 </section>
 
 {#if showModal}
-	<!-- if 문으로 보이기 & 절대 위치로 화면 덮기 (컴포넌트화 OK) -->
-	<div class="modal-background">
-		<div class="modal-container">
-			<div>X(닫기 버튼)</div>
-			<div class="head">
-				최애 인증서 공유하기
-			</div>
-			<div class="body">
-				이미지
-			</div>
-			<div class="foot">
-				4개 버튼 새로 구현 (컴포넌트)
-			</div>
-		</div>
-	</div>
+	<ResultShareModal 
+		title="Warchive: 여성서사 등장인물 월드컵"
+		content={` - 당신의 최애 여성서사 등장인물은... ${characterItem}의 ${characterName}`}
+		hashtags={`와카이브,여성서사등장인물월드컵,여성서사,${characterItem},${characterName}`}
+		imageId={characterId}
+		openModal={showModal}
+		handleModal={handleModal}/>
 {/if}
 
 <style>
@@ -92,6 +83,12 @@
 	.title {		
 		text-align: center;
 		margin-bottom: 4rem;
+		font-family: var(--font-style-4);
+		color: var(--color-text-5);
+
+		& span {
+			color: var(--color-text-6);
+		}
 	}
 
 	.character-block {
@@ -99,16 +96,17 @@
 		cursor: default;
 	}
 
-	.character-img{
-		width: 520px;
-		height: 520px;
-	}
-
 	.character-item{
 		color: var(--color-text-6);
 	}
 
-	.buttons{
-		position: absolute;
+	@media (max-width: 750px) {
+		.result-container {
+			padding: 2rem;
+		}
+
+		.character-block {
+			margin-top: 5rem;
+		}
 	}
 </style>

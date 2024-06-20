@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-    import Snackbar from '$components/Snackbar.svelte';
+    import Snackbar from '$components/worldcup/Snackbar.svelte';
 
     import shareImgSrc from '$lib/images/worldcup/systems/2_share_bubble.png';
 
@@ -88,7 +88,6 @@
     </div>
 {/if}
 <Snackbar message="링크가 복사되었습니다." open={openSnackbar} />
-<!-- Snackbar 글씨 손 볼 것 -->
 
 <style>
     .modal {

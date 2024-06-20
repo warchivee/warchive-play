@@ -45,7 +45,17 @@ body {
 	background-size: 100vw 100vh;
 }
 
-.button-gray {
+.pc {
+	display: block;
+}
+
+.mobile {
+	display: none;
+}
+
+.button-gray,
+.button-white,
+.button-black {
 	width: 176px;
 	height: 84px;
 	border-radius: 50%;
@@ -54,31 +64,42 @@ body {
 	font-family: var(--font-style-5);
 	font-size: 2rem;
 	letter-spacing: 0.3em;
-	color: var(--color-text-1);
-
-	background-color: rgba(0, 0, 0, 0.3);
-	border-color: var(--color-text-1) ;
 	cursor: pointer;
+}
+
+.button-gray {
+	color: var(--color-text-1);
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 1.5px solid var(--color-text-1);
 }
 
 .button-gray:hover {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
+.button-white {
+	color: var(--color-text-5);
+	background-color: var(--color-text-1);
+	border: 1px solid var(--color-text-5);
+}
+
+.button-black {
+	color: var(--color-text-1);
+	background-color: var(--color-text-5);
+	border: 1px solid var(--color-text-5);
+}
+
 .style-2 {
-	font-family: var(--font-style-4);
 	font-size: 5rem;
 	letter-spacing: 0em;
-	color: var(--color-text-5);
 
 	& span {
 		font-size: 5rem;
 		letter-spacing: 0em;
-		color: var(--color-text-6);
 	}
 }
 
-.style-9 {
+.style-9-pc {
 	font-family: var(--font-style-6);
 	font-size: 1.7rem;
 	letter-spacing: -0.1em;
@@ -106,10 +127,13 @@ body {
 }
 
 .character-img {
-	/* width: 520px; */
-	/* height: 520px; */
 	width: 300px;
 	height: 300px;
+}
+
+.character-img-selected {
+	width: 520px;
+	height: 520px;
 }
 
 .character-item {
@@ -131,6 +155,25 @@ body {
 
 /* tablets and smartphones */
 @media (max-width: 750px) {
+	.pc {
+		display: none;
+	}
+	
+	.mobile {
+		display: block;
+	}
+	
+	.button-white,
+	.button-black {
+		width: 107px;
+		height: 27px;
+		border-radius: 0%;
+		transform: rotate(0deg);
+
+		font-size: 1.1rem;
+		letter-spacing: 0.2em;
+	}
+	
 	.button-gray {
 		width: 106px;
 		height: 51px;
@@ -151,10 +194,35 @@ body {
 		}
 	}
 
-	/* 선택된 후 208 */
+	.style-4-mobile {
+		font-size: 0.9rem;
+		letter-spacing: -0.1em;
+	
+		& b {
+			font-weight: bold;
+			font-size: 0.9rem;
+			letter-spacing: -0.1em;
+		}
+	
+		& span {
+			font-size: 0.9rem;
+			letter-spacing: -0.1em;
+		}
+	}
+
+	.style-6 {
+		font-size: 1.1rem;
+		letter-spacing: 0.2em;
+	}
+	
 	.character-img {
 		width: 158px;
 		height: 158px;
+	}
+
+	.character-img-selected {
+		width: 208px;
+		height: 208px;
 	}
 
 	.character-item {
