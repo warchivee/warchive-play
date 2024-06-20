@@ -26,7 +26,8 @@
 
 	--color-text-1: #FFFFFF;
 	--color-text-2: #FFD600;
-	--color-text-3: rgba(23, 12, 30, 1);
+	/* --color-text-3: rgba(23, 12, 30, 1); */
+	--color-text-3: rgba(144, 35, 213, 0.5);
 	--color-text-4: #354D11;
 	--color-text-5: #061B08;
 	--color-text-6: #9023D5;
@@ -89,35 +90,6 @@ body {
 	border: 1px solid var(--color-text-5);
 }
 
-.style-2 {
-	font-size: 5rem;
-	letter-spacing: 0em;
-
-	& span {
-		font-size: 5rem;
-		letter-spacing: 0em;
-	}
-}
-
-.style-9-pc {
-	font-family: var(--font-style-6);
-	font-size: 1.7rem;
-	letter-spacing: -0.1em;
-	color: var(--color-text-5);
-
-	& b {
-		font-weight: bold;
-		font-size: 1.7rem;
-		letter-spacing: -0.1em;
-	}
-
-	& span {
-		font-size: 1.7rem;
-		letter-spacing: -0.1em;
-		color: var(--color-text-6);
-	}
-}
-
 .character-block {
 	display: flex;
 	flex-direction: column;
@@ -126,13 +98,7 @@ body {
 	cursor: pointer;
 }
 
-.character-img {
-	width: 520px;
-	height: 520px;
-	/* width: 300px; */
-	/* height: 300px; */
-}
-
+.character-img,
 .character-img-selected {
 	width: 520px;
 	height: 520px;
@@ -180,40 +146,6 @@ body {
 		width: 106px;
 		height: 51px;
 		font-size: 1.25rem;
-		letter-spacing: 0.2em;
-	}
-
-	.style-2 {
-		font-family: var(--font-style-4);
-		font-size: 2rem;
-		letter-spacing: -0.1em;
-		color: var(--color-text-5);
-	
-		& span {
-			font-size: 2rem;
-			letter-spacing: -0.1em;
-			color: var(--color-text-6);
-		}
-	}
-
-	.style-4-mobile {
-		font-size: 0.9rem;
-		letter-spacing: -0.1em;
-	
-		& b {
-			font-weight: bold;
-			font-size: 0.9rem;
-			letter-spacing: -0.1em;
-		}
-	
-		& span {
-			font-size: 0.9rem;
-			letter-spacing: -0.1em;
-		}
-	}
-
-	.style-6 {
-		font-size: 1.1rem;
 		letter-spacing: 0.2em;
 	}
 	

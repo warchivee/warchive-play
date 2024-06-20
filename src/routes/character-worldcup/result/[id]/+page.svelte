@@ -21,12 +21,16 @@
 	function handleModal() {
 		showModal = !showModal;
 	}
+
+	function makeHashtag(str: string): string {
+		return str.replace(/\s+/g, '');
+	}
 </script>
 
 <section>
 	<BGM />
 	<div class="result-container">
-		<div class="title style-2">당신의 <span>최애 여성서사 등장인물</span>은...</div>
+		<div class="title">당신의 <span>최애 여성서사 등장인물</span>은...</div>
 		<div class="character-block">
 			<img class="character-img-selected" src={CharacterImg} alt={`${characterName} 이미지`}/>
 			<div class="character-item">{characterItem}</div>
@@ -43,7 +47,7 @@
 	<ResultShareModal 
 		title="Warchive: 여성서사 등장인물 월드컵"
 		content={` - 당신의 최애 여성서사 등장인물은... ${characterItem}의 ${characterName}`}
-		hashtags={`와카이브,여성서사등장인물월드컵,여성서사,${characterItem},${characterName}`}
+		hashtags={`와카이브,여성서사등장인물월드컵,여성서사,${makeHashtag(characterItem)},${makeHashtag(characterName)}`}
 		imageId={characterId}
 		openModal={showModal}
 		handleModal={handleModal}/>
@@ -78,17 +82,19 @@
 
 		background-color: white;
 		position: relative;
-
-		z-index: 0;
 	}
 
 	.title {		
 		text-align: center;
 		margin-bottom: 4rem;
 		font-family: var(--font-style-4);
+		font-size: 5rem;
+		letter-spacing: 0em;
 		color: var(--color-text-5);
 
 		& span {
+			font-size: 5rem;
+			letter-spacing: 0em;
 			color: var(--color-text-6);
 		}
 	}
@@ -105,11 +111,17 @@
 	@media (max-width: 750px) {
 		.result-container {
 			padding: 2rem;
-			min-height: 600px;
+			min-height: 550px;
 		}
 
-		.result-container {
-			padding: 2rem;
+		.title {
+			font-size: 2rem;
+			letter-spacing: -0.1em;
+		
+			& span {
+				font-size: 2rem;
+				letter-spacing: -0.1em;
+			}
 		}
 
 		.character-block {

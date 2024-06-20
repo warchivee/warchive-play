@@ -467,11 +467,12 @@ const characters: Character[] = [
 ];
 
 export function shuffle(array: any[]): any[] {
-	for (let i = array.length - 1; i > 0; i--) {
+	const copiedArray = [...array];
+	for (let i = copiedArray.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
+		[copiedArray[i], copiedArray[j]] = [copiedArray[j], copiedArray[i]];
 	}
-	return array;
+	return copiedArray;
 }
 
 export async function loadRankingData(): Promise<Ranking[]> {

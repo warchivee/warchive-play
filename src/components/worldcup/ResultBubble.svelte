@@ -9,10 +9,10 @@
 </script>
 
 <button class="bubble" style="background-image: url({bubbleImgSrc})" on:click={handleOnClick}>
-    <span class="style-9-pc style-4-mobile">
+    <span class="bubble-context">
         🤔 이 캐릭터,<br />어디에서 볼 수 있지?!
     </span>
-    <span class="style-9-pc style-4-mobile">
+    <span class="bubble-context">
         <b>말풍선 클릭</b>해서 🔍<br />
         <span>와카이브</span>에서 검색하기
     </span>
@@ -39,11 +39,28 @@
 		cursor: pointer;
     }
 
-    .bubble > span {
+    .bubble-context {
         width: fit-content;
         height: fit-content;
         text-align: center;
         position: absolute;
+
+        font-family: var(--font-style-6);
+        font-size: 1.7rem;
+        letter-spacing: -0.1em;
+        color: var(--color-text-5);
+    
+        & b {
+            font-weight: bold;
+            font-size: 1.7rem;
+            letter-spacing: -0.1em;
+        }
+
+        & span {
+            font-size: 1.7rem;
+            letter-spacing: -0.1em;
+            color: var(--color-text-6);
+        }
     }
 
     .bubble > span:nth-child(1) {
@@ -65,6 +82,18 @@
             top: -6rem;
         }
             
+        .bubble-context {
+            font-size: 0.9rem;
+            
+            & b {
+                font-size: 0.9rem;
+            }
+
+            & span {
+                font-size: 0.9rem;
+            }
+        }
+
         .bubble > span:nth-child(1) {
             top: 1.4rem;
             left: 0.8rem;

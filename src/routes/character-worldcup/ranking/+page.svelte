@@ -72,8 +72,6 @@
 
 		background-color: white;
 		position: relative;
-
-		z-index: 0;
 	}
 
 	.title {
@@ -141,7 +139,7 @@
 	@media (max-width: 750px) {
 		.container {
 			padding: 0;
-			min-height: 600px;
+			min-height: 550px;
 		}
 
 		.title {

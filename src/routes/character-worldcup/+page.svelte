@@ -33,6 +33,7 @@
 			<div class="letters-front">
 				WOMYN<br />WOMYN<br />WOMYN
 			</div>
+			<img class="letters-image" src={personImgSrc} alt="타이틀_축구"/>
 		</div>
 		<div class="container">
 			<div class="title">여성서사 등장인물 월드컵</div>
@@ -54,7 +55,6 @@
 	</div>
 	<Footer />
 </section>
-<img class="letters-image" src={personImgSrc} alt="타이틀_축구"/>
 
 <style>
 	section {
@@ -90,20 +90,7 @@
 	.letters {
 		position: relative;
 		text-align: center;
-		z-index: 1;
-	}
-
-	.letters-image {
-		position: absolute;
-		
-		top: 50%;
-		left: 50%;
-		width: 100vw;
-		height: 100vh;
-		transform: translate(-50%, -50%);
-		object-fit: cover;
-		/* z-index: 0; */
-		z-index: -1;
+		z-index: 0;
 	}
 
 	.letters,
@@ -119,6 +106,7 @@
 		top: 0;
 		left: 50%;
 		transform: translateX(-50%);
+		color: rgba(255, 214, 0, 0.3);
 		z-index: 3;
 	}
 
@@ -131,12 +119,24 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%) rotate(-8deg);
-		z-index: 4;
+		z-index: 2;
+	}
+	
+	.letters-image {
+		position: fixed;
+		
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		object-fit: cover;
+		z-index: 1;
 	}
 
 	.container {
 		display: flex;
 		flex-direction: column;
+		z-index: 2;
 	}
 
 	.title {
