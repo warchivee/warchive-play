@@ -11,6 +11,9 @@
 
     function handleOnClick() {
         switch(id) {
+            case 16:
+                window.open(`https://www.womynarchive.com?s=The Last Of Us Part II`, '_blank');
+                break;
             case 17:
             case 18:
                 window.open(`https://www.womynarchive.com?s=Life is Strange`, '_blank');

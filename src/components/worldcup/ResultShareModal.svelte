@@ -144,7 +144,7 @@
         </button>
         
         <div class="head">최애 인증서 공유하기</div>
-        <img class="certificate-img" src={certificates[imageId - 1]} alt={`${imageId} 이미지`} />
+        <img class="certificate-img" src={certificates[imageId - 1]} alt="인증서 이미지" />
         <div class="foot">
             <div class="items">
                 <i class="fa-solid fa-link" on:click={shareLink} aria-hidden="true"></i>
