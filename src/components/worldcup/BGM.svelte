@@ -22,7 +22,7 @@
 			aria-hidden="true"
 		></i>
 		<div class="audio-text">
-			春よ、強く美しく - 龍崎一
+			~ Background Music <span> &nbsp; ( 春よ、強く美しく - 龍崎一 ) &nbsp;  </span> ~
 		</div>
 	</button>
     {#if showTooltip}
@@ -59,7 +59,16 @@
     }
 
     .audio-text {
-		font-family: var(1);
+		font-family: var(--font-style-5);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        
+        & span {
+            font-size: 1.2rem;
+    		letter-spacing: 0em;
+            color: var(--color-text-1);
+        }
     }
 
     .tooltip {
@@ -71,7 +80,7 @@
         width: 271px;
         height: 63px;
 
-        top: 36px;
+        top: 38px;
         z-index: 100;
 
         padding-top: 24px;
@@ -104,11 +113,16 @@
             letter-spacing: 0em;
         }
 
+        .audio-text span {
+            font-size: 0.7rem;
+            letter-spacing: -0.1em;
+        }
+
         .tooltip {
             width: 164px;
             height: 30px;
 
-            top: 15px;
+            top: 20px;
             
             padding-top: 10px;
             align-items: center;

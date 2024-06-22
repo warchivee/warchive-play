@@ -7,15 +7,25 @@
     export let championship_rate: number;
     export let winning_rate: number;
 
-    const id: number = parseInt(character_id) - 1;
+    const id: number = parseInt(character_id);
 
     function handleOnClick() {
-        window.open(`https://www.womynarchive.com?s=${characters[id].item}`, '_blank');
+        switch(id) {
+            case 17:
+            case 18:
+                window.open(`https://www.womynarchive.com?s=Life is Strange`, '_blank');
+                break;
+            case 45:
+                window.open(`https://www.womynarchive.com?s=Assassin's Creed`, '_blank');
+                break;
+            default:
+                window.open(`https://www.womynarchive.com?s=${characters[id - 1].item}`, '_blank');
+        }
     }
 </script>
 
 <div class="character-box">
-    <img src={characters[id].image} alt={`${characters[id].name} 이미지`} />
+    <img src={characters[id - 1].image} alt={`${characters[id - 1].name} 이미지`} />
     <div class="character-info">
         <div class="rank">
             {index + 1}위
@@ -25,8 +35,8 @@
                 </div>
             {/if}	        
         </div>
-        <button class="item" on:click={handleOnClick}>{characters[id].item}</button>
-        <div class="name">{characters[id].name}</div>
+        <button class="item" on:click={handleOnClick}>{characters[id - 1].item}</button>
+        <div class="name">{characters[id - 1].name}</div>
     </div>
     <div class="character-data pc">
         <div>

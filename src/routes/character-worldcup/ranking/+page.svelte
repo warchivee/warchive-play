@@ -7,6 +7,7 @@
 	import boxImgSrc from '$lib/images/worldcup/systems/6_rank_box.png';
 	
 	import BGM from '$components/worldcup/BGM.svelte';
+	import Loading from '$components/worldcup/Loading.svelte';
 	import RankingBox from '$components/worldcup/RankingBox.svelte';
 	import RankingButtons from '$components/worldcup/RankingButtons.svelte';
 	import WarchiveLogo from '$components/worldcup/WarchiveLogo.svelte';
@@ -27,16 +28,21 @@
 	<BGM />
 	<div class="container">
 		<div class="title">여성서사 등장인물 월드컵 <span>랭킹</span></div>
-		<div class="ranking-image" style="background-image: url({boxImgSrc})">
-			<div class="ranking-container">
-				<div class="description pc">
-					＊  우승비율 = 최종 우승 횟수 / 전체 플레이 수  ＊  승률 = 승리 횟수 / 전체 1:1 대결 수  ＊
+		{#if data.length === 0}
+			<Loading msg={"···  랭킹 불러오는 중  ···"} />
+			<div></div>
+		{:else}
+			<div class="ranking-image" style="background-image: url({boxImgSrc})">
+				<div class="ranking-container">
+					<div class="description pc">
+						＊  우승비율 = 최종 우승 횟수 / 전체 플레이 수  ＊  승률 = 승리 횟수 / 전체 1:1 대결 수  ＊
+					</div>
+					{#each data as { character_id, championship_rate, winning_rate }, index}
+						<RankingBox index={index} character_id={character_id}, championship_rate={championship_rate} winning_rate={winning_rate}/>
+					{/each}
 				</div>
-				{#each data as { character_id, championship_rate, winning_rate }, index}
-					<RankingBox index={index} character_id={character_id}, championship_rate={championship_rate} winning_rate={winning_rate}/>
-				{/each}	
 			</div>
-		</div>
+		{/if}
 		<RankingButtons />
 		<WarchiveLogo />
 	</div>
@@ -63,11 +69,11 @@
 		height: fit-content;
 		min-height: 870px;
 		max-height: 90vh;
-		padding: 4rem;
+		padding: 6rem;
 
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 
 		background-color: white;
@@ -76,7 +82,7 @@
 
 	.title {
 		text-align: center;
-		margin-bottom: 1rem;
+		margin: 1rem 0;
 
 		font-family: var(--font-style-4);
 		font-size: 5rem;
@@ -92,7 +98,6 @@
 	}
 
 	.ranking-image {
-		background-size: cover;	
 		background-position: center;
 		background-repeat: no-repeat;
 		
@@ -143,7 +148,7 @@
 		}
 
 		.title {
-			margin-bottom: 2rem;
+			margin: 2rem 0 1.4rem 0;
 
 			font-size: 2rem;
 			letter-spacing: -0.1em;

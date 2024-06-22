@@ -132,6 +132,14 @@
         cursor: pointer;
     }
 
+    i:hover {
+        background-color: rgba(53, 77, 17, 0.9);
+    }
+
+    i:active {
+        background-color: rgba(53, 77, 17, 0.8);
+    }
+
     span {
 		font-family: var(--font-style-5);
         font-weight: bold;

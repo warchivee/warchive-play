@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
 	
@@ -55,7 +55,7 @@
 					selectedCharacters = [];
 				}
 			}
-		}, 2000);
+		}, 1250);
     }
 	
 	function handleKeyDown(event: KeyboardEvent & { currentTarget: EventTarget & HTMLDivElement; }, character: Character) {
@@ -95,10 +95,6 @@
 						<img class="character-img-selected" src={selectedOne.image} alt="{selectedOne.name} 이미지" />
 						<div class="character-item">{selectedOne.item}</div>
 						<div class="character-name">{selectedOne.name}</div>
-
-						<!-- <img class="character-img-selected" src={selectedCharacters[selectedCharacters.length - 1].image} alt="{selectedCharacters[selectedCharacters.length - 1].name} 이미지" />
-						<div class="character-item">{selectedCharacters[selectedCharacters.length - 1].item}</div>
-						<div class="character-name">{selectedCharacters[selectedCharacters.length - 1].name}</div> -->
 					</div>
 				{:else}
 					<div class="character-block" tabindex="0" role="button" on:click={() => selectCharacter(originalCharacters[currentIndex])}
@@ -118,7 +114,7 @@
 				
 			</div>
 		{:else}
-			<Loading />
+			<Loading msg={"···  결과 분석 중  ···"} />
 		{/if}
 		<WarchiveLogo />
 	</div>

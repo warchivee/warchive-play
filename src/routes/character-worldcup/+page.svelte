@@ -3,8 +3,6 @@
 	import { goto } from '$app/navigation';
 	
 	import isAudioPlaying from '../../store/autio';
-    
-	import personImgSrc from '$lib/images/worldcup/systems/1_start_soccergirl.png';
 
 	import BaseHead from '$components/BaseHead.svelte';
 	import MainShareButton from '$components/worldcup/MainShareButton.svelte';
@@ -33,7 +31,6 @@
 			<div class="letters-front">
 				WOMYN<br />WOMYN<br />WOMYN
 			</div>
-			<img class="letters-image" src={personImgSrc} alt="타이틀_축구"/>
 		</div>
 		<div class="container">
 			<div class="title">여성서사 등장인물 월드컵</div>
@@ -91,6 +88,12 @@
 		position: relative;
 		text-align: center;
 		z-index: 0;
+		
+		cursor: default;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
 	}
 
 	.letters,
@@ -122,17 +125,6 @@
 		z-index: 2;
 	}
 	
-	.letters-image {
-		position: fixed;
-		
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		object-fit: cover;
-		z-index: 1;
-	}
-
 	.container {
 		display: flex;
 		flex-direction: column;

@@ -118,6 +118,15 @@
 					webUrl: `${url}`
 				}
 			},
+            buttons: [
+				{
+					title: '결과 보기',
+					link: {
+						mobileWebUrl: `${url}`,
+						webUrl: `${url}`
+					}
+				}
+			]
 		});
 	}
 

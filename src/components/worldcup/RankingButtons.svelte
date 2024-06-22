@@ -15,11 +15,17 @@
 </script>
 
 <div class="buttons">
-    <button class="button-black mobile" on:click={handleOtherGame}>
-        <div class="button-img"  style="background-image: url({mobileImgSrc})"></div>
-        다른게임
-    </button>
-    <button class="button-white" on:click={handleRestart}>다시하기</button>
+    <div class="button-block">
+        <button class="button-black mobile" on:click={handleOtherGame}>
+            <div class="button-img"  style="background-image: url({mobileImgSrc})"></div>
+            다른게임
+        </button>
+        <div class="button-black-back mobile"></div>    
+    </div>
+    <div class="button-block">
+        <button class="button-white" on:click={handleRestart}>다시하기</button>
+        <div class="button-white-back mobile"></div>    
+    </div>
     <button class="button-black pc" on:click={handleOtherGame}>
         <div class="button-img"  style="background-image: url({pcImgSrc})"></div>
         다른게임
@@ -52,7 +58,8 @@
 
     @media (max-width: 750px) {
 		.buttons {
-            margin-top: 2.6rem;
+			margin: 1.4rem 0 2rem 0;
+            /* margin-top: 2.6rem; */
             right: 0;
 			bottom: 0;
 

@@ -1,14 +1,53 @@
 <script lang="ts">
     import imgSrc from '$lib/images/worldcup/systems/4_loading.png';
+    export let msg;
 </script>
 
-<img src={imgSrc} alt="로딩중_이미지">
-<div class="guidance">···  결과 분석 중  ···</div>
+<div class="loading">
+    <img src={imgSrc} alt="로딩중_이미지">
+    <div class="gradation"></div>
+    <div class="guidance">{msg}</div>
+</div>
 
 <style>
+    .loading {
+        position: relative;
+        
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+    }
+
     img {
         width: 364px;
         height: 364px;
+    }
+
+    .gradation {
+        position: absolute;
+        top: 0;
+        width: 364px;
+        height: 364px;
+        background: linear-gradient(90deg,
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 1),
+            rgba(255, 255, 255, 1));
+        animation: gradient 2s ease infinite;
+        background-size: 500% 100%;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
     }
 
     .guidance {

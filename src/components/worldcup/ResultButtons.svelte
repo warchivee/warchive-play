@@ -21,13 +21,31 @@
 </script>
 
 <div class="buttons">
-    <button class="button-white" on:click={handleShare}>공유하기</button>
-    <button class="button-black" on:click={handleRanking}>랭킹보기</button>
-    <button class="button-black mobile" on:click={handleOtherGame}>
-        <div class="button-img"  style="background-image: url({mobileImgSrc})"></div>
-        다른게임
-    </button>
-    <button class="button-white" on:click={handleRestart}>다시하기</button>
+    <div class="button-block">
+        <button class="button-white" on:click={handleShare}>
+            공유하기
+        </button>
+        <div class="button-white-back mobile"></div>    
+    </div>
+    <div class="button-block">
+        <button class="button-black" on:click={handleRanking}>
+            랭킹보기
+        </button>
+        <div class="button-black-back mobile"></div>
+    </div>
+    <div class="button-block">
+        <button class="button-black mobile" on:click={handleOtherGame}>
+            <div class="button-img"  style="background-image: url({mobileImgSrc})"></div>
+            다른게임
+        </button>
+        <div class="button-black-back mobile"></div>
+    </div>  
+    <div class="button-block">
+        <button class="button-white" on:click={handleRestart}>
+            다시하기
+        </button>
+        <div class="button-white-back mobile"></div>
+    </div>
     <button class="button-black pc" on:click={handleOtherGame}>
         <div class="button-img"  style="background-image: url({pcImgSrc})"></div>
         다른게임
@@ -67,7 +85,7 @@
 			display: flex;
 			flex-direction: row;
 			position: relative;
-		    gap: 1rem;
+		    gap: 1.2rem;
 			
 			font-family: var(--font-style-6);
 

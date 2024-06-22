@@ -480,7 +480,11 @@ export async function loadRankingData(): Promise<Ranking[]> {
 		const response = await fetch('https://script.google.com/macros/s/AKfycbyTJiidsVGKFalHnFuwmp47uVGu_v49WuaYqBr7jwb961cga6EtWCO94FsFF8fDz72W/exec?req=get');
 		const result = await response.json();
 		const data = result.data;
-		data.sort((a: Ranking, b: Ranking) => b.championship_rate - a.championship_rate);
+		data.sort((a: Ranking, b: Ranking) => 
+			b.championship_rate !== a.championship_rate
+                ? b.championship_rate - a.championship_rate
+                : b.winning_rate - a.winning_rate
+		);
 		return data;
 	} catch (error) {
 		console.error('Error fetching ranking data:', error);

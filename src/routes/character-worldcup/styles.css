@@ -78,16 +78,40 @@ body {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
+.button-gray:active {
+	border: 1.5px solid var(--color-text-5);
+}
+
+.button-white,
+.button-black {
+	border: 1px solid var(--color-text-5);
+}
+
 .button-white {
 	color: var(--color-text-5);
 	background-color: var(--color-text-1);
-	border: 1px solid var(--color-text-5);
 }
 
 .button-black {
 	color: var(--color-text-1);
 	background-color: var(--color-text-5);
 	border: 1px solid var(--color-text-5);
+}
+
+.button-white:hover {
+	background-color: rgba(6, 27, 8, 0.1);
+}
+
+.button-white:active {
+	background-color: rgba(6, 27, 8, 0.2);
+}
+
+.button-black:hover {
+	background-color: rgba(6, 27, 8, 0.8);
+}
+
+.button-black:active {
+	background-color: rgba(6, 27, 8, 0.6);
 }
 
 .character-block {
@@ -131,6 +155,10 @@ body {
 		display: block;
 	}
 	
+    .button-block {
+        position: relative;
+    }
+
 	.button-white,
 	.button-black {
 		width: 107px;
@@ -140,8 +168,46 @@ body {
 
 		font-size: 1.1rem;
 		letter-spacing: 0.2em;
+		
+		position: relative;
+		z-index: 2;
+	}
+
+	.button-white:hover {
+		background-color: rgba(255, 255, 255, 0.9);
 	}
 	
+	.button-white:active {
+		background-color: rgba(255, 255, 255, 0.8);
+	}
+	
+	.button-black:hover {
+		background-color: rgba(6, 27, 8, 0.9);
+	}
+	
+	.button-black:active {
+		background-color: rgba(6, 27, 8, 0.8);
+	}
+
+	.button-white-back,
+	.button-black-back {
+		position: absolute;
+		width: 107px;
+		height: 27px;
+		top: 4px;
+		left: 4px;
+		z-index: 1;
+		border: 1px solid var(--color-text-5);
+	}
+
+	.button-white-back {
+		background-color: var(--color-text-5);	
+	}
+
+	.button-black-back {
+		background-color: var(--color-text-1);
+	}
+
 	.button-gray {
 		width: 106px;
 		height: 51px;
