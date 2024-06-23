@@ -15,12 +15,12 @@
 </script>
 
 <div class="buttons">
-    <div class="button-block">
-        <button class="button-black mobile" on:click={handleOtherGame}>
+    <div class="button-block mobile">
+        <button class="button-black" on:click={handleOtherGame}>
             <div class="button-img"  style="background-image: url({mobileImgSrc})"></div>
             다른게임
         </button>
-        <div class="button-black-back mobile"></div>    
+        <div class="button-black-back"></div>    
     </div>
     <div class="button-block">
         <button class="button-white" on:click={handleRestart}>다시하기</button>

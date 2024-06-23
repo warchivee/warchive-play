@@ -72,7 +72,7 @@
     }
 
     .tooltip {
-        background-size: cover;	
+        background-size: 100% 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 

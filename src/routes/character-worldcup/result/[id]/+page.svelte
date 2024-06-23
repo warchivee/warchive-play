@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	import { characters } from '$lib/assets/worldcup/characters';
+	import { characters, certificates } from '$lib/assets/worldcup/characters';
 
+	import BaseHead from '$components/BaseHead.svelte';
 	import BGM from '$components/worldcup/BGM.svelte';
 	import ResultBubble from '$components/worldcup/ResultBubble.svelte';
 	import ResultButtons from '$components/worldcup/ResultButtons.svelte';
@@ -26,6 +27,11 @@
 		return str.replace(/\s+/g, '');
 	}
 </script>
+
+<BaseHead 
+	title="Warchive: 여성서사 등장인물 월드컵 결과" 
+	image={certificates[characterId - 1]}
+/>
 
 <section>
 	<BGM />

@@ -23,6 +23,8 @@
         cursor: pointer;
         padding: 0.6rem;
         border-radius: 1.2rem;
+
+        transition: all 0.2s;
     }
 
     button:hover {

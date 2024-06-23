@@ -6,6 +6,7 @@
 
 	import boxImgSrc from '$lib/images/worldcup/systems/6_rank_box.png';
 	
+	import BaseHead from '$components/BaseHead.svelte';
 	import BGM from '$components/worldcup/BGM.svelte';
 	import Loading from '$components/worldcup/Loading.svelte';
 	import RankingBox from '$components/worldcup/RankingBox.svelte';
@@ -14,7 +15,7 @@
 	import Footer from '$components/worldcup/Footer.svelte';
 	
 	let data: Ranking[] = [];
-	
+
 	onMount(async () => {
 		try {
 			data = await loadRankingData();
@@ -23,6 +24,8 @@
 		}
   	});
 </script>
+
+<BaseHead title="Warchive: 여성서사 등장인물 월드컵 랭킹" image="https://i.ibb.co/NyNnS5d/2-share-longthumb.png" />
 
 <section>
 	<BGM />
@@ -98,6 +101,7 @@
 	}
 
 	.ranking-image {
+		background-size: 100% 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		
@@ -160,7 +164,6 @@
 		}
 
 		.ranking-image {
-			background-size: 100% 100%;
 			width: 328px;
 			height: 416px;
 		}

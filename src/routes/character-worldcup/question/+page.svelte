@@ -8,6 +8,7 @@
 	import type { Character } from '$lib/assets/worldcup/characters';
 	import { characters, shuffle, putTournamentResult } from '$lib/assets/worldcup/characters';
 
+	import BaseHead from '$components/BaseHead.svelte';
 	import BGM from '$components/worldcup/BGM.svelte';
 	import WarchiveLogo from '$components/worldcup/WarchiveLogo.svelte';
 	import Loading from '$components/worldcup/Loading.svelte';
@@ -77,6 +78,8 @@
 		winCounts = new Array(originalCharacters.length).fill(0);
 	})
 </script>
+
+<BaseHead title="Warchive: 여성서사 등장인물 월드컵" image="https://i.ibb.co/NyNnS5d/2-share-longthumb.png" />
 
 <section>
 	<BGM />

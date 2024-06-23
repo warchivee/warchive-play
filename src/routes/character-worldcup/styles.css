@@ -66,6 +66,7 @@ body {
 	font-size: 2rem;
 	letter-spacing: 0.3em;
 	cursor: pointer;
+	transition: all 0.2s;
 }
 
 .button-gray {
@@ -107,11 +108,11 @@ body {
 }
 
 .button-black:hover {
-	background-color: rgba(6, 27, 8, 0.8);
+	background-color: rgba(6, 27, 8, 0.9);
 }
 
 .button-black:active {
-	background-color: rgba(6, 27, 8, 0.6);
+	background-color: rgba(6, 27, 8, 0.8);
 }
 
 .character-block {
@@ -179,14 +180,6 @@ body {
 	
 	.button-white:active {
 		background-color: rgba(255, 255, 255, 0.8);
-	}
-	
-	.button-black:hover {
-		background-color: rgba(6, 27, 8, 0.9);
-	}
-	
-	.button-black:active {
-		background-color: rgba(6, 27, 8, 0.8);
 	}
 
 	.button-white-back,
