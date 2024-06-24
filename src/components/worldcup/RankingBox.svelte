@@ -191,7 +191,8 @@
 
             .rank {
                 font-size: 1rem;
-                margin-bottom: 0.6rem;
+                line-height: 1rem;
+                margin-bottom: 0.4rem;
             }
 
             .item {
@@ -223,7 +224,7 @@
     
         .character-data {
             display: flex;
-            margin-top: 0.4rem;
+            margin-top: 0.8rem;
         }
 
         .character-data > div:nth-child(1) {
