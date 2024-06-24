@@ -44,11 +44,11 @@
             <div class="character-data mobile">
                 <div class="bar-percentage">
                     <div class="percentage" style="width: {championship_rate}%;"></div>
-                    <span class="percentage-detail">우승비율 &nbsp; {championship_rate}%</span>
+                    <span class="percentage-detail">우승비율 {championship_rate}%</span>
                 </div>
                 <div class="bar-percentage">
                     <div class="percentage" style="width: {winning_rate}%;"></div>
-                    <span class="percentage-detail">승률 &nbsp; {winning_rate}%</span>
+                    <span class="percentage-detail">승률 {winning_rate}%</span>
                 </div>
             </div>
         </div>
