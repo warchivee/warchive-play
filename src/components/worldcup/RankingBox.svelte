@@ -41,16 +41,16 @@
         <button class="item" on:click={handleOnClick}>{characters[id - 1].item}</button>
         <div class="name">
             {characters[id - 1].name}
-            <!-- <div class="character-data mobile">
+            <div class="character-data mobile">
                 <div class="bar-percentage">
                     <div class="percentage" style="width: {championship_rate}%;"></div>
-                    <span class="percentage-detail">우승비율 {championship_rate}%</span>
+                    <span class="percentage-detail">우승비율 &nbsp; {championship_rate}%</span>
                 </div>
                 <div class="bar-percentage">
                     <div class="percentage" style="width: {winning_rate}%;"></div>
-                    <span class="percentage-detail">승률 {winning_rate}%</span>
+                    <span class="percentage-detail">승률 &nbsp; {winning_rate}%</span>
                 </div>
-            </div> -->
+            </div>
         </div>
     </div>
     <div class="character-data pc">
@@ -191,8 +191,7 @@
 
             .rank {
                 font-size: 1rem;
-                margin-bottom: 1rem;
-                /* margin-bottom: 0.6rem; */
+                margin-bottom: 0.6rem;
             }
 
             .item {
@@ -222,7 +221,6 @@
             }
         }
     
-        /* style of character-data on mobile */
         .character-data {
             display: flex;
             margin-top: 0.4rem;
@@ -241,13 +239,15 @@
 
         .bar-percentage {
             position: relative;
-            border: 1px solid rgba(6, 27, 8, 0.4);
+            border: 1px solid rgba(181, 141, 194, 0.8);
             border-radius: 1rem;
             overflow: hidden;
         }
 
         .percentage {
-            background-color: rgba(6, 27, 8, 0.4);
+            background-color: rgba(181, 141, 194, 0.8);
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
         }
 
         .percentage-detail {
