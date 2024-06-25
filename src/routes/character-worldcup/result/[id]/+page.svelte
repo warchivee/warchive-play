@@ -29,7 +29,7 @@
 </script>
 
 <BaseHead 
-	title="Warchive: 여성서사 등장인물 월드컵 결과" 
+	title="Warchive: 여성서사 등장인물 월드컵" 
 	image={certificates[characterId - 1]}
 />
 

@@ -25,7 +25,7 @@
   	});
 </script>
 
-<BaseHead title="Warchive: 여성서사 등장인물 월드컵 랭킹" image="https://i.ibb.co/NyNnS5d/2-share-longthumb.png" />
+<BaseHead title="Warchive: 여성서사 등장인물 월드컵" image="https://i.ibb.co/NyNnS5d/2-share-longthumb.png" />
 
 <section>
 	<BGM />
