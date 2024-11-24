@@ -1,0 +1,112 @@
+<script lang="ts">
+	export let title = '';
+	export let message = '';
+	export let caution = '';
+	export let onConfirm = () => {};
+	export let onCancel = () => {};
+
+	// 모달이 열리면 body의 스크롤을 막음
+	import { onMount, onDestroy } from 'svelte';
+
+	onMount(() => {
+		document.body.style.overflow = 'hidden'; // 모달 열릴 때 스크롤 막기
+	});
+
+	onDestroy(() => {
+		document.body.style.overflow = ''; // 모달 닫힐 때 스크롤 복원
+	});
+</script>
+
+<div class="modal" on:click|stopPropagation>
+	<div class="modal-body">
+		<div class="modal-header">
+			<span>{title}</span>
+		</div>
+		<div class="modal-content">
+			<div>
+				{message}
+			</div>
+			<div class="caution">
+				{caution}
+			</div>
+		</div>
+
+		<div class="modal-btn">
+			<button class="cancel" on:click={onCancel}>취소</button>
+			<button on:click={onConfirm}>확인</button>
+		</div>
+	</div>
+</div>
+
+<style>
+	.modal {
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		z-index: 999;
+		left: 0;
+		top: 0;
+
+		background-color: rgba(0, 0, 0, 0.5);
+		pointer-events: all; /* 배경 클릭을 비활성화 */
+	}
+
+	.modal-body {
+		max-width: 420px;
+		width: 80%;
+		background: white;
+		box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+		padding: 10px 20px;
+		border-radius: 10px;
+
+		color: black;
+	}
+
+	.modal-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 800;
+		font-size: 1.2rem;
+		margin-top: 10px;
+	}
+
+	.modal-content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		font-size: 1rem;
+		gap: 10px;
+		margin: 10px 0 15px 0;
+		text-align: left;
+	}
+
+	.caution {
+		font-size: 0.9rem;
+		opacity: 0.7;
+	}
+
+	.cancel {
+		color: gray;
+	}
+
+	.modal-btn {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+
+		& > button {
+			margin: 0;
+			padding: 0;
+			height: 35px;
+			width: 100px;
+		}
+	}
+</style>

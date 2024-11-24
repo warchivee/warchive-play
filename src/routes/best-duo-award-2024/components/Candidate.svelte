@@ -3,6 +3,7 @@
 	import { cubicOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
 	import { quintOut } from 'svelte/easing';
+	import Confirm from './Confirm.svelte';
 
 	export let value = {
 		id: 1,
@@ -12,7 +13,8 @@
 			'해적들의 황금시대, 바다를 동경하는 소년 루이스가 캡틴 잭, 총잡이 앤과 검투사 메리를 만나 해적선을 타고 보물섬으로 향하는 여정',
 		story:
 			'해적으로 만나 결투를 시작하며 막상막하의 승부를 겨루지만, 둘 사이에서 점점 피어나는 사랑이라는 감정',
-		rate: 23
+		rate: 23,
+		section: '로맨스'
 	};
 
 	const progress = tweened(0, {
@@ -24,6 +26,8 @@
 		duration: 2000,
 		easing: quintOut
 	});
+
+	let showModal = false;
 
 	function moveSite() {
 		window.open(`https://www.womynarchive.com?s=${value.title}`);
@@ -42,7 +46,27 @@
 	onMount(() => {
 		setRate();
 	});
+
+	function handleOpen() {
+		showModal = true;
+	}
+
+	function handleConfirm() {}
+
+	function handleCancel() {
+		showModal = false;
+	}
 </script>
+
+{#if showModal}
+	<Confirm
+		title="2024 여성서사 베스트 콤비 - {value.section} 부문"
+		message="{value.title} | {value.characters[0]}x{value.characters[1]} 콤비에 투표하시겠습니까?"
+		caution="*비정상적인 투표는 합산되지 않습니다."
+		onConfirm={handleConfirm}
+		onCancel={handleCancel}
+	/>
+{/if}
 
 <div class="candidate">
 	<div class="hover">
@@ -63,7 +87,7 @@
 		</div>
 
 		<div class="btns">
-			<button>투표하기</button>
+			<button on:click={handleOpen}>투표하기</button>
 			<button on:click={moveSite}>와카이브에서 작품 보기</button>
 		</div>
 	</div>
@@ -87,7 +111,7 @@
 
 <style>
 	.candidate {
-		min-width: 320px;
+		min-width: 290px;
 		width: 100%;
 
 		position: relative;

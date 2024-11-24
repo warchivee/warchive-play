@@ -245,10 +245,8 @@
 	</div>
 </section>
 <section class="middle">
-	<div class="vote-end">
-		<Countdown />
-		<p>베스트 콤비 발표일 : 2024년 12월 27일</p>
-	</div>
+	<Countdown />
+	<p>베스트 콤비 발표일 : 2024년 12월 27일</p>
 </section>
 
 <section class="bottom">
@@ -265,11 +263,13 @@
 		{/each}
 	</ul>
 
-	<p>총 4개의 후보 중 마음에 드는 {sections[selectedSectionIndex].name} 콤비를 클릭해 투표해주세요.</p>
+	<p>
+		총 4개의 후보 중 마음에 드는 {sections[selectedSectionIndex].name} 콤비를 클릭해 투표해주세요.
+	</p>
 
 	<div class="candidate-list">
 		{#each duos[sections[selectedSectionIndex].code] as duo}
-			<Candidate value={{ ...duo, rate: 40 }} />
+			<Candidate value={{ ...duo, rate: 40, section: sections[selectedSectionIndex].name }} />
 		{/each}
 	</div>
 </section>
@@ -288,7 +288,7 @@
 	}
 
 	section {
-		width: 80%;
+		width: 100%;
 		max-width: 1000px;
 		margin: 0 auto;
 		margin-bottom: 70px;
@@ -350,9 +350,9 @@
 	section.middle {
 		display: flex;
 		flex-direction: column;
-		gap: 50px;
 		justify-content: center;
 		align-items: center;
+		width: 100%;
 	}
 
 	section.bottom {
@@ -386,5 +386,11 @@
 		grid-template-rows: 1fr 1fr;
 		row-gap: 40px;
 		column-gap: 20px;
+	}
+
+	@media (max-width: 700px) {
+		.candidate-list {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>

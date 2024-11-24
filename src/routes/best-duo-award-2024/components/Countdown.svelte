@@ -58,8 +58,10 @@
 		margin: 20px 0;
 		/* border: 1px solid white; */
 		background: rgba(0, 0, 0, 0.2);
-		padding: 30px 100px;
+		padding: 30px 0;
 		border-radius: 10px;
+		width: 90%;
+		max-width: 600px;
 	}
 	.countdown-title {
 		font-size: 1.25rem;
