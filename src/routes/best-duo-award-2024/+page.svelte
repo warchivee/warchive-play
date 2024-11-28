@@ -1,6 +1,8 @@
 <script lang="ts">
 	import './styles.css';
 
+	import logo from '$lib/images/logo/logo.png';
+
 	import BaseHead from '$components/BaseHead.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 	import Candidate from './components/Candidate.svelte';
@@ -225,6 +227,8 @@
 			}
 		]
 	};
+
+	const today = new Date();
 </script>
 
 <BaseHead title={SITE_TITLE} image="" />
@@ -235,7 +239,17 @@
 	<div>
 		<div class="title">
 			<img src={AwardLogo} style="position: relative; z-index: 1;" height="40" />
-			<h2>2024년</h2>
+			<div class="year">
+				<div class="stars">
+					<span class="small-star">★</span>
+					<span class="big-star">★</span>
+				</div>
+				<h2>2024년</h2>
+				<div class="stars">
+					<span class="big-star">★</span>
+					<span class="small-star">★</span>
+				</div>
+			</div>
 			<h1>여성서사 베스트 콤비 어워드</h1>
 		</div>
 		<div class="intro">
@@ -279,9 +293,16 @@
 	title={SITE_TITLE}
 	hashtags="와카이브,여성서사베스트콤비어워드,여성서사"
 	image={''}
+	color="white"
 />
 
+<footer>
+	Copyright © {today.getFullYear()} by <img src={logo} alt="와카이브 로고" /> all right reserved.
+</footer>
+
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Potta+One&display=swap');
+
 	* {
 		color: white;
 		text-align: center;
@@ -301,7 +322,7 @@
 
 		.intro {
 			margin-top: 10px;
-			font-size: 1.15rem;
+			font-size: 1rem;
 		}
 
 		div:first-child p {
@@ -309,8 +330,7 @@
 		}
 
 		.title {
-			h1,
-			h2 {
+			& * {
 				font-weight: 900;
 
 				text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -325,12 +345,31 @@
 				color: transparent;
 			}
 
+			.year {
+				display: flex;
+				justify-content: center;
+				align-items: baseline;
+				gap: 7px;
+			}
+
+			.stars {
+				/* font-family: 'Potta One', system-ui; */
+			}
+
+			.stars .big-star {
+				font-size: 1.2rem;
+			}
+
+			.stars .small-star {
+				font-size: 0.7rem;
+			}
+
 			h2 {
-				font-size: 2rem;
+				font-size: 1.7rem;
 			}
 
 			h1 {
-				font-size: 3rem;
+				font-size: 2.5rem;
 			}
 		}
 	}
@@ -391,6 +430,16 @@
 	@media (max-width: 700px) {
 		.candidate-list {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	footer {
+		font-size: 0.9rem;
+		margin: 3rem 0;
+
+		img {
+			height: 22px;
+			margin: 0 5px;
 		}
 	}
 </style>

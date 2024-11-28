@@ -64,7 +64,7 @@
 		max-width: 600px;
 	}
 	.countdown-title {
-		font-size: 1.25rem;
+		font-size: 1rem;
 		font-weight: 500;
 		color: rgba(255, 255, 255, 0.6);
 	}
@@ -91,7 +91,7 @@
 	}
 
 	.time-value {
-		font-size: 2.25rem;
+		font-size: 2rem;
 	}
 
 	.time-unit {

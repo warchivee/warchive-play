@@ -137,6 +137,7 @@
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
+				text-align: left;
 
 				div:first-child {
 					color: rgba(255, 255, 255, 0.6);
@@ -145,6 +146,10 @@
 				div:last-child {
 					font-size: 20px;
 					font-weight: 700;
+
+					@media (max-width: 450px) {
+						font-size: 1.13rem;
+					}
 
 					span {
 						font-weight: 100;
@@ -160,6 +165,10 @@
 				font-size: 30px;
 				font-weight: 700;
 				width: 40%;
+
+				@media (max-width: 450px) {
+					font-size: 1.7rem;
+				}
 
 				progress {
 					direction: rtl;
@@ -191,6 +200,8 @@
 			background: rgba(0, 0, 0, 0.9);
 
 			opacity: 0;
+			height: 0;
+			overflow: hidden;
 			transition: 1s;
 
 			.info {
@@ -227,6 +238,21 @@
 
 		&:hover .hover {
 			opacity: 1;
+			height: 100%;
+			overflow-y: scroll;
+
+			&::-webkit-scrollbar {
+				width: 5px;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				background-color: gray;
+				border-radius: 5px;
+			}
+
+			&::-webkit-scrollbar-track {
+				background-color: transparent;
+			}
 		}
 	}
 </style>

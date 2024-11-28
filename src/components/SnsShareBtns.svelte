@@ -13,6 +13,7 @@
 
 	export let title = '';
 	export let content = '';
+	export let color = 'black';
 
 	export let hashtags = '';
 	export let image = '';
@@ -70,7 +71,7 @@
 </script>
 
 <section>
-	<p class="font-bold">{message}</p>
+	<p class="font-bold" style="color: {color};">{message}</p>
 	<div class="btns">
 		<i class="fa-solid fa-link" on:click={shareLink} aria-hidden="true"></i>
 		<i class="fa-brands fa-x-twitter" on:click={shareX} aria-hidden="true"></i>

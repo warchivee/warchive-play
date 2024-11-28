@@ -20,8 +20,9 @@
 	.particle {
 		position: absolute;
 		border-radius: 50%;
-		background-color: #ffffff33;
-		box-shadow: 0 0 3px #ffffff4f;
+		background-color: rgba(255, 255, 255, 0.5);
+		filter: blur(3px);
+		box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 		animation-duration: 60s;
 		animation-iteration-count: infinite;
 	}
