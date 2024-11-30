@@ -1,21 +1,15 @@
 <script lang="ts">
+	import axios from 'axios';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { onMount } from 'svelte';
 	import { quintOut } from 'svelte/easing';
 	import Confirm from './Confirm.svelte';
+	import Snackbar from '$components/Snackbar.svelte';
 
-	export let value = {
-		id: 1,
-		title: '해적',
-		characters: ['메리', '앤'],
-		intro:
-			'해적들의 황금시대, 바다를 동경하는 소년 루이스가 캡틴 잭, 총잡이 앤과 검투사 메리를 만나 해적선을 타고 보물섬으로 향하는 여정',
-		story:
-			'해적으로 만나 결투를 시작하며 막상막하의 승부를 겨루지만, 둘 사이에서 점점 피어나는 사랑이라는 감정',
-		rate: 23,
-		section: '로맨스'
-	};
+	export let setData;
+
+	export let value = {};
 
 	const progress = tweened(0, {
 		duration: 1000,
@@ -28,6 +22,7 @@
 	});
 
 	let showModal = false;
+	let loading = false;
 
 	function moveSite() {
 		window.open(`https://www.womynarchive.com?s=${value.title}`);
@@ -38,29 +33,97 @@
 		number.set(0);
 
 		setTimeout(function () {
-			progress.set(value.rate / 100);
-			number.set(value.rate);
+			progress.set((value.rate ?? 0) / 100);
+			number.set(value.rate ?? 0);
 		}, 1000);
 	}
-
-	onMount(() => {
-		setRate();
-	});
 
 	function handleOpen() {
 		showModal = true;
 	}
 
-	function handleConfirm() {}
+	let message = '';
+	let openSnackbar = false;
+
+	function openSnackbarMessage() {
+		openSnackbar = true;
+
+		setTimeout(() => {
+			openSnackbar = false;
+		}, 3000);
+	}
+
+	// 어뷰징 방지 위해 ip 이용
+	async function getUUIDbyIp() {
+		try {
+			const response = await axios.get('https://api.ipify.org?format=json');
+			const ip = response.data.ip;
+
+			const ipBuffer = new TextEncoder('utf-8').encode(ip);
+
+			return crypto.subtle.digest('SHA-1', ipBuffer).then((hash) => {
+				const hexArray = Array.from(new Uint8Array(hash));
+				return hexArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
+			});
+		} catch (error) {
+			console.error('UUID 생성 실패', error);
+			throw error;
+		}
+	}
+
+	async function handleConfirm() {
+		try {
+			loading = true;
+
+			const uuid = await getUUIDbyIp();
+
+			const response = await axios.post(
+				'https://script.google.com/macros/s/AKfycbyCJ9pqVZzvsn3-dyKQkCvwP5_o_c7LP0_MxKVBsAca4BCzW5zMqXEIRPudQ8oslMdISw/exec',
+				{
+					uuid: uuid,
+					section: value.section.code,
+					duo_id: value.id
+				},
+				{
+					headers: {
+						'Content-Type': 'text/plain;charset=utf-8'
+					}
+				}
+			);
+
+			if (response.data?.action === 'UPDATE') {
+				message = '기존 투표 내용을 수정하였습니다.';
+			} else {
+				message = '투표하였습니다.';
+			}
+
+			setData(response.data?.result);
+
+			openSnackbarMessage();
+
+			handleCancel();
+		} catch (error) {
+			console.error('Error update data:', error);
+			return [];
+		} finally {
+			loading = false;
+		}
+	}
 
 	function handleCancel() {
 		showModal = false;
 	}
+
+	onMount(() => {
+		if (value?.rate) {
+			setRate();
+		}
+	});
 </script>
 
 {#if showModal}
 	<Confirm
-		title="2024 여성서사 베스트 콤비 - {value.section} 부문"
+		title="2024 여성서사 베스트 콤비 - {value.section.name} 부문"
 		message="{value.title} | {value.characters[0]}x{value.characters[1]} 콤비에 투표하시겠습니까?"
 		caution="*비정상적인 투표는 합산되지 않습니다."
 		onConfirm={handleConfirm}
@@ -108,6 +171,8 @@
 		</div>
 	</div>
 </div>
+
+<Snackbar {message} open={openSnackbar} />
 
 <style>
 	.candidate {

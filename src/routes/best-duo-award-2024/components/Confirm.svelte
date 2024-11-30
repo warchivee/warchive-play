@@ -2,11 +2,22 @@
 	export let title = '';
 	export let message = '';
 	export let caution = '';
+	export let loading = false;
 	export let onConfirm = () => {};
 	export let onCancel = () => {};
 
 	// 모달이 열리면 body의 스크롤을 막음
 	import { onMount, onDestroy } from 'svelte';
+
+	async function handleConfirm() {
+		if (loading) return; // 중복 클릭 방지
+		loading = true;
+		try {
+			await onConfirm(); // 확인 버튼 동작
+		} finally {
+			loading = false; // 로딩 해제
+		}
+	}
 
 	onMount(() => {
 		document.body.style.overflow = 'hidden'; // 모달 열릴 때 스크롤 막기
@@ -32,8 +43,14 @@
 		</div>
 
 		<div class="modal-btn">
-			<button class="cancel" on:click={onCancel}>취소</button>
-			<button on:click={onConfirm}>확인</button>
+			<button class="cancel" on:click={onCancel} disabled={loading}>취소</button>
+			<button on:click={handleConfirm} disabled={loading}>
+				{#if loading}
+					<span class="loader"></span>
+				{:else}
+					확인
+				{/if}
+			</button>
 		</div>
 	</div>
 </div>
@@ -107,6 +124,30 @@
 			padding: 0;
 			height: 35px;
 			width: 100px;
+		}
+	}
+
+	button[disabled] {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	.loader {
+		border: 2px solid transparent;
+		border-top: 2px solid #000;
+		border-radius: 50%;
+		width: 12px;
+		height: 12px;
+		animation: spin 0.6s linear infinite;
+		display: inline-block;
+	}
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
 		}
 	}
 </style>

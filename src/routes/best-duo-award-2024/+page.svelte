@@ -1,7 +1,8 @@
 <script lang="ts">
 	import './styles.css';
 
-	import logo from '$lib/images/logo/logo.png';
+	import axios from 'axios';
+	import { onMount } from 'svelte';
 
 	import BaseHead from '$components/BaseHead.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
@@ -9,6 +10,7 @@
 	import Particles from './components/Particles.svelte';
 	import Countdown from './components/Countdown.svelte';
 
+	import logo from '$lib/images/logo/logo.png';
 	import AwardLogo from '$lib/images/best-duo-award-2024/award-logo.png';
 
 	const SITE_TITLE = '2024년 여성서사 베스트 콤비 어워드';
@@ -35,8 +37,6 @@
 			code: 'obcess'
 		}
 	];
-	let selectedSectionIndex = 2;
-
 	const duos = {
 		family: [
 			{
@@ -229,6 +229,44 @@
 	};
 
 	const today = new Date();
+
+	let selectedSectionIndex = 2;
+	let loading = false;
+	let data = {};
+
+	async function loadData() {
+		try {
+			loading = true;
+
+			const response = await axios.get(
+				'https://script.google.com/macros/s/AKfycbyCJ9pqVZzvsn3-dyKQkCvwP5_o_c7LP0_MxKVBsAca4BCzW5zMqXEIRPudQ8oslMdISw/exec'
+			);
+
+			return response.data;
+		} catch (error) {
+			console.error('Error fetching ranking data:', error);
+			return [];
+		} finally {
+			loading = false;
+		}
+	}
+
+	function getRate(section) {
+		return duos[section.code].map((duo) => ({
+			...duo,
+			rate: data?.[section.code]?.find((e) => e?.duo_id === duo.id)?.rate,
+			section
+		}));
+	}
+
+	function setData(newData) {
+		data = { ...newData };
+	}
+
+	onMount(async () => {
+		const newData = await loadData(); // 데이터를 로드
+		setData(newData);
+	});
 </script>
 
 <BaseHead title={SITE_TITLE} image="" />
@@ -263,30 +301,34 @@
 	<p>베스트 콤비 발표일 : 2024년 12월 27일</p>
 </section>
 
-<section class="bottom">
-	<ul>
-		{#each sections as section, i}
-			<li
-				class={i === selectedSectionIndex ? 'selected' : ''}
-				on:click={() => {
-					selectedSectionIndex = i;
-				}}
-			>
-				{section.name}
-			</li>
-		{/each}
-	</ul>
+{#if loading || !data}
+	불러오는 중입니다.
+{:else}
+	<section class="bottom">
+		<ul>
+			{#each sections as section, i}
+				<li
+					class={i === selectedSectionIndex ? 'selected' : ''}
+					on:click={() => {
+						selectedSectionIndex = i;
+					}}
+				>
+					{section.name}
+				</li>
+			{/each}
+		</ul>
 
-	<p>
-		총 4개의 후보 중 마음에 드는 {sections[selectedSectionIndex].name} 콤비를 클릭해 투표해주세요.
-	</p>
+		<p>
+			총 4개의 후보 중 마음에 드는 {sections[selectedSectionIndex].name} 콤비를 클릭해 투표해주세요.
+		</p>
 
-	<div class="candidate-list">
-		{#each duos[sections[selectedSectionIndex].code] as duo}
-			<Candidate value={{ ...duo, rate: 40, section: sections[selectedSectionIndex].name }} />
-		{/each}
-	</div>
-</section>
+		<div class="candidate-list">
+			{#each getRate(sections[selectedSectionIndex]) as duo (duo.id + '-' + duo.rate)}
+				<Candidate value={duo} {setData} />
+			{/each}
+		</div>
+	</section>
+{/if}
 
 <SnsShareBtns
 	message="공유하기"
