@@ -15,6 +15,14 @@
 
 	const SITE_TITLE = '2024년 여성서사 베스트 콤비 어워드';
 
+	const imageGroups = {
+		family: import.meta.glob('$lib/images/best-duo-award-2024/duos/family_*', { eager: true }),
+		friend: import.meta.glob('$lib/images/best-duo-award-2024/duos/friend_*', { eager: true }),
+		rival: import.meta.glob('$lib/images/best-duo-award-2024/duos/rival_*', { eager: true }),
+		romance: import.meta.glob('$lib/images/best-duo-award-2024/duos/romance_*', { eager: true }),
+		obcess: import.meta.glob('$lib/images/best-duo-award-2024/duos/obcess*', { eager: true })
+	};
+
 	const sections = [
 		{
 			name: '가족',
@@ -44,7 +52,7 @@
 				title: '아케인',
 				characters: ['파우더', '바이올렛'],
 				intro:
-					'알 수 없는 폭발로 인해 지상과 지하로 나뉜 도시, 마법 공학이 불러온 혼란 속에서 서로 적이 된 두 자매의 대립',
+					'알 수 없는 폭발 때문에 지상과 지하로 나뉜 도시, 마법 공학이 불러온 혼란 속에서 서로 적이 된 두 자매 파우더와 바이올렛의 대립',
 				story:
 					'바이올렛과 모든 것을 함께하고 싶었던 동생 파우더와 점점 도를 넘는 동생의 행동을 이해할 수 없는 언니 바이올렛'
 			},
@@ -69,7 +77,7 @@
 			{
 				id: 4,
 				title: '브론테',
-				characters: ['에밀리 브론테', '샬롯 브론테'],
+				characters: ['에밀리 브론테', '샬럿 브론테'],
 				intro:
 					'여자가 글을 쓰는 일이 허락되지 않았던 빅토리아 시대, 글을 쓰며 자유를 꿈꾸는 브론테 자매들의 이야기',
 				story:
@@ -252,8 +260,14 @@
 	}
 
 	function getRate(section) {
-		return duos[section.code].map((duo) => ({
+		const groupImages = Object.values(imageGroups[section.code]).map((module) => module.default);
+
+		return duos[section.code].map((duo, index) => ({
 			...duo,
+			images: [
+				groupImages.find((img) => img.includes(`${section.code}_${index + 1}_1`)),
+				groupImages.find((img) => img.includes(`${section.code}_${index + 1}_2`))
+			],
 			rate: data?.[section.code]?.find((e) => e?.duo_id === duo.id)?.rate,
 			section
 		}));

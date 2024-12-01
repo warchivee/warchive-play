@@ -156,8 +156,8 @@
 	</div>
 
 	<div class="images">
-		<img src="https://picsum.photos/150/220" />
-		<img src="https://picsum.photos/150/220" />
+		<img src={value.images[0]} />
+		<img src={value.images[1]} />
 	</div>
 
 	<div class="rate">
