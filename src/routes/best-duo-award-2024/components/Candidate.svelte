@@ -188,7 +188,7 @@
 			margin-bottom: 10px;
 
 			img {
-				width: 50%;
+				width: calc(50% - 1.5px);
 				object-fit: cover;
 			}
 		}
@@ -264,15 +264,16 @@
 			align-items: center;
 			background: rgba(0, 0, 0, 0.9);
 
-			opacity: 0;
 			height: 0;
+			opacity: 0;
 			overflow: hidden;
-			transition: 1s;
+			transition: opacity 0.4s;
 
 			.info {
 				text-align: left;
 				font-size: 0.9rem;
 				padding: 20px;
+				overflow-y: scroll;
 
 				span {
 					font-weight: 700;
@@ -288,7 +289,8 @@
 				flex-direction: column;
 				gap: 5px;
 				width: 80%;
-				margin: 0 auto;
+				margin: 10px auto;
+				flex: 1;
 
 				button:last-child {
 					background: black;
@@ -304,7 +306,6 @@
 		&:hover .hover {
 			opacity: 1;
 			height: 100%;
-			overflow-y: scroll;
 
 			&::-webkit-scrollbar {
 				width: 5px;
