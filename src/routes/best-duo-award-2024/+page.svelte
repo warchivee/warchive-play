@@ -305,7 +305,7 @@
 			<h1>여성서사 베스트 콤비 어워드</h1>
 		</div>
 		<div class="intro">
-			<p>스토리의 중심에서 다채로운 관계를 보여준 여성서사 캐릭터들</p>
+			<p>스토리의 중심에서 다채로운 관계를 보여준 여성서사 캐릭터들.</p>
 			<p>올해 여러분의 마음을 울린 최고의 여성 듀오는 누구인가요?</p>
 		</div>
 	</div>
@@ -315,34 +315,34 @@
 	<p>베스트 콤비 발표일 : 2024년 12월 27일</p>
 </section>
 
-{#if loading || !data}
-	불러오는 중입니다.
-{:else}
-	<section class="bottom">
-		<ul>
-			{#each sections as section, i}
-				<li
-					class={i === selectedSectionIndex ? 'selected' : ''}
-					on:click={() => {
-						selectedSectionIndex = i;
-					}}
-				>
-					{section.name}
-				</li>
-			{/each}
-		</ul>
+<section class="bottom">
+	<ul>
+		{#each sections as section, i}
+			<li
+				class={i === selectedSectionIndex ? 'selected' : ''}
+				on:click={() => {
+					selectedSectionIndex = i;
+				}}
+			>
+				{section.name}
+			</li>
+		{/each}
+	</ul>
 
-		<p>
-			총 4개의 후보 중 마음에 드는 {sections[selectedSectionIndex].name} 콤비를 클릭해 투표해주세요.
-		</p>
+	<p>
+		총 4개의 후보 중 마음에 드는 <u>{sections[selectedSectionIndex].name}</u> 콤비를 클릭해 투표해주세요.
+	</p>
 
+	{#if loading || !data}
+		불러오는 중입니다.
+	{:else}
 		<div class="candidate-list">
-			{#each getRate(sections[selectedSectionIndex]) as duo (duo.id + '-' + duo.rate)}
+			{#each getRate(sections[selectedSectionIndex]) as duo}
 				<Candidate value={duo} {setData} />
 			{/each}
 		</div>
-	</section>
-{/if}
+	{/if}
+</section>
 
 <SnsShareBtns
 	message="공유하기"
@@ -405,7 +405,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: baseline;
-				gap: 7px;
+				gap: 10px;
 			}
 
 			.stars {
@@ -413,19 +413,19 @@
 			}
 
 			.stars .big-star {
-				font-size: 1.2rem;
-			}
-
-			.stars .small-star {
-				font-size: 0.7rem;
-			}
-
-			h2 {
 				font-size: 1.7rem;
 			}
 
-			h1 {
+			.stars .small-star {
+				font-size: 1.2rem;
+			}
+
+			h2 {
 				font-size: 2.5rem;
+			}
+
+			h1 {
+				font-size: 4rem;
 			}
 		}
 	}
@@ -436,6 +436,10 @@
 
 	p {
 		color: rgba(255, 255, 255, 0.6);
+		u {
+			color: rgba(255, 255, 255, 0.6);
+		}
+		text-underline-offset: 3px;
 	}
 
 	h3 {

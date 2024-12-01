@@ -1,41 +1,18 @@
 <script lang="ts">
 	import axios from 'axios';
-	import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
-	import { onMount } from 'svelte';
-	import { quintOut } from 'svelte/easing';
 	import Confirm from './Confirm.svelte';
 	import Snackbar from '$components/Snackbar.svelte';
+	import Progress from './Progress.svelte';
 
 	export let setData;
 
 	export let value = {};
-
-	const progress = tweened(0, {
-		duration: 1000,
-		easing: cubicOut
-	});
-
-	const number = tweened(0, {
-		duration: 2000,
-		easing: quintOut
-	});
 
 	let showModal = false;
 	let loading = false;
 
 	function moveSite() {
 		window.open(`https://www.womynarchive.com?s=${value.title}`);
-	}
-
-	function setRate() {
-		progress.set(0);
-		number.set(0);
-
-		setTimeout(function () {
-			progress.set((value.rate ?? 0) / 100);
-			number.set(value.rate ?? 0);
-		}, 1000);
 	}
 
 	function handleOpen() {
@@ -113,12 +90,6 @@
 	function handleCancel() {
 		showModal = false;
 	}
-
-	onMount(() => {
-		if (value?.rate) {
-			setRate();
-		}
-	});
 </script>
 
 {#if showModal}
@@ -165,10 +136,9 @@
 			<div>{value.title}</div>
 			<div>{value.characters[0]}<span>X</span>{value.characters[1]}</div>
 		</div>
-		<div class="progress">
-			<progress value={$progress}></progress>
-			<div class="percentage">{Math.floor($number)}%</div>
-		</div>
+
+		<!-- rate가 바뀌었을 때 progress 만 재렌더링 하도록 컴포넌트 분리 -->
+		<Progress rate={value?.rate} />
 	</div>
 </div>
 
@@ -222,35 +192,6 @@
 					}
 				}
 			}
-
-			.progress {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-end;
-				font-size: 30px;
-				font-weight: 700;
-				width: 40%;
-
-				@media (max-width: 450px) {
-					font-size: 1.7rem;
-				}
-
-				progress {
-					direction: rtl;
-					appearance: none;
-					width: 100%;
-					height: 8px;
-				}
-
-				progress::-webkit-progress-bar {
-					background-color: transparent;
-					overflow: hidden;
-				}
-
-				progress::-webkit-progress-value {
-					background: rgba(255, 255, 255, 0.6);
-				}
-			}
 		}
 
 		.hover {
@@ -274,6 +215,19 @@
 				font-size: 0.9rem;
 				padding: 20px;
 				overflow-y: scroll;
+
+				&::-webkit-scrollbar {
+					width: 5px;
+				}
+
+				&::-webkit-scrollbar-thumb {
+					background-color: gray;
+					border-radius: 5px;
+				}
+
+				&::-webkit-scrollbar-track {
+					background-color: transparent;
+				}
 
 				span {
 					font-weight: 700;
@@ -306,19 +260,6 @@
 		&:hover .hover {
 			opacity: 1;
 			height: 100%;
-
-			&::-webkit-scrollbar {
-				width: 5px;
-			}
-
-			&::-webkit-scrollbar-thumb {
-				background-color: gray;
-				border-radius: 5px;
-			}
-
-			&::-webkit-scrollbar-track {
-				background-color: transparent;
-			}
 		}
 	}
 </style>
