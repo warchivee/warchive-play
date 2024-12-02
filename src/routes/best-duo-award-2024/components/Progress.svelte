@@ -39,28 +39,41 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;
-		font-size: 30px;
-		font-weight: 700;
-		width: 40%;
+		width: 100%;
 
 		@media (max-width: 450px) {
 			font-size: 1.7rem;
 		}
 
+		.percentage {
+			font-size: 0.9rem;
+			color: white;
+			font-weight: bold;
+			text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+		}
+
 		progress {
-			direction: rtl;
+			/* direction: rtl; */
 			appearance: none;
 			width: 100%;
-			height: 8px;
+			height: 0.7rem;
+		}
+
+		.container {
+			width: 100%;
 		}
 
 		progress::-webkit-progress-bar {
 			background-color: transparent;
 			overflow: hidden;
+
+			background: linear-gradient(145deg, #222, #444);
+			border-radius: 10px;
 		}
 
 		progress::-webkit-progress-value {
-			background: rgba(255, 255, 255, 0.6);
+			background: linear-gradient(90deg, #ffd700, #ffcc00); /* Gold gradient */
+			border-radius: 8px;
 		}
 	}
 </style>

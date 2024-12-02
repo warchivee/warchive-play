@@ -103,93 +103,101 @@
 {/if}
 
 <div class="candidate">
-	<div class="hover">
-		<div class="info">
-			<div>
-				<span>{value.title}</span>
-				<p>
-					{value.intro}
-				</p>
+	<div class="content">
+		<div class="hover">
+			<div class="info">
+				<div>
+					<span>{value.title}</span>
+					<p>
+						{value.intro}
+					</p>
+				</div>
+
+				<div>
+					<span>{value.characters[0]}-{value.characters[1]}</span>
+					<p>
+						{value.story}
+					</p>
+				</div>
 			</div>
 
-			<div>
-				<span>{value.characters[0]}-{value.characters[1]}</span>
-				<p>
-					{value.story}
-				</p>
+			<div class="btns">
+				<button on:click={handleOpen}>투표하기</button>
+				<button on:click={moveSite}>와카이브에서 작품 보기</button>
 			</div>
 		</div>
 
-		<div class="btns">
-			<button on:click={handleOpen}>투표하기</button>
-			<button on:click={moveSite}>와카이브에서 작품 보기</button>
+		<div class="images">
+			<img src={value.images[0]} />
+			<img src={value.images[1]} />
 		</div>
-	</div>
 
-	<div class="images">
-		<img src={value.images[0]} />
-		<img src={value.images[1]} />
-	</div>
-
-	<div class="rate">
 		<div class="title">
 			<div>{value.title}</div>
 			<div>{value.characters[0]}<span>X</span>{value.characters[1]}</div>
 		</div>
-
-		<!-- rate가 바뀌었을 때 progress 만 재렌더링 하도록 컴포넌트 분리 -->
-		<Progress rate={value?.rate} />
 	</div>
+
+	<!-- rate가 바뀌었을 때 progress 만 재렌더링 하도록 컴포넌트 분리 -->
+	<Progress rate={value?.rate} />
 </div>
 
 <Snackbar {message} open={openSnackbar} />
 
 <style>
 	.candidate {
+		display: flex;
+		flex-direction: column;
 		min-width: 290px;
 		width: 100%;
 
-		position: relative;
+		.content {
+			position: relative;
+			flex: 1;
+		}
 
 		.images {
 			display: flex;
 			justify-content: space-between;
 			gap: 3px;
-			margin-bottom: 10px;
+			height: 100%;
 
 			img {
 				width: calc(50% - 1.5px);
 				object-fit: cover;
+				aspect-ratio: 2 / 3;
 			}
 		}
 
-		.rate {
+		.title {
+			padding: 50px 10px 10px 10px;
+
+			background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+
+			position: absolute;
+			bottom: 0;
+			width: 100%;
 			display: flex;
-			justify-content: space-between;
-			align-items: last baseline;
+			flex-direction: column;
+			align-items: flex-start;
+			text-align: right;
+			width: 100%;
 
-			.title {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				text-align: left;
+			div:first-child {
+				color: rgba(255, 255, 255, 0.6);
+			}
 
-				div:first-child {
-					color: rgba(255, 255, 255, 0.6);
+			div:last-child {
+				font-size: 20px;
+				font-weight: 700;
+
+				@media (max-width: 450px) {
+					font-size: 1.13rem;
 				}
 
-				div:last-child {
-					font-size: 20px;
-					font-weight: 700;
-
-					@media (max-width: 450px) {
-						font-size: 1.13rem;
-					}
-
-					span {
-						font-weight: 100;
-						margin: 0 4px;
-					}
+				span {
+					font-weight: 100;
+					margin: 0 4px;
 				}
 			}
 		}

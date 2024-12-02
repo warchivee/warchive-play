@@ -302,10 +302,10 @@
 					<span class="small-star">★</span>
 				</div>
 			</div>
-			<h1>여성서사 베스트 콤비 어워드</h1>
+			<h1>여성서사 <span>베스트 콤비</span> 어워드</h1>
 		</div>
 		<div class="intro">
-			<p>스토리의 중심에서 다채로운 관계를 보여준 여성서사 캐릭터들.</p>
+			<p>스토리의 중심에서 다채로운 관계를 보여준 <span>여성서사 캐릭터들.</span></p>
 			<p>올해 여러분의 마음을 울린 최고의 여성 듀오는 누구인가요?</p>
 		</div>
 	</div>
@@ -329,13 +329,17 @@
 		{/each}
 	</ul>
 
-	<p>
-		총 4개의 후보 중 마음에 드는 <u>{sections[selectedSectionIndex].name}</u> 콤비를 클릭해 투표해주세요.
-	</p>
-
 	{#if loading || !data}
-		불러오는 중입니다.
+		<div class="loading-screen">
+			<div class="spinner"></div>
+			<p class="loading-text">불러오는 중...</p>
+		</div>
 	{:else}
+		<p>
+			총 4개의 후보 중 <span
+				>마음에 드는 <u>{sections[selectedSectionIndex].name}</u> 콤비를 클릭해 투표해주세요.</span
+			>
+		</p>
 		<div class="candidate-list">
 			{#each getRate(sections[selectedSectionIndex]) as duo}
 				<Candidate value={duo} {setData} />
@@ -369,6 +373,15 @@
 		max-width: 1000px;
 		margin: 0 auto;
 		margin-bottom: 70px;
+	}
+
+	h1 > span,
+	p > span {
+		white-space: nowrap;
+	}
+
+	p > span {
+		color: rgba(255, 255, 255, 0.6);
 	}
 
 	section.top {
@@ -413,19 +426,24 @@
 			}
 
 			.stars .big-star {
-				font-size: 1.7rem;
+				font-size: 1.5rem;
 			}
 
 			.stars .small-star {
-				font-size: 1.2rem;
+				font-size: 1rem;
 			}
 
 			h2 {
-				font-size: 2.5rem;
+				font-size: 2rem;
 			}
 
 			h1 {
 				font-size: 4rem;
+
+				@media (max-width: 800px) {
+					width: 300px;
+					margin: 0 auto;
+				}
 			}
 		}
 	}
@@ -483,7 +501,7 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr 1fr;
-		row-gap: 40px;
+		row-gap: 20px;
 		column-gap: 20px;
 	}
 
@@ -500,6 +518,36 @@
 		img {
 			height: 22px;
 			margin: 0 5px;
+		}
+	}
+
+	.loading-screen {
+		text-align: center;
+	}
+
+	.spinner {
+		width: 50px;
+		height: 50px;
+		border: 5px solid #444;
+		border-top: 5px solid #ffd700; /* 원하는 메인 색상으로 변경 */
+		border-radius: 50%;
+		animation: spin 1s linear infinite;
+		margin: 0 auto;
+	}
+
+	.loading-text {
+		margin-top: 20px;
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.9rem;
+	}
+
+	/* Spinner 애니메이션 */
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
 		}
 	}
 </style>
