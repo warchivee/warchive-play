@@ -72,7 +72,6 @@
 	.countdown {
 		display: flex;
 		justify-content: center;
-		font-size: 2rem;
 		font-weight: bold;
 	}
 
@@ -92,6 +91,10 @@
 
 	.time-value {
 		font-size: 2rem;
+
+		@media (max-width: 500px) {
+			font-size: 1.5rem;
+		}
 	}
 
 	.time-unit {

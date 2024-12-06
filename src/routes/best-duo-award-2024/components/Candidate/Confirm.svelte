@@ -1,13 +1,12 @@
 <script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
+
 	export let title = '';
 	export let message = '';
 	export let caution = '';
 	export let loading = false;
 	export let onConfirm = () => {};
 	export let onCancel = () => {};
-
-	// 모달이 열리면 body의 스크롤을 막음
-	import { onMount, onDestroy } from 'svelte';
 
 	async function handleConfirm() {
 		if (loading) return; // 중복 클릭 방지
@@ -28,7 +27,7 @@
 	});
 </script>
 
-<div class="modal" on:click|stopPropagation>
+<div class="modal" on:click|stopPropagation aria-hidden="true">
 	<div class="modal-body">
 		<div class="modal-header">
 			<span>{title}</span>

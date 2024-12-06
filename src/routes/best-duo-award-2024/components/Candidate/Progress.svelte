@@ -37,19 +37,24 @@
 <style>
 	.progress {
 		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
+		flex-direction: row;
+		justify-content: center;
+		align-items: baseline;
+		gap: 5px;
 		width: 100%;
+		margin: 10px 0;
 
 		@media (max-width: 450px) {
 			font-size: 1.7rem;
 		}
 
 		.percentage {
-			font-size: 0.9rem;
+			flex: 1;
+			font-size: 1rem;
 			color: white;
 			font-weight: bold;
 			text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+			line-height: 0.5;
 		}
 
 		progress {

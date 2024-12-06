@@ -1,9 +1,13 @@
 <script lang="ts">
 	import axios from 'axios';
-	import Confirm from './Confirm.svelte';
+
 	import Snackbar from '$components/Snackbar.svelte';
+	import Confirm from './Confirm.svelte';
 	import Progress from './Progress.svelte';
 
+	import VotedImg from '$lib/images/best-duo-award-2024/voted.png';
+
+	export let uuid = null;
 	export let setData;
 
 	export let value = {};
@@ -30,29 +34,9 @@
 		}, 3000);
 	}
 
-	// 어뷰징 방지 위해 ip 이용
-	async function getUUIDbyIp() {
-		try {
-			const response = await axios.get('https://api.ipify.org?format=json');
-			const ip = response.data.ip;
-
-			const ipBuffer = new TextEncoder('utf-8').encode(ip);
-
-			return crypto.subtle.digest('SHA-1', ipBuffer).then((hash) => {
-				const hexArray = Array.from(new Uint8Array(hash));
-				return hexArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
-			});
-		} catch (error) {
-			console.error('UUID 생성 실패', error);
-			throw error;
-		}
-	}
-
 	async function handleConfirm() {
 		try {
 			loading = true;
-
-			const uuid = await getUUIDbyIp();
 
 			const response = await axios.post(
 				'https://script.google.com/macros/s/AKfycbyCJ9pqVZzvsn3-dyKQkCvwP5_o_c7LP0_MxKVBsAca4BCzW5zMqXEIRPudQ8oslMdISw/exec',
@@ -74,7 +58,7 @@
 				message = '투표하였습니다.';
 			}
 
-			setData(response.data?.result);
+			setData(response.data);
 
 			openSnackbarMessage();
 
@@ -103,7 +87,7 @@
 {/if}
 
 <div class="candidate">
-	<div class="content">
+	<div class="content {value.voted ? 'voted' : ''}">
 		<div class="hover">
 			<div class="info">
 				<div>
@@ -121,10 +105,7 @@
 				</div>
 			</div>
 
-			<div class="btns">
-				<button on:click={handleOpen}>투표하기</button>
-				<button on:click={moveSite}>와카이브에서 작품 보기</button>
-			</div>
+			<button on:click={moveSite}>와카이브에서 작품 보기</button>
 		</div>
 
 		<div class="images">
@@ -133,13 +114,22 @@
 		</div>
 
 		<div class="title">
-			<div>{value.title}</div>
-			<div>{value.characters[0]}<span>X</span>{value.characters[1]}</div>
+			<div>
+				{value.title}
+			</div>
+			<div>
+				{value.characters[0]}<span>X</span>{value.characters[1]}
+
+				{#if value.voted}
+					<img class="banner" src={VotedImg} alt="voted" />
+				{/if}
+			</div>
 		</div>
 	</div>
 
-	<!-- rate가 바뀌었을 때 progress 만 재렌더링 하도록 컴포넌트 분리 -->
 	<Progress rate={value?.rate} />
+
+	<button class="vote-btn" on:click={handleOpen}>투표하기</button>
 </div>
 
 <Snackbar {message} open={openSnackbar} />
@@ -156,17 +146,8 @@
 			flex: 1;
 		}
 
-		.images {
-			display: flex;
-			justify-content: space-between;
-			gap: 3px;
-			height: 100%;
-
-			img {
-				width: calc(50% - 1.5px);
-				object-fit: cover;
-				aspect-ratio: 2 / 3;
-			}
+		.content.voted {
+			box-shadow: 0 0 15px #ffd700;
 		}
 
 		.title {
@@ -179,7 +160,7 @@
 			width: 100%;
 			display: flex;
 			flex-direction: column;
-			align-items: flex-start;
+			align-items: center;
 			text-align: right;
 			width: 100%;
 
@@ -191,6 +172,16 @@
 				font-size: 20px;
 				font-weight: 700;
 
+				position: relative;
+
+				.banner {
+					position: absolute;
+					bottom: 10px;
+					width: 40px;
+					height: auto;
+					/* margin-left: 10px; */
+				}
+
 				@media (max-width: 450px) {
 					font-size: 1.13rem;
 				}
@@ -199,6 +190,19 @@
 					font-weight: 100;
 					margin: 0 4px;
 				}
+			}
+		}
+
+		.images {
+			display: flex;
+			justify-content: space-between;
+			gap: 3px;
+			height: 100%;
+
+			img {
+				width: calc(50% - 1.5px);
+				object-fit: cover;
+				aspect-ratio: 2 / 3;
 			}
 		}
 
@@ -213,9 +217,9 @@
 			align-items: center;
 			background: rgba(0, 0, 0, 0.9);
 
-			height: 0;
-			opacity: 0;
 			overflow: hidden;
+
+			opacity: 0;
 			transition: opacity 0.4s;
 
 			.info {
@@ -223,6 +227,13 @@
 				font-size: 0.9rem;
 				padding: 20px;
 				overflow-y: scroll;
+
+				/* 드래그 방지: 모바일에서 클릭 시 자동으로 드래그되어 사용에 불편함*/
+				-ms-user-select: none;
+				-moz-user-select: -moz-none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				user-select: none;
 
 				&::-webkit-scrollbar {
 					width: 5px;
@@ -246,28 +257,31 @@
 				}
 			}
 
-			.btns {
-				display: flex;
-				flex-direction: column;
-				gap: 5px;
-				width: 80%;
+			button {
 				margin: 10px auto;
-				flex: 1;
+				width: 80%;
 
-				button:last-child {
-					background: black;
-					color: white;
-				}
+				visibility: hidden;
 
-				button {
-					width: 100%;
-				}
+				transition: 0.1s 0.1s; /* 모바일에서 버튼 위치 클릭하면 바로 클릭되는 현상 방지 위한 지연*/
 			}
 		}
 
-		&:hover .hover {
+		.vote-btn {
+			width: 100%;
+			border-radius: 20px;
+			background: transparent;
+			border: 1px solid white;
+			color: white;
+			box-shadow: none;
+		}
+
+		.content:hover .hover {
 			opacity: 1;
-			height: 100%;
+
+			button {
+				visibility: visible;
+			}
 		}
 	}
 </style>

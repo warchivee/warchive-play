@@ -6,7 +6,8 @@
 
 	import BaseHead from '$components/BaseHead.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
-	import Candidate from './components/Candidate.svelte';
+
+	import Candidate from './components/Candidate/Candidate.svelte';
 	import Particles from './components/Particles.svelte';
 	import Countdown from './components/Countdown.svelte';
 
@@ -14,14 +15,6 @@
 	import AwardLogo from '$lib/images/best-duo-award-2024/award-logo.png';
 
 	const SITE_TITLE = '2024년 여성서사 베스트 콤비 어워드';
-
-	const imageGroups = {
-		family: import.meta.glob('$lib/images/best-duo-award-2024/duos/family_*', { eager: true }),
-		friend: import.meta.glob('$lib/images/best-duo-award-2024/duos/friend_*', { eager: true }),
-		rival: import.meta.glob('$lib/images/best-duo-award-2024/duos/rival_*', { eager: true }),
-		romance: import.meta.glob('$lib/images/best-duo-award-2024/duos/romance_*', { eager: true }),
-		obcess: import.meta.glob('$lib/images/best-duo-award-2024/duos/obcess*', { eager: true })
-	};
 
 	const sections = [
 		{
@@ -42,9 +35,18 @@
 		},
 		{
 			name: '애증',
-			code: 'obcess'
+			code: 'obsess'
 		}
 	];
+
+	const imageGroups = {
+		family: import.meta.glob('$lib/images/best-duo-award-2024/duos/family/*', { eager: true }),
+		friend: import.meta.glob('$lib/images/best-duo-award-2024/duos/friend/*', { eager: true }),
+		romance: import.meta.glob('$lib/images/best-duo-award-2024/duos/romance/*', { eager: true }),
+		rival: import.meta.glob('$lib/images/best-duo-award-2024/duos/rival/*', { eager: true }),
+		obsess: import.meta.glob('$lib/images/best-duo-award-2024/duos/obsess/*', { eager: true })
+	};
+
 	const duos = {
 		family: [
 			{
@@ -196,7 +198,7 @@
 					'서로를 위하는 방식에 차이는 있지만, 결국 함께 자유를 찾아가며 관계를 발전시키는 체육관 매니저 루와 보디빌딩 대회를 준비하는 잭키'
 			}
 		],
-		obcess: [
+		obsess: [
 			{
 				id: 17,
 				title: '당신이 나를 믿으신다면',
@@ -241,13 +243,14 @@
 	let selectedSectionIndex = 2;
 	let loading = false;
 	let data = {};
+	let uuid = null;
 
 	async function loadData() {
 		try {
 			loading = true;
 
 			const response = await axios.get(
-				'https://script.google.com/macros/s/AKfycbyCJ9pqVZzvsn3-dyKQkCvwP5_o_c7LP0_MxKVBsAca4BCzW5zMqXEIRPudQ8oslMdISw/exec'
+				`https://script.google.com/macros/s/AKfycbyCJ9pqVZzvsn3-dyKQkCvwP5_o_c7LP0_MxKVBsAca4BCzW5zMqXEIRPudQ8oslMdISw/exec?uuid=${uuid}`
 			);
 
 			return response.data;
@@ -265,10 +268,10 @@
 		return duos[section.code].map((duo, index) => ({
 			...duo,
 			images: [
-				groupImages.find((img) => img.includes(`${section.code}_${index + 1}_1`)),
-				groupImages.find((img) => img.includes(`${section.code}_${index + 1}_2`))
+				groupImages.find((img) => img.includes(`${index + 1}_1`)),
+				groupImages.find((img) => img.includes(`${index + 1}_2`))
 			],
-			rate: data?.[section.code]?.find((e) => e?.duo_id === duo.id)?.rate,
+			rate: data?.rates?.[section.code]?.find((e) => e?.duo_id === duo.id)?.rate,
 			section
 		}));
 	}
@@ -277,7 +280,26 @@
 		data = { ...newData };
 	}
 
+	// 어뷰징 방지 위해 ip 이용
+	async function getUUIDbyIp() {
+		try {
+			const response = await axios.get('https://api.ipify.org?format=json');
+			const ip = response.data.ip;
+
+			const ipBuffer = new TextEncoder('utf-8').encode(ip);
+
+			return crypto.subtle.digest('SHA-1', ipBuffer).then((hash) => {
+				const hexArray = Array.from(new Uint8Array(hash));
+				return hexArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
+			});
+		} catch (error) {
+			console.error('UUID 생성 실패', error);
+			throw error;
+		}
+	}
+
 	onMount(async () => {
+		uuid = await getUUIDbyIp();
 		const newData = await loadData(); // 데이터를 로드
 		setData(newData);
 	});
@@ -290,7 +312,7 @@
 <section class="top">
 	<div>
 		<div class="title">
-			<img src={AwardLogo} style="position: relative; z-index: 1;" height="40" />
+			<img src={AwardLogo} style="position: relative; z-index: 1;" height="40" alt="award logo" />
 			<div class="year">
 				<div class="stars">
 					<span class="small-star">★</span>
@@ -302,7 +324,7 @@
 					<span class="small-star">★</span>
 				</div>
 			</div>
-			<h1>여성서사 <span>베스트 콤비</span> 어워드</h1>
+			<h1>여성서사<span>베스트 콤비</span>어워드</h1>
 		</div>
 		<div class="intro">
 			<p>스토리의 중심에서 다채로운 관계를 보여준 <span>여성서사 캐릭터들.</span></p>
@@ -323,13 +345,14 @@
 				on:click={() => {
 					selectedSectionIndex = i;
 				}}
+				aria-hidden="true"
 			>
 				{section.name}
 			</li>
 		{/each}
 	</ul>
 
-	{#if loading || !data}
+	{#if loading || !data || !uuid}
 		<div class="loading-screen">
 			<div class="spinner"></div>
 			<p class="loading-text">불러오는 중...</p>
@@ -340,9 +363,11 @@
 				>마음에 드는 <u>{sections[selectedSectionIndex].name}</u> 콤비를 클릭해 투표해주세요.</span
 			>
 		</p>
+
 		<div class="candidate-list">
 			{#each getRate(sections[selectedSectionIndex]) as duo}
-				<Candidate value={duo} {setData} />
+				{@const votedId = data?.my_vote?.duo_ids?.[sections[selectedSectionIndex].code]}
+				<Candidate {uuid} value={{ ...duo, voted: votedId === duo.id }} {setData} />
 			{/each}
 		</div>
 	{/if}
@@ -375,7 +400,6 @@
 		margin-bottom: 70px;
 	}
 
-	h1 > span,
 	p > span {
 		white-space: nowrap;
 	}
@@ -440,9 +464,14 @@
 			h1 {
 				font-size: 4rem;
 
-				@media (max-width: 800px) {
-					width: 300px;
-					margin: 0 auto;
+				span {
+					margin: 0 15px;
+				}
+
+				@media (max-width: 780px) {
+					span {
+						display: block;
+					}
 				}
 			}
 		}
@@ -475,7 +504,7 @@
 	section.bottom {
 		display: flex;
 		flex-direction: column;
-		gap: 70px;
+		gap: 50px;
 
 		ul {
 			display: flex;
