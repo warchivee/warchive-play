@@ -14,6 +14,51 @@
 	import logo from '$lib/images/logo/logo.png';
 	import AwardLogo from '$lib/images/best-duo-award-2024/award-logo.png';
 
+	import family1_1 from '$lib/images/best-duo-award-2024/duos/family/1_1.jpg';
+	import family1_2 from '$lib/images/best-duo-award-2024/duos/family/1_2.jpg';
+	import family2_1 from '$lib/images/best-duo-award-2024/duos/family/2_1.jpg';
+	import family2_2 from '$lib/images/best-duo-award-2024/duos/family/2_2.jpg';
+	import family3_1 from '$lib/images/best-duo-award-2024/duos/family/3_1.jpg';
+	import family3_2 from '$lib/images/best-duo-award-2024/duos/family/3_2.jpg';
+	import family4_1 from '$lib/images/best-duo-award-2024/duos/family/4_1.jpg';
+	import family4_2 from '$lib/images/best-duo-award-2024/duos/family/4_2.jpg';
+
+	import friend1_1 from '$lib/images/best-duo-award-2024/duos/friend/1_1.jpg';
+	import friend1_2 from '$lib/images/best-duo-award-2024/duos/friend/1_2.jpg';
+	import friend2_1 from '$lib/images/best-duo-award-2024/duos/friend/2_1.jpg';
+	import friend2_2 from '$lib/images/best-duo-award-2024/duos/friend/2_2.jpg';
+	import friend3_1 from '$lib/images/best-duo-award-2024/duos/friend/3_1.jpg';
+	import friend3_2 from '$lib/images/best-duo-award-2024/duos/friend/3_2.jpg';
+	import friend4_1 from '$lib/images/best-duo-award-2024/duos/friend/4_1.jpg';
+	import friend4_2 from '$lib/images/best-duo-award-2024/duos/friend/4_2.jpg';
+
+	import romance1_1 from '$lib/images/best-duo-award-2024/duos/romance/1_1.jpg';
+	import romance1_2 from '$lib/images/best-duo-award-2024/duos/romance/1_2.jpg';
+	import romance2_1 from '$lib/images/best-duo-award-2024/duos/romance/2_1.jpg';
+	import romance2_2 from '$lib/images/best-duo-award-2024/duos/romance/2_2.jpg';
+	import romance3_1 from '$lib/images/best-duo-award-2024/duos/romance/3_1.jpg';
+	import romance3_2 from '$lib/images/best-duo-award-2024/duos/romance/3_2.jpg';
+	import romance4_1 from '$lib/images/best-duo-award-2024/duos/romance/4_1.jpg';
+	import romance4_2 from '$lib/images/best-duo-award-2024/duos/romance/4_2.jpg';
+
+	import rival1_1 from '$lib/images/best-duo-award-2024/duos/rival/1_1.jpg';
+	import rival1_2 from '$lib/images/best-duo-award-2024/duos/rival/1_2.jpg';
+	import rival2_1 from '$lib/images/best-duo-award-2024/duos/rival/2_1.jpg';
+	import rival2_2 from '$lib/images/best-duo-award-2024/duos/rival/2_2.jpg';
+	import rival3_1 from '$lib/images/best-duo-award-2024/duos/rival/3_1.jpg';
+	import rival3_2 from '$lib/images/best-duo-award-2024/duos/rival/3_2.jpg';
+	import rival4_1 from '$lib/images/best-duo-award-2024/duos/rival/4_1.jpg';
+	import rival4_2 from '$lib/images/best-duo-award-2024/duos/rival/4_2.jpg';
+
+	import obsess1_1 from '$lib/images/best-duo-award-2024/duos/obsess/1_1.jpg';
+	import obsess1_2 from '$lib/images/best-duo-award-2024/duos/obsess/1_2.jpg';
+	import obsess2_1 from '$lib/images/best-duo-award-2024/duos/obsess/2_1.jpg';
+	import obsess2_2 from '$lib/images/best-duo-award-2024/duos/obsess/2_2.jpg';
+	import obsess3_1 from '$lib/images/best-duo-award-2024/duos/obsess/3_1.jpg';
+	import obsess3_2 from '$lib/images/best-duo-award-2024/duos/obsess/3_2.jpg';
+	import obsess4_1 from '$lib/images/best-duo-award-2024/duos/obsess/4_1.jpg';
+	import obsess4_2 from '$lib/images/best-duo-award-2024/duos/obsess/4_2.jpg';
+
 	const SITE_TITLE = '2024년 여성서사 베스트 콤비 어워드';
 
 	const sections = [
@@ -53,6 +98,7 @@
 				id: 1,
 				title: '아케인',
 				characters: ['파우더', '바이올렛'],
+				images: [family1_1, family1_2],
 				intro:
 					'알 수 없는 폭발 때문에 지상과 지하로 나뉜 도시, 마법 공학이 불러온 혼란 속에서 서로 적이 된 두 자매 파우더와 바이올렛의 대립',
 				story:
@@ -62,6 +108,7 @@
 				id: 2,
 				title: '위국일기',
 				characters: ['코다이 마키오', '타쿠미 아사'],
+				images: [family2_1, family2_2],
 				intro:
 					'갑작스러운 사고로 고아가 된 16살 타쿠미 아사. 안타까운 사정을 알게 된 이모 마키오가 자신의 집으로 아사를 데려오며 시작되는 가족 성장물',
 				story:
@@ -71,6 +118,7 @@
 				id: 3,
 				title: '똑 닮은 딸',
 				characters: ['길소명', '명소민'],
+				images: [family3_1, family3_2],
 				intro:
 					'겉으로는 완벽하고 부러운 것 없어 보이는 엄마와 딸, 속을 들여다보면 이보다 치열하고 잔혹할 수 없는 가족 심리 스릴러',
 				story:
@@ -80,6 +128,7 @@
 				id: 4,
 				title: '브론테',
 				characters: ['에밀리 브론테', '샬럿 브론테'],
+				images: [family4_1, family4_2],
 				intro:
 					'여자가 글을 쓰는 일이 허락되지 않았던 빅토리아 시대, 글을 쓰며 자유를 꿈꾸는 브론테 자매들의 이야기',
 				story:
@@ -91,6 +140,7 @@
 				id: 5,
 				title: '룩백',
 				characters: ['후지노', '쿄모토'],
+				images: [friend1_1, friend1_2],
 				intro:
 					'학교 신문에 네 컷 만화를 연재하는 후지노와 그의 팬인 그림 천재 쿄모토의 성장 이야기',
 				story:
@@ -100,6 +150,7 @@
 				id: 6,
 				title: '빅토리',
 				characters: ['추필선', '장미나'],
+				images: [friend2_1, friend2_2],
 				intro:
 					'연습실을 얻기 위해 시작한 치어리딩, 하지만 점점 더 진심이 되어가며 우리 모두를 응원하는 거제상고 밀레니엄 걸즈의 성장기',
 				story:
@@ -109,6 +160,7 @@
 				id: 7,
 				title: '나이애드의 다섯 번째 파도',
 				characters: ['다이애나 나이애드', '보니 스톨'],
+				images: [friend3_1, friend3_2],
 				intro:
 					'다이애나 나이애드의 평생의 꿈, 쿠바-플로리다 맨몸 수영 바다 종단! 60세에 다시 시작된 그의 찬란한 도전기',
 				story:
@@ -118,6 +170,7 @@
 				id: 8,
 				title: '일립예고 학생들',
 				characters: ['유소이', '한솔'],
+				images: [friend4_1, friend4_2],
 				intro:
 					'저마다의 개성이 뚜렷한 학생들이 일립예고에 입학하며 자신이 사랑하는 예술을 찾아가는 이야기',
 				story:
@@ -129,6 +182,7 @@
 				id: 9,
 				title: '정년이',
 				characters: ['허영서', '윤정년'],
+				images: [rival1_1, rival1_2],
 				intro:
 					'‘여성국극’을 소재로 한 시대극이자, 최고의 국극 배우가 되기 위해 상경한 윤정년과 매란국극단원들의 성장 서사',
 				story:
@@ -138,6 +192,7 @@
 				id: 10,
 				title: '카산드라',
 				characters: ['카산드라', '헬레네'],
+				images: [rival2_1, rival2_2],
 				intro:
 					'트로이 전쟁이라는 역사적 사건을 카산드라와 헬레네라는 여성 인물의 관점으로 재해석한 뛰어난 정치·전략물',
 				story:
@@ -147,6 +202,7 @@
 				id: 11,
 				title: '강철부대W',
 				characters: ['박보람', '양해주'],
+				images: [rival3_1, rival3_2],
 				intro:
 					'최정예 군인 예비역들이 오로지 여성들로만 구성된 팀을 이뤄 출신 부대의 명예를 걸고 싸우는 밀리터리 서바이벌 프로그램',
 				story:
@@ -156,6 +212,7 @@
 				id: 12,
 				title: '자매전쟁',
 				characters: ['원리온', '원해라'],
+				images: [rival4_1, rival4_2],
 				intro:
 					'예술고등학교에서 1, 2등을 다투는 두 사람이 자매가 되면서 시작되는 경쟁과 하나둘 밝혀지는 비밀들',
 				story:
@@ -167,6 +224,7 @@
 				id: 13,
 				title: '해적',
 				characters: ['메리', '앤'],
+				images: [romance1_1, romance1_2],
 				intro:
 					'해적들의 황금시대, 바다를 동경하는 소년 루이스가 캡틴 잭, 총잡이 앤과 검투사 메리를 만나 해적선을 타고 보물섬으로 향하는 여정',
 				story:
@@ -176,6 +234,7 @@
 				id: 14,
 				title: '정년이',
 				characters: ['윤정년', '권부용'],
+				images: [romance2_1, romance2_2],
 				intro:
 					'‘여성국극’을 소재로 한 시대극이자, 최고의 국극 배우가 되기 위해 상경한 윤정년과 매란국극단원들의 성장 서사',
 				story: '팬과 국극 배우로 시작된 관계지만 함께 성장하며 그 이상으로 서로를 사랑하게 되는 둘'
@@ -184,6 +243,7 @@
 				id: 15,
 				title: '아케인',
 				characters: ['바이올렛', '케이틀린'],
+				images: [romance3_1, romance3_2],
 				intro:
 					'알 수 없는 폭발 때문에 지상과 지하로 나뉜 도시, 마법 공학이 불러온 혼란 속에서 서로 적이 된 두 자매의 대립',
 				story:
@@ -193,6 +253,7 @@
 				id: 16,
 				title: '러브 라이즈 블리딩',
 				characters: ['루', '잭키'],
+				images: [romance4_1, romance4_2],
 				intro: '1980년대 후반 미국 뉴멕시코의 한 체육관을 배경으로 하는 피땀 로맨스 서사',
 				story:
 					'서로를 위하는 방식에 차이는 있지만, 결국 함께 자유를 찾아가며 관계를 발전시키는 체육관 매니저 루와 보디빌딩 대회를 준비하는 잭키'
@@ -203,6 +264,7 @@
 				id: 17,
 				title: '당신이 나를 믿으신다면',
 				characters: ['박수민', '경가나'],
+				images: [obsess1_1, obsess1_2],
 				intro:
 					'사이비 종교인 진리선도계천교의 신자 경가나와 의도치 않게 엮여버린 박수민의 사이비 종교 탈출기',
 				story:
@@ -212,6 +274,7 @@
 				id: 18,
 				title: '타원을 그리는 법',
 				characters: ['유영애', '서미연'],
+				images: [obsess2_1, obsess2_2],
 				intro:
 					'평범한 직장인 유주하부터 ML제약 회장의 딸 유영애까지, 여자를 사랑하는 여자들과 어딘가 수상한 ML제약',
 				story:
@@ -221,6 +284,7 @@
 				id: 19,
 				title: '공동급식구역',
 				characters: ['라이타', '가솔린'],
+				images: [obsess3_1, obsess3_2],
 				intro:
 					'먹는 게 중요할 나이, 급식을 쟁탈하기 위해 폭력은 옳지 않지만 대화가 통하지 않는다면 무력으로 제패하는 소년 만화의 정석',
 				story:
@@ -230,6 +294,7 @@
 				id: 20,
 				title: '애증화음',
 				characters: ['선경화', '최인정'],
+				images: [obsess4_1, obsess4_2],
 				intro:
 					'서화예술고등학교 피아노과에서 수석과 차석을 다투는 최인정과 선경화의 치열한 경쟁과 성장 이야기',
 				story:
@@ -263,14 +328,8 @@
 	}
 
 	function getRate(section) {
-		const groupImages = Object.values(imageGroups[section.code]).map((module) => module.default);
-
 		return duos[section.code].map((duo, index) => ({
 			...duo,
-			images: [
-				groupImages.find((img) => img.includes(`${index + 1}_1`)),
-				groupImages.find((img) => img.includes(`${index + 1}_2`))
-			],
 			rate: data?.rates?.[section.code]?.find((e) => e?.duo_id === duo.id)?.rate,
 			section
 		}));
