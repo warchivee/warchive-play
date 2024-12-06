@@ -240,7 +240,7 @@
 
 	const today = new Date();
 
-	let selectedSectionIndex = 2;
+	let selectedSectionIndex = 0;
 	let loading = false;
 	let data = {};
 	let uuid = null;
