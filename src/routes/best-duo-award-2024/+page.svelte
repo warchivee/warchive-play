@@ -360,7 +360,7 @@
 	{:else}
 		<p>
 			총 4개의 후보 중 <span
-				>마음에 드는 <u>{sections[selectedSectionIndex].name}</u> 콤비를 클릭해 투표해주세요.</span
+				>마음에 드는 <u>{sections[selectedSectionIndex].name}</u> 콤비에 투표해주세요.</span
 			>
 		</p>
 

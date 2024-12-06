@@ -78,9 +78,9 @@
 
 {#if showModal}
 	<Confirm
-		title="2024 여성서사 베스트 콤비 - {value.section.name} 부문"
-		message="{value.title} | {value.characters[0]}x{value.characters[1]} 콤비에 투표하시겠습니까?"
-		caution="*비정상적인 투표는 합산되지 않습니다."
+		section={value.section.name}
+		title={value.title}
+		duo={value.characters}
 		onConfirm={handleConfirm}
 		onCancel={handleCancel}
 	/>

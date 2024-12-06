@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
+	export let section = '';
 	export let title = '';
-	export let message = '';
-	export let caution = '';
+	export let duo = '';
 	export let loading = false;
 	export let onConfirm = () => {};
 	export let onCancel = () => {};
@@ -30,15 +30,15 @@
 <div class="modal" on:click|stopPropagation aria-hidden="true">
 	<div class="modal-body">
 		<div class="modal-header">
-			<span>{title}</span>
+			<span>2024 여성서사 베스트 콤비 - {section} 부문</span>
 		</div>
 		<div class="modal-content">
-			<div>
-				{message}
+			<div class="message">
+				<div>{title}</div>
+				<div>{duo[0]}<span>X</span>{duo[1]}</div>
+				<div>콤비에 투표하시겠습니까?</div>
 			</div>
-			<div class="caution">
-				{caution}
-			</div>
+			<div class="caution">*비정상적인 투표는 합산되지 않습니다.</div>
 		</div>
 
 		<div class="modal-btn">
@@ -73,6 +73,11 @@
 	}
 
 	.modal-body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
 		max-width: 420px;
 		width: 80%;
 		background: white;
@@ -84,13 +89,11 @@
 	}
 
 	.modal-header {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
 		font-weight: 800;
-		font-size: 1.2rem;
+		font-size: 1rem;
 		margin-top: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #333;
 	}
 
 	.modal-content {
@@ -103,8 +106,34 @@
 		text-align: left;
 	}
 
+	.message {
+		width: 100%;
+		text-align: center;
+
+		div:first-child,
+		div:last-child {
+			font-size: 1rem;
+			font-weight: 400;
+		}
+
+		div:nth-child(2) {
+			font-size: 1.5rem;
+			font-weight: 700;
+			margin: 10px 0;
+
+			span {
+				font-weight: 200;
+				margin: 0 5px;
+			}
+
+			@media (max-width: 380px) {
+				font-size: 1.3rem;
+			}
+		}
+	}
+
 	.caution {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		opacity: 0.7;
 	}
 
@@ -115,14 +144,15 @@
 	.modal-btn {
 		width: 100%;
 		display: flex;
-		justify-content: flex-end;
+		justify-content: center;
+		align-items: center;
 		gap: 10px;
 
 		& > button {
 			margin: 0;
 			padding: 0;
 			height: 35px;
-			width: 100px;
+			flex: 1;
 		}
 	}
 
