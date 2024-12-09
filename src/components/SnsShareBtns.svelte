@@ -9,8 +9,11 @@
 	// 글자수 늘어나는 이슈로 encodeURIComponent 대신 &만 인코딩하는 방식으로 수정
 	const encodeUrl = url?.replaceAll('&', '%26');
 
+	export let message = '친구들에게 결과 공유하기';
+
 	export let title = '';
 	export let content = '';
+	export let color = 'black';
 
 	export let hashtags = '';
 	export let image = '';
@@ -68,7 +71,7 @@
 </script>
 
 <section>
-	<p class="font-bold">친구에게 결과 공유하기</p>
+	<p class="font-bold" style="color: {color};">{message}</p>
 	<div class="btns">
 		<i class="fa-solid fa-link" on:click={shareLink} aria-hidden="true"></i>
 		<i class="fa-brands fa-x-twitter" on:click={shareX} aria-hidden="true"></i>

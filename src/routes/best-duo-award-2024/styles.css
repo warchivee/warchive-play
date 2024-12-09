@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	background-attachment: fixed;
+	background-size: 100vw 100vh;
+	background: rgb(22, 11, 29);
+	background: linear-gradient(0deg, rgba(22, 11, 29, 1) 50%, rgba(88, 0, 144, 1) 100%);
+
+	font-family: 'Noto Sans KR', serif;
+	letter-spacing: -0.5px;
+	word-break: keep-all;
+
+	position: relative;
+	padding: 10px;
+	padding-top: 150px;
+}
+
+button {
+	padding: 7px 40px;
+	font-family: 'Noto Sans KR', serif;
+	border-radius: 5px;
+	font-weight: 700;
+	background: white;
+	color: black;
+	margin: 0 auto;
+	border: none;
+	transition: 0.5s;
+	cursor: pointer;
+	box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+button:hover {
+	background: rgba(255, 255, 255, 0.6);
+}
+
+body::before {
+	content: '';
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%; /* 가로 크기 */
+	height: 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: top;
+	background-image: url('/src/lib/images/best-duo-award-2024/light.png');
+	pointer-events: none;
+	opacity: 0.5;
+}
