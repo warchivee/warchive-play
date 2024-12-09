@@ -52,11 +52,7 @@
 				}
 			);
 
-			if (response.data?.action === 'UPDATE') {
-				message = '기존 투표 내용을 수정하였습니다.';
-			} else {
-				message = '투표하였습니다.';
-			}
+			message = '투표하였습니다.';
 
 			setData(response.data);
 
