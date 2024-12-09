@@ -7,6 +7,7 @@
 
 	import VotedImg from '$lib/images/best-duo-award-2024/voted.png';
 
+	export let hasParticipated = false;
 	export let uuid = null;
 	export let setData;
 
@@ -126,7 +127,7 @@
 	<Progress rate={value?.rate} />
 
 	<button class="vote-btn" disabled={value.voted} on:click={handleOpen}
-		>{value.voted ? '투표 완료' : '투표 변경하기'}</button
+		>{value.voted ? '투표 완료' : hasParticipated ? '투표 변경하기' : '투표하기'}</button
 	>
 </div>
 

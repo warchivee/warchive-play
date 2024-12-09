@@ -428,7 +428,12 @@
 		<div class="candidate-list">
 			{#each getRate(sections[selectedSectionIndex]) as duo}
 				{@const votedId = data?.my_vote?.duo_ids?.[sections[selectedSectionIndex].code]}
-				<Candidate {uuid} value={{ ...duo, voted: votedId === duo.id }} {setData} />
+				<Candidate
+					{uuid}
+					hasParticipated={data?.my_vote ? true : false}
+					value={{ ...duo, voted: votedId === duo.id }}
+					{setData}
+				/>
 			{/each}
 		</div>
 	{/if}
