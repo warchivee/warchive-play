@@ -125,7 +125,9 @@
 
 	<Progress rate={value?.rate} />
 
-	<button class="vote-btn" on:click={handleOpen}>투표하기</button>
+	<button class="vote-btn" disabled={value.voted} on:click={handleOpen}
+		>{value.voted ? '투표 완료' : '투표 변경하기'}</button
+	>
 </div>
 
 <Snackbar {message} open={openSnackbar} />
@@ -270,6 +272,12 @@
 			border: 1px solid white;
 			color: white;
 			box-shadow: none;
+		}
+
+		.vote-btn:disabled {
+			border: 1px solid #ffd700;
+			color: #ffd700;
+			cursor: default;
 		}
 
 		.content:hover .hover {
