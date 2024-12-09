@@ -6,7 +6,7 @@
 	let minutes = 0;
 	let seconds = 0;
 
-	const targetDate = new Date('2024-12-27T00:00:00+09:00'); // 한국 시간
+	const targetDate = new Date('2024-12-26T23:59:00+09:00'); // 한국 시간
 
 	// 카운트다운 업데이트 함수
 	function updateCountdown() {
