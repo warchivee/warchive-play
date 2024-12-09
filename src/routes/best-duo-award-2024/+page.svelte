@@ -442,7 +442,7 @@
 <SnsShareBtns
 	message="공유하기"
 	title={SITE_TITLE}
-	content="올해 여러분의 마음을 울린 최고의 여성 듀오는 누구인가요?"
+	content=" - 올해 여러분의 마음을 울린 최고의 여성 듀오는 누구인가요?"
 	hashtags="와카이브,여성서사베스트콤비어워드,여성서사"
 	image={''}
 	color="white"
