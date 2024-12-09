@@ -14,6 +14,7 @@
 	import logo from '$lib/images/logo/logo.png';
 	import AwardLogo from '$lib/images/best-duo-award-2024/award-logo.png';
 
+	// 이미지 동적 할당 시 제대로 매핑되지 않는 이슈로 import 문 작성
 	import family1_1 from '$lib/images/best-duo-award-2024/duos/family/1_1.jpg';
 	import family1_2 from '$lib/images/best-duo-award-2024/duos/family/1_2.jpg';
 	import family2_1 from '$lib/images/best-duo-award-2024/duos/family/2_1.jpg';
@@ -59,7 +60,8 @@
 	import obsess4_1 from '$lib/images/best-duo-award-2024/duos/obsess/4_1.jpg';
 	import obsess4_2 from '$lib/images/best-duo-award-2024/duos/obsess/4_2.jpg';
 
-	const SITE_TITLE = '2024년 여성서사 베스트 콤비 어워드';
+	const SITE_TITLE = '2024 여성서사 베스트 콤비 어워드';
+	const SITE_THUMBNAIL = 'https://i.ibb.co/ZHHWR0R/thumb-award.png';
 
 	const sections = [
 		{
@@ -364,7 +366,7 @@
 	});
 </script>
 
-<BaseHead title={SITE_TITLE} image="" />
+<BaseHead title={SITE_TITLE} image={SITE_THUMBNAIL} />
 
 <Particles />
 
