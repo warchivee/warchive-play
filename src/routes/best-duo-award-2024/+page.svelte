@@ -431,7 +431,7 @@
 				<Candidate
 					{uuid}
 					voted={votedId ? true : false}
-					value={{ ...duo, seledted: votedId === duo.id }}
+					value={{ ...duo, selected: votedId === duo.id }}
 					{setData}
 				/>
 			{/each}
