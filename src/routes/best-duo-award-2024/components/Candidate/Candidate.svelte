@@ -7,7 +7,7 @@
 
 	import VotedImg from '$lib/images/best-duo-award-2024/voted.png';
 
-	export let hasParticipated = false;
+	export let voted = false;
 	export let uuid = null;
 	export let setData;
 
@@ -84,7 +84,7 @@
 {/if}
 
 <div class="candidate">
-	<div class="content {value.voted ? 'voted' : ''}">
+	<div class="content {value.selected ? 'selected' : ''}">
 		<div class="hover">
 			<div class="info">
 				<div>
@@ -117,7 +117,7 @@
 			<div>
 				{value.characters[0]}<span>X</span>{value.characters[1]}
 
-				{#if value.voted}
+				{#if value.selected}
 					<img class="banner" src={VotedImg} alt="voted" />
 				{/if}
 			</div>
@@ -126,8 +126,8 @@
 
 	<Progress rate={value?.rate} />
 
-	<button class="vote-btn" disabled={value.voted} on:click={handleOpen}
-		>{value.voted ? '투표 완료' : hasParticipated ? '투표 변경하기' : '투표하기'}</button
+	<button class="vote-btn" disabled={value.selected} on:click={handleOpen}
+		>{value.selected ? '투표 완료' : voted ? '투표 변경하기' : '투표하기'}</button
 	>
 </div>
 
@@ -145,7 +145,7 @@
 			flex: 1;
 		}
 
-		.content.voted {
+		.content.selected {
 			box-shadow: 0 0 15px #ffd700;
 		}
 

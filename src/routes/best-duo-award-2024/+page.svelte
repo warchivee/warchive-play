@@ -430,8 +430,8 @@
 				{@const votedId = data?.my_vote?.duo_ids?.[sections[selectedSectionIndex].code]}
 				<Candidate
 					{uuid}
-					hasParticipated={data?.my_vote ? true : false}
-					value={{ ...duo, voted: votedId === duo.id }}
+					voted={votedId ? true : false}
+					value={{ ...duo, seledted: votedId === duo.id }}
 					{setData}
 				/>
 			{/each}
