@@ -7,7 +7,7 @@
 	import BaseHead from '$components/BaseHead.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 
-	import Candidate from '../components/Candidate/Candidate.svelte';
+	import CandidateResult from '../components/Candidate/CandidateResult.svelte';
 	import Winner from '../components/Candidate/Winner.svelte';
 	import Particles from '../components/Particles.svelte';
 
@@ -313,6 +313,7 @@
 	let loading = false;
 	let data = {};
 	let topData = {};
+	let uuid = null;
 
 	async function loadData() {
 		try {
@@ -354,6 +355,24 @@
 				images: duoDetails.images
 			};
 		});
+	}
+
+	// 어뷰징 방지 위해 ip 이용
+	async function getUUIDbyIp() {
+		try {
+			const response = await axios.get('https://api.ipify.org?format=json');
+			const ip = response.data.ip;
+
+			const ipBuffer = new TextEncoder('utf-8').encode(ip);
+
+			return crypto.subtle.digest('SHA-1', ipBuffer).then((hash) => {
+				const hexArray = Array.from(new Uint8Array(hash));
+				return hexArray.map((byte) => byte.toString(16).padStart(2, '0')).join('');
+			});
+		} catch (error) {
+			console.error('UUID 생성 실패', error);
+			throw error;
+		}
 	}
 
 	onMount(async () => {
@@ -398,14 +417,53 @@
 		<p>참여해 주셔서 감사합니다</p>
 		<img src={PatternDown} alt="pattern" />
 	</div>
-	{#each topData as { category, title, characters, images }}
-		<Winner {category} {title} {characters} {images} />
-	{/each}
+	{#if loading || !data}
+		<div class="loading-screen">
+			<div class="spinner"></div>
+			<p class="loading-text">불러오는 중...</p>
+		</div>
+	{:else}
+		{#each topData as { category, title, characters, images }}
+			<Winner {category} {title} {characters} {images} />
+		{/each}
+	{/if}
 </section>
 
 <section class="bottom">
 	<p>각 부문 후보들 득표율 보기</p>
-	<div class="candidate-list"></div>
+
+	<ul>
+		{#each sections as section, i}
+			<li
+				class={i === selectedSectionIndex ? 'selected' : ''}
+				on:click={() => {
+					selectedSectionIndex = i;
+				}}
+				aria-hidden="true"
+			>
+				{section.name}
+			</li>
+		{/each}
+	</ul>
+
+	{#if loading || !data}
+		<div class="loading-screen">
+			<div class="spinner"></div>
+			<p class="loading-text">불러오는 중...</p>
+		</div>
+	{:else}
+		<div class="candidate-list">
+			{#each getRate(sections[selectedSectionIndex]) as duo}
+				{@const votedId = data?.my_vote?.duo_ids?.[sections[selectedSectionIndex].code]}
+				<CandidateResult
+					{uuid}
+					voted={votedId ? true : false}
+					value={{ ...duo, selected: votedId === duo.id }}
+					{setData}
+				/>
+			{/each}
+		</div>
+	{/if}
 </section>
 
 <SnsShareBtns
