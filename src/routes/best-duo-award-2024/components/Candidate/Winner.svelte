@@ -4,29 +4,49 @@
 	import PatternRight from '$lib/images/best-duo-award-2024/pattern_right.png';
 
 	export let category;
-	export let title;
-	export let characters;
-	export let images;
+	export let details;
+
+	function moveSite() {
+		window.open(`https://www.womynarchive.com?s=${details.title}`);
+	}
 </script>
 
 <div class="winner-container">
 	<img src={Crown} alt="crown" />
 	<div class="duo-section">{category} 부문 베스트 콤비</div>
 	<div class="duo-container">
-		<img src={images[0]} alt="Left character" />
-		<img src={images[1]} alt="Right character" />
+		<img src={details.images[0]} alt="Left character" />
+		<img src={details.images[1]} alt="Right character" />
 		<div class="title">
 			<p>
 				<img src={PatternLeft} alt="pattern" />
-				{title}
+				{details.title}
 				<img src={PatternRight} alt="pattern" />
 			</p>
+		</div>
+
+		<div class="hover">
+			<div class="info">
+				<div>
+					<span>{details.title}</span>
+					<p>
+						{details.intro}
+					</p>
+				</div>
+				<div>
+					<span>{details.characters[0]}-{details.characters[1]}</span>
+					<p>
+						{details.story}
+					</p>
+				</div>
+			</div>
+			<button on:click={moveSite}>와카이브에서 작품 보기</button>
 		</div>
 	</div>
 	<hr />
 	<div class="characters">
-		{characters[0]} <span>X</span>
-		{characters[1]}
+		{details.characters[0]} <span>X</span>
+		{details.characters[1]}
 	</div>
 	<hr />
 </div>
@@ -105,6 +125,75 @@
 						margin: 0 8px;
 					}
 				}
+			}
+
+			.hover {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background: rgba(0, 0, 0, 0.9);
+
+				overflow: hidden;
+
+				opacity: 0;
+				transition: opacity 0.4s;
+
+				.info {
+					text-align: left;
+					font-size: 0.9rem;
+					padding: 20px;
+					overflow-y: scroll;
+
+					/* 드래그 방지: 모바일에서 클릭 시 자동으로 드래그되어 사용에 불편함*/
+					-ms-user-select: none;
+					-moz-user-select: -moz-none;
+					-webkit-user-select: none;
+					-khtml-user-select: none;
+					user-select: none;
+
+					&::-webkit-scrollbar {
+						width: 5px;
+					}
+
+					&::-webkit-scrollbar-thumb {
+						background-color: gray;
+						border-radius: 5px;
+					}
+
+					&::-webkit-scrollbar-track {
+						background-color: transparent;
+					}
+
+					span {
+						font-weight: 700;
+					}
+
+					p {
+						margin-bottom: 20px;
+					}
+				}
+
+				button {
+					margin: 10px auto;
+					width: 80%;
+
+					visibility: hidden;
+
+					transition: 0.1s 0.1s; /* 모바일에서 버튼 위치 클릭하면 바로 클릭되는 현상 방지 위한 지연*/
+				}
+			}
+		}
+
+		.duo-container:hover .hover {
+			opacity: 1;
+
+			button {
+				visibility: visible;
 			}
 		}
 

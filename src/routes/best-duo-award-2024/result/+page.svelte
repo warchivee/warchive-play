@@ -350,9 +350,7 @@
 			const duoDetails = duos[category].find((duo) => duo.id === topDuos.duo_id);
 			return {
 				category: sectionName,
-				title: duoDetails.title,
-				characters: duoDetails.characters,
-				images: duoDetails.images
+				details: duoDetails
 			};
 		});
 	}
@@ -417,14 +415,14 @@
 		<p>참여해 주셔서 감사합니다</p>
 		<img src={PatternDown} alt="pattern" />
 	</div>
-	{#if loading || !data}
+	{#if loading || !topData || !uuid}
 		<div class="loading-screen">
 			<div class="spinner"></div>
 			<p class="loading-text">불러오는 중...</p>
 		</div>
 	{:else}
-		{#each topData as { category, title, characters, images }}
-			<Winner {category} {title} {characters} {images} />
+		{#each topData as { category, details }}
+			<Winner {category} {details} />
 		{/each}
 	{/if}
 </section>
@@ -446,7 +444,7 @@
 		{/each}
 	</ul>
 
-	{#if loading || !data}
+	{#if loading || !data || !uuid}
 		<div class="loading-screen">
 			<div class="spinner"></div>
 			<p class="loading-text">불러오는 중...</p>
