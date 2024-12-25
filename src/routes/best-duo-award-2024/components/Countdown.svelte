@@ -5,10 +5,9 @@
 	let hours = 0;
 	let minutes = 0;
 	let seconds = 0;
-	let isCountdownOver = false; // false
 
-	// const targetDate = new Date('2024-12-26T23:59:00+09:00'); // 한국 시간
-	const targetDate = new Date('2024-12-24T23:59:00+09:00'); // 한국 시간
+	const targetDate = new Date('2024-12-26T23:59:00+09:00'); // 한국 시간
+	let isCountdownOver = targetDate - new Date() <= 0 ? true : false;
 
 	// 카운트다운 업데이트 함수
 	function updateCountdown() {
@@ -16,7 +15,6 @@
 		const timeLeft = targetDate - now;
 
 		if (timeLeft <= 0) {
-			isCountdownOver = true;
 			clearInterval(interval);
 			return;
 		}

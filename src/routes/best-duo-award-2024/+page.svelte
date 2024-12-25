@@ -413,7 +413,8 @@
 		{/each}
 	</ul>
 
-	{#if loading || !data || !uuid}
+	<!-- {#if loading || !data || !uuid} -->
+	{#if loading || !data}
 		<div class="loading-screen">
 			<div class="spinner"></div>
 			<p class="loading-text">불러오는 중...</p>

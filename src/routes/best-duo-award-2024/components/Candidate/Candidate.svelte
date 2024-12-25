@@ -13,6 +13,9 @@
 
 	export let value = {};
 
+	const targetDate = new Date('2024-12-26T23:59:00+09:00'); // 한국 시간
+	let isCountdownOver = targetDate - new Date() <= 0 ? true : false;
+
 	let showModal = false;
 	let loading = false;
 
@@ -126,9 +129,11 @@
 
 	<Progress rate={value?.rate} />
 
-	<button class="vote-btn" disabled={value.selected} on:click={handleOpen}
-		>{value.selected ? '투표 완료' : voted ? '투표 변경하기' : '투표하기'}</button
-	>
+	{#if !isCountdownOver}
+		<button class="vote-btn" disabled={value.selected} on:click={handleOpen}
+			>{value.selected ? '투표 완료' : voted ? '투표 변경하기' : '투표하기'}</button
+		>
+	{/if}
 </div>
 
 <Snackbar {message} open={openSnackbar} />
