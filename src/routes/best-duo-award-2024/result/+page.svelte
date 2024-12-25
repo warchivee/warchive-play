@@ -412,10 +412,11 @@
 	<div class="pattern-container">
 		<img src={PatternUp} alt="pattern" />
 		<div class="pattern-title">투표 결과 발표</div>
-		<p>참여해 주셔서 감사합니다</p>
+		<p>참여해 주셔서 감사합니다.</p>
 		<img src={PatternDown} alt="pattern" />
 	</div>
 	{#if loading || !topData || !uuid}
+		<br /><br />
 		<div class="loading-screen">
 			<div class="spinner"></div>
 			<p class="loading-text">불러오는 중...</p>
