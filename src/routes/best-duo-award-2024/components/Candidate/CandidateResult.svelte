@@ -2,7 +2,6 @@
 	import axios from 'axios';
 
 	import Snackbar from '$components/Snackbar.svelte';
-	import Confirm from './Confirm.svelte';
 	import Progress from './Progress.svelte';
 
 	import VotedImg from '$lib/images/best-duo-award-2024/voted.png';
@@ -13,78 +12,12 @@
 
 	export let value = {};
 
-	const targetDate = new Date('2024-12-26T23:59:00+09:00'); // 한국 시간
-	let isCountdownOver = targetDate - new Date() <= 0 ? true : false;
-
-	let showModal = false;
 	let loading = false;
 
 	function moveSite() {
 		window.open(`https://www.womynarchive.com?s=${value.title}`);
 	}
-
-	function handleOpen() {
-		showModal = true;
-	}
-
-	let message = '';
-	let openSnackbar = false;
-
-	function openSnackbarMessage() {
-		openSnackbar = true;
-
-		setTimeout(() => {
-			openSnackbar = false;
-		}, 3000);
-	}
-
-	async function handleConfirm() {
-		try {
-			loading = true;
-
-			const response = await axios.post(
-				'https://script.google.com/macros/s/AKfycbyCJ9pqVZzvsn3-dyKQkCvwP5_o_c7LP0_MxKVBsAca4BCzW5zMqXEIRPudQ8oslMdISw/exec',
-				{
-					uuid: uuid,
-					section: value.section.code,
-					duo_id: value.id
-				},
-				{
-					headers: {
-						'Content-Type': 'text/plain;charset=utf-8'
-					}
-				}
-			);
-
-			message = '투표하였습니다.';
-
-			setData(response.data);
-
-			openSnackbarMessage();
-
-			handleCancel();
-		} catch (error) {
-			console.error('Error update data:', error);
-			return [];
-		} finally {
-			loading = false;
-		}
-	}
-
-	function handleCancel() {
-		showModal = false;
-	}
 </script>
-
-{#if showModal}
-	<Confirm
-		section={value.section.name}
-		title={value.title}
-		duo={value.characters}
-		onConfirm={handleConfirm}
-		onCancel={handleCancel}
-	/>
-{/if}
 
 <div class="candidate">
 	<div class="content {value.selected ? 'selected' : ''}">
@@ -128,15 +61,7 @@
 	</div>
 
 	<Progress rate={value?.rate} />
-
-	{#if !isCountdownOver}
-		<button class="vote-btn" disabled={value.selected} on:click={handleOpen}
-			>{value.selected ? '투표 완료' : voted ? '투표 변경하기' : '투표하기'}</button
-		>
-	{/if}
 </div>
-
-<Snackbar {message} open={openSnackbar} />
 
 <style>
 	.candidate {

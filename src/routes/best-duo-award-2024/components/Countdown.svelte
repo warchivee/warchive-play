@@ -7,6 +7,7 @@
 	let seconds = 0;
 
 	const targetDate = new Date('2024-12-26T23:59:00+09:00'); // 한국 시간
+	let isCountdownOver = targetDate - new Date() <= 0 ? true : false;
 
 	// 카운트다운 업데이트 함수
 	function updateCountdown() {
@@ -29,28 +30,37 @@
 		updateCountdown(); // 처음 한 번 실행
 		const interval = setInterval(updateCountdown, 1000); // 1초마다 업데이트
 	});
+
+	function moveResult() {
+		window.location.href = '/best-duo-award-2024/result';
+	}
 </script>
 
 <div class="countdown-container">
-	<div class="countdown-title">투표 마감일까지 앞으로</div>
-	<div class="countdown">
-		<div class="time">
-			<div class="time-value">{String(days).padStart(2, '0')}</div>
-			<span class="time-unit">일</span>
+	{#if isCountdownOver}
+		<div class="countdown-title">투표가 마감되었습니다</div>
+		<button on:click={moveResult}>결과 보기</button>
+	{:else}
+		<div class="countdown-title">투표 마감일까지 앞으로</div>
+		<div class="countdown">
+			<div class="time">
+				<div class="time-value">{String(days).padStart(2, '0')}</div>
+				<span class="time-unit">일</span>
+			</div>
+			<div class="time">
+				<div class="time-value">{String(hours).padStart(2, '0')}</div>
+				<span class="time-unit">시간</span>
+			</div>
+			<div class="time">
+				<div class="time-value">{String(minutes).padStart(2, '0')}</div>
+				<span class="time-unit">분</span>
+			</div>
+			<div class="time">
+				<div class="time-value">{String(seconds).padStart(2, '0')}</div>
+				<span class="time-unit">초</span>
+			</div>
 		</div>
-		<div class="time">
-			<div class="time-value">{String(hours).padStart(2, '0')}</div>
-			<span class="time-unit">시간</span>
-		</div>
-		<div class="time">
-			<div class="time-value">{String(minutes).padStart(2, '0')}</div>
-			<span class="time-unit">분</span>
-		</div>
-		<div class="time">
-			<div class="time-value">{String(seconds).padStart(2, '0')}</div>
-			<span class="time-unit">초</span>
-		</div>
-	</div>
+	{/if}
 </div>
 
 <style>
@@ -102,5 +112,9 @@
 		margin-left: 5px;
 		font-weight: 400;
 		color: rgba(255, 255, 255, 0.6);
+	}
+
+	button {
+		margin-top: 10px;
 	}
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import './styles.css';
+	import '.././styles.css';
 
 	import axios from 'axios';
 	import { onMount } from 'svelte';
@@ -7,12 +7,14 @@
 	import BaseHead from '$components/BaseHead.svelte';
 	import SnsShareBtns from '$components/SnsShareBtns.svelte';
 
-	import Candidate from './components/Candidate/Candidate.svelte';
-	import Particles from './components/Particles.svelte';
-	import Countdown from './components/Countdown.svelte';
+	import CandidateResult from '../components/Candidate/CandidateResult.svelte';
+	import Winner from '../components/Candidate/Winner.svelte';
+	import Particles from '../components/Particles.svelte';
 
 	import logo from '$lib/images/logo/logo.png';
 	import AwardLogo from '$lib/images/best-duo-award-2024/award-logo.png';
+	import PatternUp from '$lib/images/best-duo-award-2024/pattern_up.png';
+	import PatternDown from '$lib/images/best-duo-award-2024/pattern_down.png';
 
 	// 이미지 동적 할당 시 제대로 매핑되지 않는 이슈로 import 문 작성
 	import family1_1 from '$lib/images/best-duo-award-2024/duos/family/1_1.jpg';
@@ -310,6 +312,7 @@
 	let selectedSectionIndex = 0;
 	let loading = false;
 	let data = {};
+	let topData = {};
 	let uuid = null;
 
 	async function loadData() {
@@ -339,6 +342,17 @@
 
 	function setData(newData) {
 		data = { ...newData };
+
+		topData = Object.entries(newData.rates).map(([category, datas]) => {
+			const topDuos = datas.reduce((max, duo) => (duo.rate > max.rate ? duo : max));
+			const section = sections.find((sec) => sec.code === category);
+			const sectionName = section ? section.name : 'Unknown';
+			const duoDetails = duos[category].find((duo) => duo.id === topDuos.duo_id);
+			return {
+				category: sectionName,
+				details: duoDetails
+			};
+		});
 	}
 
 	// 어뷰징 방지 위해 ip 이용
@@ -393,12 +407,30 @@
 		</div>
 	</div>
 </section>
+
 <section class="middle">
-	<Countdown />
-	<p>베스트 콤비 발표일 : 2024년 12월 27일</p>
+	<div class="pattern-container">
+		<img src={PatternUp} alt="pattern" />
+		<div class="pattern-title">투표 결과 발표</div>
+		<p>참여해 주셔서 감사합니다.</p>
+		<img src={PatternDown} alt="pattern" />
+	</div>
+	{#if loading || !topData || !uuid}
+		<br /><br />
+		<div class="loading-screen">
+			<div class="spinner"></div>
+			<p class="loading-text">불러오는 중...</p>
+		</div>
+	{:else}
+		{#each topData as { category, details }}
+			<Winner {category} {details} />
+		{/each}
+	{/if}
 </section>
 
 <section class="bottom">
+	<p>각 부문 후보들 득표율 보기</p>
+
 	<ul>
 		{#each sections as section, i}
 			<li
@@ -413,23 +445,16 @@
 		{/each}
 	</ul>
 
-	<!-- {#if loading || !data || !uuid} -->
-	{#if loading || !data}
+	{#if loading || !data || !uuid}
 		<div class="loading-screen">
 			<div class="spinner"></div>
 			<p class="loading-text">불러오는 중...</p>
 		</div>
 	{:else}
-		<p>
-			총 4개의 후보 중 <span
-				>마음에 드는 <u>{sections[selectedSectionIndex].name}</u> 콤비에 투표해주세요.</span
-			>
-		</p>
-
 		<div class="candidate-list">
 			{#each getRate(sections[selectedSectionIndex]) as duo}
 				{@const votedId = data?.my_vote?.duo_ids?.[sections[selectedSectionIndex].code]}
-				<Candidate
+				<CandidateResult
 					{uuid}
 					voted={votedId ? true : false}
 					value={{ ...duo, selected: votedId === duo.id }}
@@ -567,6 +592,19 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
+
+		.pattern-container {
+			img {
+				width: 200px;
+				padding: 14px 0;
+			}
+
+			.pattern-title {
+				margin-bottom: 10px;
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+		}
 	}
 
 	section.bottom {
