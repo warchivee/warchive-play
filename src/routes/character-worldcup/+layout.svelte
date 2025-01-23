@@ -1,4 +1,5 @@
 <script lang="ts">
+	import './styles.css';
 	import backgroundImgSrc from '$lib/images/worldcup/systems/0_background.png';
 </script>
 
